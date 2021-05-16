@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminWorkWithAccount">
+    <children>
+        <AnchorPane prefHeight="688.0" prefWidth="290.0" style="-fx-background-color: #1D2026;">
+            <children>
+                <Pane prefHeight="100.0" prefWidth="306.0" style="-fx-background-color: #1D2026;">
+                    <children>
+                        <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <JFXButton layoutX="3.0" layoutY="185.0" onAction="#toAddNewUser" prefHeight="50.0" prefWidth="306.0" text="Добавление пользователей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="1.0" layoutY="235.0" onAction="#toDeleteUser" prefHeight="50.0" prefWidth="306.0" text="Удаление пользователей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="3.0" layoutY="285.0" prefHeight="50.0" prefWidth="306.0" text="Редактирование пользователей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="3.0" layoutY="335.0" onAction="#toShowUser" prefHeight="50.0" prefWidth="306.0" text="Просмотр пользователей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutY="385.0" onAction="#toAddNewProduct" prefHeight="50.0" prefWidth="306.0" text="Добавление продукции" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutY="435.0" prefHeight="50.0" prefWidth="306.0" text="Вычисление прибыли" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="5.0" layoutY="485.0" onAction="#toShowShowPurchasedProduct" prefHeight="50.0" prefWidth="306.0" text="Таблица забронированных билетов" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
+            <children>
+                <Pane layoutX="4.0" prefHeight="100.0" prefWidth="890.0" style="-fx-background-color: #7a787a;">
+                    <children>
+                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/pictures/clear.png" />
+                            </image>
+                        </ImageView>
+                        <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
+                    </children>
+                </Pane>
+                <TableView fx:id="User" layoutX="4.0" layoutY="100.0" prefHeight="350.0" prefWidth="890.0">
+                    <columns>
+                        <TableColumn fx:id="userLogin" prefWidth="150.0" text="Логин" />
+                        <TableColumn fx:id="userPassword" prefWidth="169.5999755859375" text="Пароль" />
+                        <TableColumn fx:id="userSurname" prefWidth="196.0" text="Фамилия" />
+                        <TableColumn fx:id="userName" prefWidth="169.5999755859375" text="Имя" />
+                        <TableColumn fx:id="userPhone" prefWidth="203.20001220703125" text="Почта" />
+                    </columns>
+                </TableView>
+                <JFXButton buttonType="RAISED" layoutX="19.0" layoutY="461.0" onAction="#editLogin" prefHeight="31.0" prefWidth="211.0" text="Редактировать логин" textFill="#ca1111" textOverrun="CLIP" underline="true">
+               <font>
+                  <Font name="Microsoft YaHei Light" size="15.0" />
+               </font></JFXButton>
+                <JFXButton layoutX="32.0" layoutY="495.0" onAction="#editPassword" prefHeight="30.0" prefWidth="195.0" ripplerFill="#f07575" text="Редактировать пароль" textFill="#ca1111" underline="true">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="15.0" />
+               </font></JFXButton>
+                <JFXButton layoutX="40.0" layoutY="529.0" onAction="#editSurname" text="Редактировать фамилию" textFill="#ca1111" underline="true">
+               <font>
+                  <Font name="Microsoft YaHei Light" size="15.0" />
+               </font></JFXButton>
+                <JFXButton layoutX="20.0" layoutY="563.0" onAction="#editName" prefHeight="30.0" prefWidth="195.0" text="Редактировать имя" textFill="#ca1111" underline="true">
+               <font>
+                  <Font name="Microsoft YaHei Light" size="15.0" />
+               </font></JFXButton>
+                <JFXButton layoutX="39.0" layoutY="597.0" onAction="#editMail" prefHeight="30.0" prefWidth="169.0" text="Редактировать почту" textFill="#ca1111" underline="true">
+               <font>
+                  <Font name="Microsoft YaHei Light" size="15.0" />
+               </font></JFXButton>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

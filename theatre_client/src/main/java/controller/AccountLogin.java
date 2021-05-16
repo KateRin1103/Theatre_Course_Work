@@ -25,14 +25,14 @@ public class AccountLogin {
         return adminPassword.getText();
     }
 
-    /*public void AdminAuthorization(ActionEvent actionEvent) throws IOException {
+    public void AdminAuthorization(ActionEvent actionEvent) throws IOException {
         if (getLogin().isEmpty() || getPassword().isEmpty())
             showAlertEmpty();
         boolean flag = adminCheck(getLogin(), getPassword());
         if (flag) {
             Sample.windowStart.close();
             Sample.windowLogin.close();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/accountLogin/AdminMenu.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
             MainClient.primaryStage.setScene(new Scene(root));
             MainClient.primaryStage.show();
         } else {
@@ -40,7 +40,15 @@ public class AccountLogin {
             adminPassword.clear();
             showAlert();
         }
-    }*/
+    }
+
+    public void AdminMenu(ActionEvent actionEvent) throws IOException {
+            Sample.windowStart.close();
+            Sample.windowLogin.close();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
+            MainClient.primaryStage.setScene(new Scene(root));
+            MainClient.primaryStage.show();
+    }
 
     public void enterUser(ActionEvent actionEvent) throws IOException {
         boolean flag = userCheck(getLogin(), getPassword());

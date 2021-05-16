@@ -28,11 +28,13 @@ public class ServerWorking extends Thread {
     private static final String addNewAccountAdmin = "addNewAccountAdmin";
     private static final String checkUser = "checkUser";
     private static final String getAllAccount = "getAllAccount";
+    private static final String getAllAccountUser = "getAllAccountUser";
     private static final String deleteSelectedAccount = "deleteSelectedAccount";
     private static final String editPassword = "editPassword";
     private static final String editLogin = "editLogin";
     private static final String editSurname = "editSurname";
     private static final String editName = "editName";
+    private static final String editMail = "editMail";
     private static final String end = "end";
     private static final String addSpectacle = "addSpectacle";
     private static final String getAllSpectacles = "getAllSpectacles";
@@ -82,13 +84,13 @@ public class ServerWorking extends Thread {
                         break;
                     } else {
                         if (input.equals(checkAdmin)) {
-                            // adminAutorization();
+                            adminAutorization();
                         }
                         if (input.equals(checkSameUser)) {
                             checkSameUser();
                         }
                         if (input.equals(checkUser)) {
-                             userAutorization();
+                            userAutorization();
                         }
                         if (input.equals(addNewAccountUser)) {
                             addAccUser();
@@ -99,20 +101,26 @@ public class ServerWorking extends Thread {
                         if (input.equals(getAllAccount)) {
                             //  getAcc();
                         }
+                        if (input.equals(getAllAccountUser)) {
+                            getAccUser();
+                        }
                         if (input.equals(deleteSelectedAccount)) {
-                            // deleteAcc();
+                             deleteAcc();
                         }
                         if (input.equals(editPassword)) {
-                            // editPass();
+                             editPass();
                         }
                         if (input.equals(editLogin)) {
-                            //  editLog();
+                            editLog();
                         }
                         if (input.equals(editSurname)) {
-                            //  editSur();
+                              editSur();
                         }
                         if (input.equals(editName)) {
-                            // editN();
+                             editN();
+                        }
+                        if (input.equals(editMail)) {
+                            editMail();
                         }
                         if (input.equals(addSpectacle)) {
                             //addSpectacle();
@@ -130,13 +138,11 @@ public class ServerWorking extends Thread {
                             //   showUsersBoughtTickets();
                         }
                     }
-                } catch (NullPointerException ex) {
+                } catch (SQLException e) {
+                    e.printStackTrace();
                 }
             }
-        } //catch (SQLException e1) {
-        // e1.printStackTrace();
-        // }
-        finally {
+        } finally {
             try {
                 bufferedReader.close();
                 printStream.close();
@@ -165,6 +171,40 @@ public class ServerWorking extends Thread {
         }
     }
 
+    void adminAutorization() throws SQLException {
+        String outline = null;
+        this.resultSplit = new ArrayList<>();
+        String get = new String();
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        beginSplitStringAcc(get);
+        Account obj = new Account(this.resultSplit.get(0), this.resultSplit.get(1));
+        openDatabase();
+        ResultSet admins = getDatabase("SELECT * FROM mytheatre.admin");
+        try {
+            if (!admins.isBeforeFirst()) {
+                outline = "false";
+            } else {
+                while (admins.next()) {
+                    if (obj.getLogin().equals(admins.getString("login"))
+                            && obj.getPassword().equals(admins.getString("password"))
+                    ) {
+                        outline = "true";
+                        break;
+                    } else {
+                        outline = "false";
+                    }
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        printStream.println(outline);
+    }
+
     void addAccUser() {
         String get = new String();
         try {
@@ -176,12 +216,13 @@ public class ServerWorking extends Thread {
         Type Tip = new TypeToken<User>() {
         }.getType();
         User user = g.fromJson(get, Tip);
-        String sqlst = "INSERT INTO mytheatre.user (login, password, firstname, lastname, phone)" +
-                " VALUES ('" + user.getAccount().getLogin() + "', '" + user.getAccount().getPassword()
-                + "', '" + user.getFirstname() + "', '" +
-                user.getLastname() + "', '" + user.getPhone() + "')";
+        String query = String.format("INSERT INTO mytheatre.user " +
+                        "(login, password, firstname, lastname, phone) " +
+                        "VALUES ('%s', '%s', '%s', '%s', '%s')",
+                user.getAccount().getLogin(), user.getAccount().getPassword(),
+                user.getFirstname(), user.getLastname(), user.getPhone());
         openDatabase();
-        execute(sqlst);
+        execute(query);
     }
 
     void addAccAdmin() {
@@ -195,10 +236,10 @@ public class ServerWorking extends Thread {
         Type Tip = new TypeToken<Account>() {
         }.getType();
         Account acc = g.fromJson(get, Tip);
-        String sqlst = new String("INSERT INTO mytheatre.admin (login, password)" +
-                " VALUES ('" + acc.getLogin() + "', '" + acc.getPassword() + "');");
+        String query = String.format("INSERT INTO mytheatre.admin (login, password) " +
+                "VALUES ('%s', '%s')", acc.getLogin(), acc.getPassword());
         openDatabase();
-        execute(sqlst);
+        execute(query);
     }
 
     void checkSameUser() {
@@ -209,9 +250,9 @@ public class ServerWorking extends Thread {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String StatementAdminSql = new String("SELECT * FROM mytheatre.user");
+        // String StatementAdminSql = new String("SELECT * FROM mytheatre.user");
         openDatabase();
-        ResultSet users = getDatabase(StatementAdminSql);
+        ResultSet users = getDatabase("SELECT * FROM mytheatre.user");
         try {
             while (users.next()) {
                 if (get.equals(users.getString("login"))) {
@@ -236,16 +277,15 @@ public class ServerWorking extends Thread {
         }
         beginSplitStringAcc(get);
         Account obj = new Account(this.resultSplit.get(0), this.resultSplit.get(1));
-        String StatementAdminSql = new String("SELECT * FROM mytheatre.user");
         openDatabase();
-        ResultSet admins = getDatabase(StatementAdminSql);
+        ResultSet users = getDatabase("SELECT * FROM mytheatre.user");
         try {
-            if (!admins.isBeforeFirst()) {
+            if (!users.isBeforeFirst()) {
                 outline = "false";
             } else {
-                while (admins.next()) {
-                    if (obj.getLogin().equals(admins.getString("login"))
-                            && obj.getPassword().equals(admins.getString("password"))
+                while (users.next()) {
+                    if (obj.getLogin().equals(users.getString("login"))
+                            && obj.getPassword().equals(users.getString("password"))
                     ) {
                         outline = "true";
                         break;
@@ -259,5 +299,108 @@ public class ServerWorking extends Thread {
         }
         printStream.println(outline);
     }
+
+    void deleteAcc(){
+        String get = new String();
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = new String(String.format("DELETE FROM mytheatre.user WHERE (login = '%s')", get));
+        openDatabase();
+        execute(sqlst);
+    }
+
+    void getAccUser() throws SQLException {
+        String sqlst = new String("SELECT * FROM mytheatre.user");
+        openDatabase();
+        ResultSet resultSet = getDatabase(sqlst);
+        ArrayList<User> arrayList = new ArrayList<>();
+        while (resultSet.next()) {
+            Account acc= new Account();
+            User user = new User();
+            acc.setLogin(resultSet.getString("login"));
+            acc.setPassword(resultSet.getString("password"));
+            user.setAccount(acc);
+            user.setLastname(resultSet.getString("lastname"));
+            user.setFirstname(resultSet.getString("firstname"));
+            user.setPhone(resultSet.getString("phone"));
+            arrayList.add(user);
+        }
+        String sent = new Gson().toJson(arrayList);
+        printStream.println(sent);
+    }
+
+    void editPass() {
+        String getl = new String();
+        String getp = new String();
+        try {
+            getl = bufferedReader.readLine();
+            getp = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = new String(String.format("UPDATE mytheatre.user SET password='%s' WHERE ( login ='%s')", getp, getl));
+        openDatabase();
+        execute(sqlst);
+    }
+
+    void editLog(){
+        String getl = new String();
+        String getp = new String();
+        try {
+            getl = bufferedReader.readLine();
+            getp = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = new String(String.format("UPDATE mytheatre.user SET login='%s' WHERE ( login ='%s')", getp, getl));
+        openDatabase();
+        execute(sqlst);
+    }
+
+    void editSur(){
+        String getl = new String();
+        String gets = new String();
+        try {
+            getl = bufferedReader.readLine();
+            gets = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = new String(String.format("UPDATE mytheatre.user SET surname='%s' WHERE ( login ='%s')", gets, getl));
+        openDatabase();
+        execute(sqlst);
+    }
+
+    void editN(){
+        String getl = new String();
+        String getn = new String();
+        try {
+            getl = bufferedReader.readLine();
+            getn = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = new String(String.format("UPDATE mytheatre.user SET name='%s' WHERE ( login ='%s')", getn, getl));
+        openDatabase();
+        execute(sqlst);
+    }
+
+    void editMail(){
+        String getl = new String();
+        String getn = new String();
+        try {
+            getl = bufferedReader.readLine();
+            getn = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = new String(String.format("UPDATE mytheatre.user SET phone='%s' WHERE ( login ='%s')", getn, getl));
+        openDatabase();
+        execute(sqlst);
+    }
+
 
 }

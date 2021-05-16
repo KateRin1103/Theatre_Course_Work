@@ -63,7 +63,7 @@
         <Button layoutX="794.0" layoutY="74.0" mnemonicParsing="false" onAction="#toStart" opacity="0.0" prefHeight="26.0" prefWidth="45.0" text="вход" textFill="#d1d1d1" wrapText="true" />
         <Button layoutX="729.0" layoutY="29.0" mnemonicParsing="false" onAction="#toRegistration" opacity="0.0" prefHeight="26.0" prefWidth="123.0" text="Регистрация" />
         <Button layoutX="1062.0" layoutY="30.0" mnemonicParsing="false" onAction="#toInformation" opacity="0.02" prefHeight="26.0" prefWidth="104.0" text="О нас" />
-        <ImageView fitHeight="20.0" fitWidth="40.0" layoutX="1137.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="20.0" fitWidth="40.0" layoutX="1135.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/pictures/info.png" />
             </image>

@@ -14,4 +14,20 @@ public class User implements Serializable {
     private String lastname;
     private String phone;
     private Account account;
+
+    public String getLogin() {
+        return account.getLogin();
+    }
+
+    public String getPassword() {
+        return account.getPassword();
+    }
+
+    public void setLogin(String login){
+        this.account.setLogin(login);
+    }
+
+    public void setPassword(String password){
+        this.account.setPassword(password);
+    }
 }

@@ -8,6 +8,8 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Properties;
 
+import static java.lang.Integer.parseInt;
+
 public class Server {
 
     private static ServerSocket serverSocket = null;
@@ -21,7 +23,7 @@ public class Server {
     public Server() throws IOException {
         Properties property = new Properties();
         property.load(DataBase.class.getClassLoader().getResourceAsStream("config.properties"));
-        port = Integer.valueOf(property.getProperty("port"));
+        port = parseInt(property.getProperty("port"));
     }
 
     public static void setStateInfo(String stateInfo) {

@@ -3,6 +3,7 @@ package client;
 import account.Account;
 import account.User;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,6 +11,7 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Client {
     public static Client client;
@@ -17,13 +19,13 @@ public class Client {
     private static PrintStream clout;
     private static BufferedReader clin;
 
-    public static String toString(String s1, String s2) {
+    public static String toString(String s1, String s2) { //перегрузка метода toString()
         String s = null;
-        s = new String(s1 + "&&" + s2 + "&&");
+        s = s1 + "&&" + s2 + "&&";
         return s;
     }
 
-    public static Client getInstanceClient() {
+    public static Client getInstanceClient() { //установление соединения
         if (client == null) {
             try {
                 cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 8000);
@@ -38,21 +40,38 @@ public class Client {
         }
     }
 
-    public static void addNewAccountUser(User acc) {
+    public static void addNewAccountUser(User acc) { //добавление юзера в бд
         String userStatement = "addNewAccountUser";
         clout.println(userStatement);
         String str = new Gson().toJson(acc);
         clout.println(str);
     }
 
-    public static void addNewAccountAdmin(Account acc) {
+    public static void addNewAccountAdmin(Account acc) { //добавление админа в бд
         String userStatement = "addNewAccountAdminUser";
         clout.println(userStatement);
         String str = new Gson().toJson(acc);
         clout.println(str);
     }
 
-    public static boolean userCheck(String login, String password) {
+    public static boolean adminCheck(String login, String password) {
+        String checkAdmin = new String("checkAdmin");
+        String str = new String(toString(login, password));
+        String check = new String();
+        try {
+            clout.println(checkAdmin);
+            clout.println(str);
+            check = clin.readLine();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        if (check.equals("true"))
+            return true;
+        else
+            return false;
+    }
+
+    public static boolean userCheck(String login, String password) { //проверка существования юзера
         String checkUser = new String("checkUser");
         String str = new String(toString(login, password));
         String check = new String();
@@ -69,7 +88,7 @@ public class Client {
             return false;
     }
 
-    public static boolean checkSameUser(String login) { //
+    public static boolean checkSameUser(String login) { //проверка юзера в базе данных для авторизации
         String adst = new String("checkSameUser");
         String str = new String(login);
         String check = new String();
@@ -110,4 +129,66 @@ public class Client {
         else
             return false;
     }
+
+    public static ArrayList<Account> getAllAccount() throws IOException { //
+        String GetNuserStatement = new String("getAllAccount");
+        clout.println(GetNuserStatement);
+        String receive = clin.readLine();
+        ArrayList<Account> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<Account>>() {
+                }.getType());
+        return arrayList;
+    }
+
+    public static ArrayList<User> getAllAccountUser() throws IOException { //
+        String GetNuserStatement = new String("getAllAccountUser");
+        clout.println(GetNuserStatement);
+        String receive = clin.readLine();
+        ArrayList<User> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<User>>() {
+                }.getType());
+        return arrayList;
+    }
+
+    public static void deleteSelectedAccount(String str) { //
+        String delSelectedAcc = new String("deleteSelectedAccount");
+        clout.println(delSelectedAcc);
+        clout.println(str);
+    }
+
+    public static void editPassword(String str, String log) { //
+        String editPassword = new String("editPassword");
+        clout.println(editPassword);
+        clout.println(log);
+        clout.println(str);
+    }
+
+    public static void editLogin(String str, String log) { //
+        String editLogin = new String("editLogin");
+        clout.println(editLogin);
+        clout.println(log);
+        clout.println(str);
+    }
+
+    public static void editSurname(String str, String log) { //
+        String editSurname = new String("editSurname");
+        clout.println(editSurname);
+        clout.println(log);
+        clout.println(str);
+    }
+
+    public static void editName(String str, String log) { //
+        String editName = new String("editName");
+        clout.println(editName);
+        clout.println(log);
+        clout.println(str);
+    }
+
+    public static void editMail(String str, String log) { //
+        String editMail = new String("editMail");
+        clout.println(editMail);
+        clout.println(log);
+        clout.println(str);
+    }
+
 }
