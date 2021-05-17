@@ -5,14 +5,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.sql.Time;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Seance implements Serializable {
     private String spectacle;
-    private Date date;
-    private Time time;
+    private LocalDate date;
+    private LocalTime time;
 }

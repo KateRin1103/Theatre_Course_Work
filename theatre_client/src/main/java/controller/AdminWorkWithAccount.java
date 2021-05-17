@@ -30,7 +30,6 @@ public class AdminWorkWithAccount implements Initializable {
     public TableColumn<User, String> userName;
     public TableColumn<User, String> userPhone;
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -115,7 +114,6 @@ public class AdminWorkWithAccount implements Initializable {
             windowRedact = new Stage();
             windowRedact.setTitle("Редактирование имени");
             windowRedact.setResizable(false);
-//            windowRedact.getIcons().add(new Image("/resources/icon.png"));
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/Redact/RedactName.fxml"));
             Scene scene = new Scene(root);
             MainClient.primaryStage.show();
@@ -149,6 +147,12 @@ public class AdminWorkWithAccount implements Initializable {
         MainClient.primaryStage.show();
     }
 
+    public void toMainAdmin (ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
     public void toAddNewUser (ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddNewUser.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
@@ -157,6 +161,12 @@ public class AdminWorkWithAccount implements Initializable {
 
     public void toShowUser (ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowUser.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
+    public void toShowSeances (ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowSeances.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
@@ -184,14 +194,6 @@ public class AdminWorkWithAccount implements Initializable {
         alert.setTitle("Предупреждение");
         alert.setHeaderText(null);
         alert.setContentText("Выберите пользователя!");
-        alert.showAndWait();
-    }
-
-    public void showAlertAdminSelected() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Предупреждение");
-        alert.setHeaderText(null);
-        alert.setContentText("Отказано в удалении администратора!");
         alert.showAndWait();
     }
 

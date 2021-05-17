@@ -4,6 +4,9 @@ import account.Account;
 import account.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import theatre.Booking;
+import theatre.Seance;
+import theatre.Spectacle;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -40,14 +43,28 @@ public class Client {
         }
     }
 
-    public static void addNewAccountUser(User acc) { //добавление юзера в бд
+    public static void addNewAccountUser(User acc) {
         String userStatement = "addNewAccountUser";
         clout.println(userStatement);
         String str = new Gson().toJson(acc);
         clout.println(str);
     }
 
-    public static void addNewAccountAdmin(Account acc) { //добавление админа в бд
+    public static void addNewSpectacle(Spectacle acc) {
+        String userStatement = "addNewSpectacle";
+        clout.println(userStatement);
+        String str = new Gson().toJson(acc);
+        clout.println(str);
+    }
+
+    public static void addNewSeances(Seance acc) {
+        String userStatement = "addNewSeances";
+        clout.println(userStatement);
+        String str = new Gson().toJson(acc);
+        clout.println(str);
+    }
+
+    public static void addNewAccountAdmin(Account acc) {
         String userStatement = "addNewAccountAdminUser";
         clout.println(userStatement);
         String str = new Gson().toJson(acc);
@@ -71,7 +88,7 @@ public class Client {
             return false;
     }
 
-    public static boolean userCheck(String login, String password) { //проверка существования юзера
+    public static boolean userCheck(String login, String password) {
         String checkUser = new String("checkUser");
         String str = new String(toString(login, password));
         String check = new String();
@@ -88,7 +105,7 @@ public class Client {
             return false;
     }
 
-    public static boolean checkSameUser(String login) { //проверка юзера в базе данных для авторизации
+    public static boolean checkSameUser(String login) {
         String adst = new String("checkSameUser");
         String str = new String(login);
         String check = new String();
@@ -150,9 +167,52 @@ public class Client {
         return arrayList;
     }
 
+    public static ArrayList<Seance> getAllSeances() throws IOException { //
+        String GetNuserStatement = new String("getAllSeances");
+        clout.println(GetNuserStatement);
+        String receive = clin.readLine();
+        ArrayList<Seance> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<Seance>>() {
+                }.getType());
+        return arrayList;
+    }
+
+    public static ArrayList<Booking> getAllBookings() throws IOException { //
+        String GetNuserStatement = new String("getAllBookings");
+        clout.println(GetNuserStatement);
+        String receive = clin.readLine();
+        ArrayList<Booking> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<Booking>>() {
+                }.getType());
+        return arrayList;
+    }
+
+    public static ArrayList<Spectacle> getAllSpectacles() throws IOException { //
+        String GetNuserStatement = new String("getAllSpectacles");
+        clout.println(GetNuserStatement);
+        String receive = clin.readLine();
+        ArrayList<Spectacle> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<Spectacle>>() {
+                }.getType());
+        return arrayList;
+    }
+
     public static void deleteSelectedAccount(String str) { //
         String delSelectedAcc = new String("deleteSelectedAccount");
         clout.println(delSelectedAcc);
+        clout.println(str);
+    }
+
+    public static void deleteSelectedSpectacle(String str) { //
+        String delSelectedSp = new String("deleteSelectedSpectacle");
+        clout.println(delSelectedSp);
+        clout.println(str);
+    }
+
+    public static void deleteSelectedSeance(Seance seance) { //
+        String delSelectedSeance = new String("deleteSelectedSeances");
+        clout.println(delSelectedSeance);
+        String str = new Gson().toJson(seance);
         clout.println(str);
     }
 

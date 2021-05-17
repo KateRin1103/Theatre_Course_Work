@@ -5,7 +5,8 @@
 
 # поиск броней по id сеанса
 SELECT booking.*
-FROM booking WHERE seance_id = 1;
+FROM booking
+WHERE seance_id = 1;
 
 # >>> поиск всех сеансов по посетителю
 # сначала в таблице с юзерами ищет его id,
@@ -35,4 +36,18 @@ FROM seance
          INNER JOIN spectacle ON (seance.`spectacle_id` = spectacle.`id`)
 WHERE seance.`spectacle_id` = 1;
 
-SELECT COUNT(*)
+SELECT u.login, sp.title, se.time, se.date, p.place, p.row
+FROM booking b
+         INNER JOIN place p on b.place_id = p.id
+         INNER JOIN user u on b.user_id = u.id
+         INNER JOIN seance se on b.seance_id = se.id
+         INNER JOIN spectacle sp on se.spectacle_id = sp.id;
+
+SELECT s.title, se.date, se.time
+FROM seance se
+         INNER JOIN spectacle s on se.spectacle_id = s.id;
+
+SELECT id
+FROM spectacle
+WHERE title = 'Шрэк';
+

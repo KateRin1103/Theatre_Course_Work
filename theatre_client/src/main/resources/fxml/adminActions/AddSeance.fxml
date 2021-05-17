@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import java.lang.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
+            prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Registration">
+    <children>
+        <AnchorPane opacity="0.87" prefHeight="640.0" prefWidth="313.0" style="-fx-background-color: #660099;">
+            <children>
+                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #990066;">
+                    <children>
+                        <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                            </font>
+                        </Label>
+                        <Label layoutX="52.0" layoutY="413.0" prefHeight="32.0" prefWidth="313.0"
+                               text="Добавление сеанса" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="40.0" layoutY="135.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@/pictures/drama.png"/>
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+
+        <Pane layoutX="313.0" prefHeight="44.0" prefWidth="887.0" style="-fx-background-color: #ff99ff;">
+            <children>
+                <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true"
+                           preserveRatio="true">
+                    <image>
+                        <Image url="@/pictures/enter.png"/>
+                    </image>
+                </ImageView>
+                <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0"
+                        prefHeight="27.0" prefWidth="27.0"/>
+            </children>
+        </Pane>
+        <Text layoutX="376.0" layoutY="244.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название спектакля:">
+            <font>
+                <Font name="Microsoft JhengHei Light" size="17.0"/>
+            </font>
+        </Text>
+        <Text layoutX="733.0" layoutY="362.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Минуты:">
+            <font>
+                <Font name="Microsoft JhengHei Light" size="17.0"/>
+            </font>
+        </Text>
+        <Text layoutX="493.0" layoutY="306.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Дата:">
+            <font>
+                <Font name="Microsoft JhengHei Light" size="18.0"/>
+            </font>
+        </Text>
+        <AnchorPane layoutX="666.0" layoutY="404.0" prefHeight="40.0" prefWidth="200.0"
+                    style="-fx-background-color: #1D2026;"/>
+
+        <JFXButton layoutX="666.0" layoutY="402.0" onAction="#addNewSeance" prefHeight="40.0" prefWidth="200.0"
+                   text="Добавить" textFill="#ccc5c5">
+            <font>
+                <Font name="Microsoft JhengHei Light" size="21.0"/>
+            </font>
+        </JFXButton>
+        <Text layoutX="541.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Часы:"
+              wrappingWidth="61.5234375">
+            <font>
+                <Font name="Microsoft JhengHei Light" size="18.0"/>
+            </font>
+        </Text>
+        <DatePicker fx:id="seanceDate" layoutX="545.0" layoutY="282.0" prefHeight="32.0" prefWidth="455.0"/>
+
+        <ComboBox fx:id="hourChoose" layoutX="603.0" layoutY="339.0" prefHeight="40.0" prefWidth="117.0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="12"/>
+                    <String fx:value="13"/>
+                    <String fx:value="14"/>
+                    <String fx:value="15"/>
+                    <String fx:value="16"/>
+                    <String fx:value="17"/>
+                    <String fx:value="18"/>
+                    <String fx:value="19"/>
+                    <String fx:value="20"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+        <ComboBox fx:id="minChoose" layoutX="818.0" layoutY="339.0" prefHeight="40.0" prefWidth="117.0">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="00"/>
+                    <String fx:value="10"/>
+                    <String fx:value="15"/>
+                    <String fx:value="20"/>
+                    <String fx:value="25"/>
+                    <String fx:value="30"/>
+                    <String fx:value="35"/>
+                    <String fx:value="40"/>
+                    <String fx:value="45"/>
+                    <String fx:value="50"/>
+                    <String fx:value="55"/>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <ComboBox fx:id="titleChoose" layoutX="545.0" layoutY="217.0" prefHeight="40.0" prefWidth="455.0"/>
+
+        <JFXButton layoutX="993.0" layoutY="215.0" onAction="#updateList" prefHeight="44.0" prefWidth="200.0"
+                   text="Обновить список" textFill="#bf12ae">
+            <font>
+                <Font name="Microsoft JhengHei Light" size="21.0"/>
+            </font>
+        </JFXButton>
+
+    </children>
+</AnchorPane>

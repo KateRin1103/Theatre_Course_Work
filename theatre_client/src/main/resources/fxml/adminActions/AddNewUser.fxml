@@ -17,55 +17,25 @@
                                 <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </Label>
+                  <Label layoutX="10.0" layoutY="403.0" prefHeight="32.0" prefWidth="313.0" text="Добавление пользователя" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft JhengHei Light" size="23.0" />
+                     </font>
+                  </Label>
                     </children>
                 </Pane>
-                <JFXButton layoutX="3.0" layoutY="185.0" prefHeight="50.0" prefWidth="306.0" text="Добавление пользователей" textFill="#ccc5c5">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton layoutX="1.0" layoutY="235.0" onAction="#toDeleteUser" prefHeight="50.0" prefWidth="306.0" text="Удаление пользователей" textFill="#ccc5c5">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton layoutX="3.0" layoutY="285.0" onAction="#toRedactUser" prefHeight="50.0" prefWidth="306.0" text="Редактирование пользователей" textFill="#ccc5c5">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton layoutX="3.0" layoutY="335.0" onAction="#toShowUser" prefHeight="50.0" prefWidth="306.0" text="Просмотр пользователей" textFill="#ccc5c5">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton layoutY="385.0" onAction="#toAddNewProduct" prefHeight="50.0" prefWidth="313.0" text="Добавление сеансов" textFill="#ccc5c5">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton layoutY="435.0" onAction="#toProfitСalculation" prefHeight="50.0" prefWidth="313.0" text="Вычисление прибыли" textFill="#ccc5c5">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
-                    </font>
-                </JFXButton>
-                <JFXButton layoutX="-2.0" layoutY="485.0" onAction="#toShowShowPurchasedProduct" prefHeight="50.0" prefWidth="313.0" text="Таблица забронированных билетов" textFill="#ccc5c5">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
-                    </font>
-                </JFXButton>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
             <children>
-                <Pane layoutX="4.0" prefHeight="100.0" prefWidth="890.0" style="-fx-background-color: #7a787a;">
+                <Pane layoutX="7.0" prefHeight="44.0" prefWidth="887.0" style="-fx-background-color: #ff99ff;">
                     <children>
                         <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@/pictures/clear.png" />
+                                <Image url="@/pictures/enter.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
+                        <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
                     </children>
                 </Pane>
                 <PasswordField fx:id="userPassword" layoutX="280.0" layoutY="220.0" prefHeight="40.0" prefWidth="340.0" />
@@ -109,5 +79,10 @@
                 </AnchorPane>
             </children>
         </AnchorPane>
+        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="30.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/pictures/add-friend.png" />
+            </image>
+        </ImageView>
     </children>
 </AnchorPane>

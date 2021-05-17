@@ -7,124 +7,153 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountLogin">
-   <children>
-      <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
-         <children>
-            <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #990066;">
-               <children>
-                  <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
-                     <font>
-                        <Font name="Microsoft JhengHei Light" size="23.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Pane>
-            <JFXButton layoutX="3.0" layoutY="185.0" onAction="#toAddNewUser" prefHeight="50.0" prefWidth="306.0" text="Добавление пользователей" textFill="#ccc5c5">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
+            prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountLogin">
+    <children>
+        <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
+            <children>
+                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #990066;">
+                    <children>
+                        <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <JFXButton layoutX="5.0" layoutY="93.0" onAction="#toAddNewUser" prefHeight="50.0" prefWidth="306.0" text="Добавление пользователей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="1.0" layoutY="124.0" onAction="#toDeleteUser" prefHeight="50.0" prefWidth="306.0" text="Удаление пользователей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="3.0" layoutY="158.0" onAction="#toRedactUser" prefHeight="50.0" prefWidth="306.0" text="Редактирование пользователей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="3.0" layoutY="190.0" onAction="#toShowUser" prefHeight="50.0" prefWidth="306.0" text="Просмотр пользователей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutY="261.0" onAction="#toShowSpectacles" prefHeight="50.0" prefWidth="313.0" text="Просмотр спектаклей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutY="230.0" onAction="#toAddNewSpectacle" prefHeight="50.0" prefWidth="313.0" text="Добавление спектаклей" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="-2.0" layoutY="481.0" onAction="#toShowBookings" prefHeight="50.0" prefWidth="313.0" text="Таблица забронированных билетов" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="7.0" layoutY="535.0" onAction="#makeAccReport" prefHeight="50.0" prefWidth="306.0" text="Сформировать отчёт" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutX="5.0" layoutY="585.0" onAction="#toBarChart" prefHeight="50.0" prefWidth="306.0" text="Посмотреть график" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+            <JFXButton layoutX="-2.0" layoutY="291.0" onAction="#toDeleteSpectacle" prefHeight="50.0" prefWidth="313.0" text="Удаление спектаклей" textFill="#ccc5c5">
                <font>
                   <Font name="Microsoft JhengHei Light" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="1.0" layoutY="235.0" onAction="#toDeleteUser" prefHeight="50.0" prefWidth="306.0" text="Удаление пользователей" textFill="#ccc5c5">
+            <Line endX="100.0" layoutX="158.0" layoutY="235.0" startX="-100.0" />
+            <Line endX="100.0" layoutX="160.0" layoutY="338.0" startX="-100.0" />
+            <JFXButton layoutX="-3.0" layoutY="333.0" onAction="#toAddSeance" prefHeight="50.0" prefWidth="313.0" text="Добавление сеансов" textFill="#ccc5c5">
                <font>
                   <Font name="Microsoft JhengHei Light" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="3.0" layoutY="285.0" onAction="#toRedactUser" prefHeight="50.0" prefWidth="306.0" text="Редактирование пользователей" textFill="#ccc5c5">
+            <JFXButton layoutX="-1.0" layoutY="366.0" onAction="#toShowSeances" prefHeight="50.0" prefWidth="313.0" text="Просмотр сеансов" textFill="#ccc5c5">
                <font>
                   <Font name="Microsoft JhengHei Light" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutX="3.0" layoutY="335.0" onAction="#toShowUser" prefHeight="50.0" prefWidth="306.0" text="Просмотр пользователей" textFill="#ccc5c5">
+            <JFXButton layoutX="-1.0" layoutY="401.0" onAction="#toDeleteSeance" prefHeight="50.0" prefWidth="313.0" text="Удаление сеансов" textFill="#ccc5c5">
                <font>
                   <Font name="Microsoft JhengHei Light" size="16.0" />
                </font>
             </JFXButton>
-            <JFXButton layoutY="385.0" onAction="#toAddNewProduct" prefHeight="50.0" prefWidth="313.0" text="Добавление сеансов" textFill="#ccc5c5">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutY="435.0" onAction="#toProfitСalculation" prefHeight="50.0" prefWidth="313.0" text="Вычисление прибыли" textFill="#ccc5c5">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="-2.0" layoutY="485.0" onAction="#toShowShowPurchasedProduct" prefHeight="50.0" prefWidth="313.0" text="Таблица забронированных билетов" textFill="#ccc5c5">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="7.0" layoutY="535.0" onAction="#makeAccReport" prefHeight="50.0" prefWidth="306.0" text="Сформировать отчёт" textFill="#ccc5c5">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="5.0" layoutY="585.0" onAction="#toBarChart" prefHeight="50.0" prefWidth="306.0" text="Посмотреть график" textFill="#ccc5c5">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="16.0" />
-               </font>
-            </JFXButton>
-         </children>
-      </AnchorPane>
-      <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
-         <children>
-            <Circle fill="WHITE" layoutX="724.0" layoutY="544.0" radius="115.0" stroke="#1d2026" strokeType="INSIDE" strokeWidth="3.0" />
-            <Circle fill="WHITE" layoutX="444.0" layoutY="544.0" radius="115.0" stroke="#1d2026" strokeType="INSIDE" strokeWidth="3.0" />
-            <Circle fill="WHITE" layoutX="164.0" layoutY="535.0" radius="115.0" stroke="#1d2026" strokeType="INSIDE" strokeWidth="3.0" />
-            <Pane layoutX="6.0" prefHeight="100.0" prefWidth="895.0" style="-fx-background-color: #9999cc;">
-               <children>
-                  <JFXButton layoutX="589.0" layoutY="46.0" prefHeight="40.0" prefWidth="306.0" text="Редактирование профиля">
-                     <font>
-                        <Font size="16.0" />
-                     </font></JFXButton>
-                  <ImageView fitHeight="32.0" fitWidth="46.0" layoutX="846.0" layoutY="50.0" opacity="0.77" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/pictures/pencil.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@/pictures/clear.png" />
-                     </image>
-                  </ImageView>
-                  <Button layoutX="849.0" layoutY="14.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
-               </children></Pane>
-            <Text fill="#1d2026" layoutX="85.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="План по производству продукции" textAlignment="CENTER" wrappingWidth="155.73666381835938">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="20.0" />
-               </font></Text>
-            <Text fill="#1d2026" layoutX="145.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="90%">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="20.0" />
-               </font>
-            </Text>
-            <Text fill="#1d2026" layoutX="370.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Прирост по сравнению с прошлым месяцем" textAlignment="CENTER" wrappingWidth="155.73666381835938">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="20.0" />
-               </font>
-            </Text>
-            <Text fill="#1d2026" layoutX="429.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="19%">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="20.0" />
-               </font>
-            </Text>
-            <Text fill="#1d2026" layoutX="646.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Увеличение продаж за квартал" textAlignment="CENTER" wrappingWidth="155.73666381835938">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="20.0" />
-               </font>
-            </Text>
-            <Text fill="#1d2026" layoutX="706.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="20.0" />
-               </font>
-            </Text>
-            <ImageView fitHeight="517.0" fitWidth="862.0" layoutX="19.0" layoutY="111.0">
-               <image>
-                  <Image url="@../../pictures/Балерина2.jpg" />
-               </image>
-            </ImageView>
-         </children>
-      </AnchorPane>
-   </children>
+            <Line endX="100.0" layoutX="155.0" layoutY="530.0" startX="-100.0" />
+            <Line endX="100.0" layoutX="161.0" layoutY="481.0" startX="-100.0" />
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
+            <children>
+                <Circle fill="WHITE" layoutX="724.0" layoutY="544.0" radius="115.0" stroke="#1d2026" strokeType="INSIDE" strokeWidth="3.0" />
+                <Circle fill="WHITE" layoutX="444.0" layoutY="544.0" radius="115.0" stroke="#1d2026" strokeType="INSIDE" strokeWidth="3.0" />
+                <Circle fill="WHITE" layoutX="164.0" layoutY="535.0" radius="115.0" stroke="#1d2026" strokeType="INSIDE" strokeWidth="3.0" />
+                <Pane layoutX="6.0" prefHeight="100.0" prefWidth="895.0" style="-fx-background-color: #9999cc;">
+                    <children>
+                        <JFXButton layoutX="589.0" layoutY="46.0" prefHeight="40.0" prefWidth="306.0" text="Редактирование профиля">
+                            <font>
+                                <Font size="16.0" />
+                            </font>
+                        </JFXButton>
+                        <ImageView fitHeight="32.0" fitWidth="46.0" layoutX="846.0" layoutY="50.0" opacity="0.77" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/pictures/pencil.png" />
+                            </image>
+                        </ImageView>
+                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/pictures/clear.png" />
+                            </image>
+                        </ImageView>
+                        <Button layoutX="849.0" layoutY="14.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
+                    </children>
+                </Pane>
+                <Text fill="#1d2026" layoutX="85.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="План по производству продукции" textAlignment="CENTER" wrappingWidth="155.73666381835938">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="#1d2026" layoutX="145.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="90%">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="#1d2026" layoutX="370.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Прирост по сравнению с прошлым месяцем" textAlignment="CENTER" wrappingWidth="155.73666381835938">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="#1d2026" layoutX="429.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="19%">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="#1d2026" layoutX="646.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Увеличение продаж за квартал" textAlignment="CENTER" wrappingWidth="155.73666381835938">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="#1d2026" layoutX="706.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" text="31%">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="20.0" />
+                    </font>
+                </Text>
+                <ImageView fitHeight="517.0" fitWidth="862.0" layoutX="19.0" layoutY="111.0">
+                    <image>
+                        <Image url="@../../pictures/Балерина2.jpg" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

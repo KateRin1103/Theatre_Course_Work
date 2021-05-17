@@ -40,7 +40,6 @@ public class MainClient extends Application {
         primaryStage = stage;
         primaryStage.setTitle("Theatre");
         primaryStage.setResizable(false);
-//        primaryStage.getIcons().add(new Image("../resources/icon.png"));
         primaryStage.setMaxHeight(1000);
         primaryStage.setMaxWidth(684);
         primaryStage.setMinHeight(1000);

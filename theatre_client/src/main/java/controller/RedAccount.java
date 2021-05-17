@@ -77,8 +77,6 @@ public class RedAccount {
         String enter = newMail.getText ();
         if (enter.isEmpty ())
             showAlertEmpty ();
-        else if (!checkCorrect ( enter ))
-            warning ();
         else {
             editMail ( enter, user.getLogin () );
             editSuccess ();
@@ -113,6 +111,12 @@ public class RedAccount {
 
     public void toRedactUser(ActionEvent actionEvent) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactUser.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
+    public void toMainAdmin (ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
