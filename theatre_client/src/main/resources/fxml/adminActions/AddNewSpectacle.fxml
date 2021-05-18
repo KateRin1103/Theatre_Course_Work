@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Registration">
+    <children>
+        <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
+            <children>
+                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #990066;">
+                    <children>
+                        <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                            </font>
+                        </Label>
+                  <Label layoutX="37.0" layoutY="403.0" prefHeight="32.0" prefWidth="313.0" text="Добавление спектакля" textFill="WHITE">
+                     <font>
+                        <Font name="Microsoft JhengHei Light" size="23.0" />
+                     </font>
+                  </Label>
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
+            <children>
+                <Pane layoutX="7.0" prefHeight="44.0" prefWidth="887.0" style="-fx-background-color: #ff99ff;">
+                    <children>
+                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/pictures/enter.png" />
+                            </image>
+                        </ImageView>
+                        <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
+                    </children>
+                </Pane>
+                <TextField fx:id="durationReg" layoutX="280.0" layoutY="220.0" prefHeight="40.0" prefWidth="340.0" />
+                <TextField fx:id="titleReg" layoutX="280.0" layoutY="165.0" prefHeight="40.0" prefWidth="340.0" />
+                <Text layoutX="108.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Название спектакля:">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="17.0" />
+                    </font>
+                </Text>
+                <Text layoutX="154.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Длительность:">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="18.0" />
+                    </font>
+                </Text>
+                <AnchorPane layoutX="345.0" layoutY="308.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1D2026;">
+                    <children>
+                        <JFXButton layoutX="5.0" layoutY="-7.0" onAction="#addNewSpectacles" prefHeight="40.0" prefWidth="200.0" text="Добавить" textFill="#ccc5c5">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="21.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="30.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/pictures/drama.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>

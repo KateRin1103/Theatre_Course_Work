@@ -13,7 +13,7 @@
     <bytecodeTargetLevel>
       <module name="theatre_client" target="15" />
       <module name="Theatre_Course_Work" target="16" />
-      <module name="theatre_server" target="15" />
+      <module name="theatre_server" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

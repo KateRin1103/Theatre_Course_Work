@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="688.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountLogin">
+    <children>
+        <AnchorPane prefHeight="688.0" prefWidth="290.0" style="-fx-background-color: #1D2026;">
+            <children>
+                <Pane prefHeight="100.0" prefWidth="306.0" style="-fx-background-color: #1D2026;">
+                    <children>
+                        <Label layoutX="41.0" layoutY="34.0" text="Меню Пользователя" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <JFXButton layoutY="184.0" onAction="#toBuyProduct" prefHeight="50.0" prefWidth="306.0" text="Покупка билетов" textAlignment="CENTER" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutY="235.0" onAction="#toBestsellers" prefHeight="50.0" prefWidth="306.0" text="Афиша" textAlignment="CENTER" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutY="285.0" onAction="#toContacts" prefHeight="50.0" prefWidth="306.0" text="Контакты" textAlignment="CENTER" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+            <JFXButton layoutY="335.0" onAction="#toAboutCompany" prefHeight="50.0" prefWidth="306.0" text="О компании" textAlignment="JUSTIFY" textFill="#ccc5c5">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="1.0" layoutY="385.0" onAction="#toAddresses" prefHeight="50.0" prefWidth="306.0" text="Адреса" textAlignment="CENTER" textFill="#ccc5c5">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="16.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="1.0" layoutY="435.0" onAction="#toSocialNetwork" prefHeight="50.0" prefWidth="306.0" text="Социальные сети" textAlignment="CENTER" textFill="#ccc5c5">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="16.0" />
+               </font>
+            </JFXButton>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="308.0" prefHeight="688.0" prefWidth="895.0">
+            <children>
+                <Pane prefHeight="100.0" prefWidth="902.0" style="-fx-background-color: #7a787a;">
+                    <children>
+                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/pictures/back.png" />
+                            </image>
+                        </ImageView>
+                        <Button layoutX="849.0" layoutY="14.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="27.0" prefWidth="27.0" textFill="#950808" />
+                    </children></Pane>
+            <ImageView fitHeight="552.0" fitWidth="805.0" layoutX="37.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@/pictures/Балерина2.jpg" />
+               </image>
+            </ImageView>
+            <Text fill="#ffaa96" layoutX="506.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="53.8125">
+               <font>
+                  <Font name="System Bold" size="70.0" />
+               </font>
+            </Text>
+            <Text fill="#1d2026" layoutX="508.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.375">
+               <font>
+                  <Font name="System Bold" size="70.0" />
+               </font>
+            </Text>
+            <Text fill="#1d2026" layoutX="500.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="96.0" />
+               </font>
+            </Text>
+            <Text fill="#1d2026" layoutX="491.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0">
+               <font>
+                  <Font name="System Bold" size="96.0" />
+               </font>
+            </Text>
+            <AnchorPane layoutX="275.0" layoutY="494.0" opacity="0.43" prefHeight="92.0" prefWidth="498.0" style="-fx-background-color: #000000;">
+               <children>
+                  <Text fill="#fff9f9" layoutX="332.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="75.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#fff9f9" layoutX="377.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                     <font>
+                        <Font name="System Bold" size="76.0" />
+                     </font>
+                  </Text>
+                  <Text fill="#c8c1c1" layoutX="24.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Τερψιχόρη" wrappingWidth="518.115234375">
+                     <font>
+                        <Font name="System Bold" size="100.0" />
+                     </font>
+                  </Text>
+               </children>
+            </AnchorPane>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>

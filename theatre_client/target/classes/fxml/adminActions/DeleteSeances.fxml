@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminWorkWithSeances">
+    <children>
+        <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
+            <children>
+                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #990066;">
+                    <children>
+                        <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="28.0" layoutY="394.0" prefHeight="32.0" prefWidth="282.0" text="Удаление сеанса" textFill="WHITE">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            </children>
+        </AnchorPane>
+        <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
+            <children>
+                <Pane layoutX="6.0" prefHeight="50.0" prefWidth="888.0" style="-fx-background-color: #ff99ff;">
+                    <children>
+                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@/pictures/enter.png" />
+                            </image>
+                        </ImageView>
+                        <Button layoutX="849.0" layoutY="7.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
+                    </children>
+                </Pane>
+                <TableView fx:id="Seance" layoutX="6.0" layoutY="48.0" prefHeight="640.0" prefWidth="888.0">
+                    <columns>
+                        <TableColumn fx:id="seanceTitle" prefWidth="282.0" text="Название" />
+                        <TableColumn fx:id="seanceDate" prefWidth="295.00006103515625" text="Дата проведения" />
+                        <TableColumn fx:id="seanceTime" prefWidth="155.33331298828125" text="Время проведения" />
+                        <TableColumn fx:id="seancePrice" prefWidth="152.6666259765625" text="Цена" />
+                    </columns>
+                </TableView>
+                <AnchorPane layoutX="346.0" layoutY="589.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1D2026;">
+                    <children>
+                        <JFXButton layoutX="5.0" layoutY="-5.0" onAction="#delSeance" prefHeight="27.0" prefWidth="200.0" text="Удалить" textFill="#ccc5c5">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="21.0" />
+                            </font>
+                        </JFXButton>
+                    </children>
+                </AnchorPane>
+            </children>
+        </AnchorPane>
+        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/pictures/clear.png" />
+            </image>
+        </ImageView>
+        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/pictures/drama.png" />
+            </image>
+        </ImageView>
+    </children>
+</AnchorPane>
