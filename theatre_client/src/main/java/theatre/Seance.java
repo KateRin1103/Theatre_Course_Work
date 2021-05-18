@@ -15,4 +15,5 @@ public class Seance implements Serializable {
     private String spectacle;
     private LocalDate date;
     private LocalTime time;
+    private int price;
 }

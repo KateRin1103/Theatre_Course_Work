@@ -38,9 +38,11 @@ public class ServerWorking extends Thread {
     private static final String getAllSpectacles = "getAllSpectacles";
     private static final String getAllAccountUser = "getAllAccountUser";
     private static final String getAllBookings = "getAllBookings";
+    private static final String getSpectacleTitles = "getSpectacleTitles";
     private static final String deleteSelectedAccount = "deleteSelectedAccount";
     private static final String deleteSelectedSeances = "deleteSelectedSeances";
     private static final String deleteSelectedSpectacle = "deleteSelectedSpectacle";
+    private static final String deleteSelectedBooking = "deleteSelectedBooking";
     private static final String editPassword = "editPassword";
     private static final String editLogin = "editLogin";
     private static final String editSurname = "editSurname";
@@ -127,11 +129,17 @@ public class ServerWorking extends Thread {
                         if (input.equals(getAllAccountUser)) {
                             getAccUser();
                         }
+                        if (input.equals(getSpectacleTitles)) {
+                            getSpectacleTitles();
+                        }
                         if (input.equals(deleteSelectedAccount)) {
                             deleteAcc();
                         }
                         if (input.equals(deleteSelectedSeances)) {
                             deleteSeance();
+                        }
+                        if (input.equals(deleteSelectedBooking)) {
+                            deleteSelectedBooking();
                         }
                         if (input.equals(editPassword)) {
                             editPass();
@@ -198,7 +206,7 @@ public class ServerWorking extends Thread {
     }
 
     private void getAllSeances() throws SQLException {
-        String sqlst = String.format("SELECT s.title, se.date, se.time " +
+        String sqlst = String.format("SELECT s.title, se.date, se.time, se.price " +
                 "FROM seance se INNER JOIN spectacle s on se.spectacle_id = s.id");
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
@@ -208,11 +216,25 @@ public class ServerWorking extends Thread {
             seance.setSpectacle(resultSet.getString("title"));
             seance.setDate(resultSet.getDate("date").toLocalDate());
             seance.setTime(resultSet.getTime("time").toLocalTime());
+            seance.setPrice(resultSet.getInt("price"));
             arrayList.add(seance);
         }
         GsonBuilder gb = new GsonBuilder();
         gb.setDateFormat("yyyy-MM-dd");
         Gson gson = gb.create();
+        String sent = gson.toJson(arrayList);
+        printStream.println(sent);
+    }
+
+    private void getSpectacleTitles() throws SQLException {
+        String sqlst = String.format("SELECT title FROM spectacle ORDER BY title");
+        openDatabase();
+        ResultSet resultSet = getDatabase(sqlst);
+        ArrayList<String> arrayList = new ArrayList<>();
+        while (resultSet.next()) {
+            arrayList.add(resultSet.getString("title"));
+        }
+        Gson gson = new Gson();
         String sent = gson.toJson(arrayList);
         printStream.println(sent);
     }
@@ -257,24 +279,6 @@ public class ServerWorking extends Thread {
         this.resultSplit.add(first);
         if (mid != flagIndex) {
             return (splitStringAcc(acc, (mid + 2), flagIndex));
-        } else {
-            return 0;
-        }
-    }
-
-    private void beginSplitStringSeance(String beginString) {
-        int flag = beginString.lastIndexOf("&&");
-        splitStringSeance(beginString, 0, flag);
-    }
-
-    private int splitStringSeance(String acc, int id, int flagIndex) {
-        int tmp = id;
-        int mid = 0;
-        mid = acc.indexOf("&&", id);
-        String first = acc.substring(tmp, mid);
-        this.resultSplit.add(first);
-        if (mid != flagIndex) {
-            return (splitStringSeance(acc, (mid + 2), flagIndex));
         } else {
             return 0;
         }
@@ -383,13 +387,9 @@ public class ServerWorking extends Thread {
         ResultSet resultSet = getDatabase(String.format("SELECT id FROM spectacle WHERE title='%s'", seance.getSpectacle()));
         resultSet.next();
         int id = resultSet.getInt(1);
-        String sqlst = new String(String.format("INSERT INTO seance (spectacle_id,date,time) VALUES ('%d','%s','%s:00')",
-                id, seance.getDate().toString(), seance.getTime().toString()));
+        String sqlst = new String(String.format("INSERT INTO seance (spectacle_id,date,time,price) VALUES ('%d','%s','%s:00','%d')",
+                id, seance.getDate().toString(), seance.getTime().toString(), seance.getPrice()));
         execute(sqlst);
-    }
-
-    void returnSpectacles(){
-
     }
 
     void checkSameUser() {
@@ -491,6 +491,39 @@ public class ServerWorking extends Thread {
         int id = resultSet.getInt(1);
         String sqlst = new String(String.format("DELETE FROM seance WHERE spectacle_id = %d AND date = '%s' AND time = '%s:00'",
                 id, seance.getDate().toString(), seance.getTime().toString()));
+        execute(sqlst);
+    }
+
+    void deleteSelectedBooking() throws SQLException {
+        String get = new String();
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson g = new Gson();
+
+        Type Tip = new TypeToken<Booking>() {
+        }.getType();
+        Booking booking = g.fromJson(get, Tip);
+        openDatabase();
+        ResultSet resultSet = getDatabase(String.format("SELECT id FROM spectacle WHERE title='%s'", booking.getTitle()));
+        resultSet.next();
+        int id = resultSet.getInt(1);
+        ResultSet resultSetPlace = getDatabase(String.format("SELECT id FROM `place` WHERE `place`='%d' AND `row`='%d'",
+                booking.getPlace(), booking.getRow()));
+        resultSetPlace.next();
+        int placeId = resultSetPlace.getInt(1);
+        ResultSet resultSetDate = getDatabase(String.format("SELECT id FROM `seance` WHERE `date`='%s:00' AND `time`='%s' AND `spectacle_id`=%d",
+                booking.getDate().toString(), booking.getTime().toString(), id));
+        resultSetDate.next();
+        int seanceId = resultSetDate.getInt(1);
+        ResultSet resultSetUser = getDatabase(String.format("SELECT id FROM `user` WHERE `login`='%s'", booking.getLogin()));
+        resultSetUser.next();
+        int userId = resultSetUser.getInt(1);
+        String sqlst = new String(String.format("DELETE FROM booking WHERE seance_id = %d AND user_id = %d AND place_id = %d",
+                seanceId, userId, placeId));
+
         execute(sqlst);
     }
 

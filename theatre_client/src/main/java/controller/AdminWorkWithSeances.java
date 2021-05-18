@@ -28,6 +28,7 @@ public class AdminWorkWithSeances implements Initializable {
     public TableColumn<Seance, String> seanceTitle;
     public TableColumn<Seance, LocalTime> seanceTime;
     public TableColumn<Seance, LocalDate> seanceDate;
+    public TableColumn<Seance, Integer> seancePrice;
 
 
     @Override
@@ -60,6 +61,7 @@ public class AdminWorkWithSeances implements Initializable {
             return cell;
         });*/
         seanceDate.setCellValueFactory(new PropertyValueFactory<Seance, LocalDate>("date"));
+        seancePrice.setCellValueFactory(new PropertyValueFactory<Seance,Integer>("price"));
         Seance.setItems(nSeances);
 
         Seance.setEditable(true);

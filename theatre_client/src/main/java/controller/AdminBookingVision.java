@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
+import static client.Client.deleteSelectedBooking;
 import static client.Client.getAllBookings;
 
 public class AdminBookingVision implements Initializable {
@@ -53,13 +54,6 @@ public class AdminBookingVision implements Initializable {
         Booking.setEditable(true);
     }
 
-
-    public void toMain(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/start/Main.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
     public void showAlertNoSelected() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Предупреждение");
@@ -74,6 +68,17 @@ public class AdminBookingVision implements Initializable {
         alert.setHeaderText(null);
         alert.setContentText("Сеанс удалён!");
         alert.showAndWait();
+    }
+
+    public void delBooking(ActionEvent actionEvent) {
+        Booking selectedBooking = Booking.getSelectionModel().getSelectedItem();
+        if (selectedBooking == null) {
+            showAlertNoSelected();
+        } else {
+            Booking.getItems().removeAll(selectedBooking);
+            deleteSelectedBooking(selectedBooking);
+            delSuccess();
+        }
     }
 
     public void toMainAdmin(ActionEvent actionEvent) throws IOException {

@@ -51,3 +51,14 @@ SELECT id
 FROM spectacle
 WHERE title = 'Шрэк';
 
+SELECT id FROM spectacle WHERE title='Шрэк';
+
+SELECT id FROM `seance` WHERE `date`='2021-05-22' AND `time`='16:45:00' AND `spectacle_id`=2
+#сеанс 15
+#спектакль 2
+#место 2
+#юзер 1
+
+SELECT id FROM `place` WHERE `place`='2' AND `row`='1';
+SELECT id FROM `user` WHERE `login`='katerin';
+

@@ -137,6 +137,12 @@ public class AccountLogin {
         MainClient.primaryStage.show();
     }
 
+    public void toDelBookings(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/DeleteBooking.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
     public void toAddSeance(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddSeance.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));

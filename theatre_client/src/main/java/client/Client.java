@@ -197,9 +197,26 @@ public class Client {
         return arrayList;
     }
 
+    public static ArrayList<String> getSpectacleTitles() throws IOException { //
+        String GetNuserStatement = new String("getSpectacleTitles");
+        clout.println(GetNuserStatement);
+        String receive = clin.readLine();
+        ArrayList<String> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<String>>() {
+                }.getType());
+        return arrayList;
+    }
+
     public static void deleteSelectedAccount(String str) { //
         String delSelectedAcc = new String("deleteSelectedAccount");
         clout.println(delSelectedAcc);
+        clout.println(str);
+    }
+
+    public static void deleteSelectedBooking(Booking booking) { //
+        String delSelectedAcc = new String("deleteSelectedBooking");
+        clout.println(delSelectedAcc);
+        String str = new Gson().toJson(booking);
         clout.println(str);
     }
 

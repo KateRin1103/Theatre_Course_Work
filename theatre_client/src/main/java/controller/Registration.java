@@ -14,7 +14,6 @@ import theatre.Spectacle;
 
 import java.io.IOException;
 import java.time.LocalTime;
-import java.util.List;
 
 import static client.Client.*;
 import static java.lang.Integer.parseInt;
@@ -30,9 +29,10 @@ public class Registration {
     public TextField durationReg;
 
     public ComboBox<String> titleChoose;
-
+    public Label label;
     public ComboBox hourChoose;
     public ComboBox minChoose;
+    public ComboBox price;
     public DatePicker seanceDate;
 
     public String getLogin() {
@@ -130,27 +130,36 @@ public class Registration {
         }
     }
 
-    public void updateList(ActionEvent actionEvent) {
-        ObservableList<String> langs = FXCollections.observableArrayList(List.of("Красавица и Чудовище",
-                "Шрэк", "Волшебник ОЗ", "ВинниПух", "Мастер и Маргарита", "Лебединое Озеро", "Король Лев"));
-        this.titleChoose = new ComboBox<>(langs);
+    public void updateList(ActionEvent actionEvent) throws IOException {
+        ObservableList<String> langs = FXCollections.observableArrayList(getSpectacleTitles());
+        titleChoose.setItems(langs);
+        String s = titleChoose.getSelectionModel().toString();
+        label.setText(s);
     }
 
     public void addNewSeance(ActionEvent actionEvent) {
         if (titleChoose.getValue() == null || seanceDate.getValue() == null
-                || hourChoose.getValue() == null || minChoose.getValue() == null) {
+                || hourChoose.getValue() == null || minChoose.getValue() == null
+                || price.getValue() == null) {
             showAlertEmptySpect();
         } else {
             try {
                 addNewSeances(new Seance(
                         titleChoose.getValue(),
                         seanceDate.getValue(),
-                        LocalTime.of(parseInt(hourChoose.getValue().toString()), parseInt(minChoose.getValue().toString()), 0)));
+                        LocalTime.of(parseInt(hourChoose.getValue().toString()),
+                                parseInt(minChoose.getValue().toString()), 0),
+                        parseInt(String.valueOf(price.getValue()))));
                 showAlertSuccess();
             } catch (NumberFormatException ex) {
                 showAlertEmptySpect();
             }
         }
+        titleChoose.setValue(null);
+        seanceDate.setValue(null);
+        hourChoose.setValue(null);
+        minChoose.setValue(null);
+        price.setValue(null);
     }
 
     public void showAlertEmptySpect() {
