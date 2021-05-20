@@ -61,7 +61,7 @@
         </AnchorPane>
         <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@/pictures/back.png" />
+                <Image url="@/pictures/enter.png" />
             </image>
         </ImageView>
         <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
