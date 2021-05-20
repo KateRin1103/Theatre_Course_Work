@@ -31,7 +31,7 @@ public class Client {
     public static Client getInstanceClient() { //установление соединения
         if (client == null) {
             try {
-                cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 8000);
+                cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 8001);
                 clout = new PrintStream(cl.getOutputStream());
                 clin = new BufferedReader(new InputStreamReader(cl.getInputStream()));
             } catch (IOException ex) {

@@ -19,6 +19,7 @@ import java.net.Socket;
 import java.net.SocketException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import static dataBase.DataBase.*;
@@ -54,13 +55,19 @@ public class ServerWorking extends Thread {
     private static final String buyTickets = "buyTickets";
     private static final String showBoughtTickets = "showBoughtTickets";
     private static final String showUsersBoughtTickets = "showUsersBoughtTickets";
-    //private static final String getProfit = "getProfit";
-    //private static final String accReport = "accReport";
+    private static final String updateStatistics = "updateStatistics";
+    private static final String getStatistics = "getStatistics";
+    private static final String getResult = "getResult";
+    private static final String accReport = "accReport";
 
     static Logger logger = Logger.getLogger(ServerWorking.class);
 
     public ServerWorking(Socket cl) {
-        this.cl = cl;
+        ServerWorking.cl = cl;
+    }
+
+
+    public ServerWorking() {
     }
 
     BufferedReader bufferedReader;
@@ -191,7 +198,7 @@ public class ServerWorking extends Thread {
     }
 
     private void getAllSpectacles() throws SQLException {
-        String sqlst = new String("SELECT * FROM mytheatre.spectacle");
+        String sqlst = "SELECT * FROM mytheatre.spectacle";
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
         ArrayList<Spectacle> arrayList = new ArrayList<>();
@@ -287,7 +294,7 @@ public class ServerWorking extends Thread {
     void adminAutorization() throws SQLException {
         String outline = null;
         this.resultSplit = new ArrayList<>();
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -319,7 +326,7 @@ public class ServerWorking extends Thread {
     }
 
     void addAccUser() {
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -339,7 +346,7 @@ public class ServerWorking extends Thread {
     }
 
     void addAccAdmin() {
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -356,7 +363,7 @@ public class ServerWorking extends Thread {
     }
 
     void addNewSpectacle() {
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -373,7 +380,7 @@ public class ServerWorking extends Thread {
     }
 
     void addNewSeances() throws SQLException {
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -387,14 +394,14 @@ public class ServerWorking extends Thread {
         ResultSet resultSet = getDatabase(String.format("SELECT id FROM spectacle WHERE title='%s'", seance.getSpectacle()));
         resultSet.next();
         int id = resultSet.getInt(1);
-        String sqlst = new String(String.format("INSERT INTO seance (spectacle_id,date,time,price) VALUES ('%d','%s','%s:00','%d')",
-                id, seance.getDate().toString(), seance.getTime().toString(), seance.getPrice()));
+        String sqlst = String.format("INSERT INTO seance (spectacle_id,date,time,price) VALUES ('%d','%s','%s:00','%d')",
+                id, seance.getDate().toString(), seance.getTime().toString(), seance.getPrice());
         execute(sqlst);
     }
 
     void checkSameUser() {
         String outline = "false";
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -405,7 +412,7 @@ public class ServerWorking extends Thread {
         try {
             while (users.next()) {
                 if (get.equals(users.getString("login"))) {
-                    outline = new String("true");
+                    outline = "true";
                     break;
                 }
             }
@@ -418,7 +425,7 @@ public class ServerWorking extends Thread {
     void userAutorization() {
         String outline = null;
         this.resultSplit = new ArrayList<>();
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -450,31 +457,31 @@ public class ServerWorking extends Thread {
     }
 
     void deleteAcc() {
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sqlst = new String(String.format("DELETE FROM mytheatre.user WHERE (login = '%s')", get));
+        String sqlst = String.format("DELETE FROM mytheatre.user WHERE (login = '%s')", get);
         openDatabase();
         execute(sqlst);
     }
 
     void delSpect() {
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sqlst = new String(String.format("DELETE FROM mytheatre.spectacle WHERE (title = '%s')", get));
+        String sqlst = String.format("DELETE FROM mytheatre.spectacle WHERE (title = '%s')", get);
         openDatabase();
         execute(sqlst);
     }
 
     void deleteSeance() throws SQLException {
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -489,13 +496,13 @@ public class ServerWorking extends Thread {
         ResultSet resultSet = getDatabase(String.format("SELECT id FROM spectacle WHERE title='%s'", seance.getSpectacle()));
         resultSet.next();
         int id = resultSet.getInt(1);
-        String sqlst = new String(String.format("DELETE FROM seance WHERE spectacle_id = %d AND date = '%s' AND time = '%s:00'",
-                id, seance.getDate().toString(), seance.getTime().toString()));
+        String sqlst = String.format("DELETE FROM seance WHERE spectacle_id = %d AND date = '%s' AND time = '%s:00'",
+                id, seance.getDate().toString(), seance.getTime().toString());
         execute(sqlst);
     }
 
     void deleteSelectedBooking() throws SQLException {
-        String get = new String();
+        String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
@@ -507,28 +514,33 @@ public class ServerWorking extends Thread {
         }.getType();
         Booking booking = g.fromJson(get, Tip);
         openDatabase();
+
         ResultSet resultSet = getDatabase(String.format("SELECT id FROM spectacle WHERE title='%s'", booking.getTitle()));
         resultSet.next();
         int id = resultSet.getInt(1);
+
         ResultSet resultSetPlace = getDatabase(String.format("SELECT id FROM `place` WHERE `place`='%d' AND `row`='%d'",
                 booking.getPlace(), booking.getRow()));
         resultSetPlace.next();
         int placeId = resultSetPlace.getInt(1);
+
         ResultSet resultSetDate = getDatabase(String.format("SELECT id FROM `seance` WHERE `date`='%s:00' AND `time`='%s' AND `spectacle_id`=%d",
                 booking.getDate().toString(), booking.getTime().toString(), id));
         resultSetDate.next();
         int seanceId = resultSetDate.getInt(1);
+
         ResultSet resultSetUser = getDatabase(String.format("SELECT id FROM `user` WHERE `login`='%s'", booking.getLogin()));
         resultSetUser.next();
         int userId = resultSetUser.getInt(1);
-        String sqlst = new String(String.format("DELETE FROM booking WHERE seance_id = %d AND user_id = %d AND place_id = %d",
-                seanceId, userId, placeId));
+
+        String sqlst = String.format("DELETE FROM booking WHERE seance_id = %d AND user_id = %d AND place_id = %d",
+                seanceId, userId, placeId);
 
         execute(sqlst);
     }
 
     void getAccUser() throws SQLException {
-        String sqlst = new String("SELECT * FROM mytheatre.user");
+        String sqlst = "SELECT * FROM mytheatre.user";
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
         ArrayList<User> arrayList = new ArrayList<>();
@@ -548,74 +560,170 @@ public class ServerWorking extends Thread {
     }
 
     void editPass() {
-        String getl = new String();
-        String getp = new String();
+        String getl = "";
+        String getp = "";
         try {
             getl = bufferedReader.readLine();
             getp = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sqlst = new String(String.format("UPDATE mytheatre.user SET password='%s' WHERE ( login ='%s')", getp, getl));
+        String sqlst = String.format("UPDATE mytheatre.user SET password='%s' WHERE ( login ='%s')",
+                getp, getl);
         openDatabase();
         execute(sqlst);
     }
 
     void editLog() {
-        String getl = new String();
-        String getp = new String();
+        String getl = "";
+        String getp = "";
         try {
             getl = bufferedReader.readLine();
             getp = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sqlst = new String(String.format("UPDATE mytheatre.user SET login='%s' WHERE ( login ='%s')", getp, getl));
+        String sqlst = String.format("UPDATE mytheatre.user SET login='%s' WHERE ( login ='%s')",
+                getp, getl);
         openDatabase();
         execute(sqlst);
     }
 
     void editSur() {
-        String getl = new String();
-        String gets = new String();
+        String getl = "";
+        String gets = "";
         try {
             getl = bufferedReader.readLine();
             gets = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sqlst = new String(String.format("UPDATE mytheatre.user SET lastname='%s' WHERE ( login ='%s')", gets, getl));
+        String sqlst = String.format("UPDATE mytheatre.user SET lastname='%s' WHERE ( login ='%s')", gets, getl);
         openDatabase();
         execute(sqlst);
     }
 
     void editN() {
-        String getl = new String();
-        String getn = new String();
+        String getl = "";
+        String getn = "";
         try {
             getl = bufferedReader.readLine();
             getn = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sqlst = new String(String.format("UPDATE mytheatre.user SET firstname='%s' WHERE ( login ='%s')", getn, getl));
+        String sqlst = String.format("UPDATE mytheatre.user SET firstname='%s' WHERE ( login ='%s')",
+                getn, getl);
         openDatabase();
         execute(sqlst);
     }
 
     void editMail() {
-        String getl = new String();
-        String getn = new String();
+        String getl = "";
+        String getn = "";
         try {
             getl = bufferedReader.readLine();
             getn = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sqlst = new String(String.format("UPDATE mytheatre.user SET phone='%s' WHERE ( login ='%s')", getn, getl));
+        String sqlst = String.format("UPDATE mytheatre.user SET phone='%s' WHERE ( login ='%s')", getn, getl);
         openDatabase();
         execute(sqlst);
     }
 
+    void updateStatistics() throws SQLException { //обновление данных за квартал
+        openDatabase();
+        execute("TRUNCATE TABLE statistics");
+        execute("TRUNCATE TABLE results");
+        LocalDate date = null;
+        int day = LocalDate.now().getDayOfMonth();
 
+        //получение списка id спектаклей
+        String selectSQLOnTitle = "select distinct s.id, s.title " +
+                "from seance " +
+                "inner join spectacle s on seance.spectacle_id = s.id";
+        ResultSet result = getDatabase(selectSQLOnTitle);
+
+        if (result == null)
+            return;
+        try {
+            while (result.next()) {
+                for (int i = 1; i < 4; i++) {
+                    String currentDate = date.now().plusDays(-day + 1).plusMonths(-i).toString();
+
+                    //выбор количества сеансов конкретного спектакля за определённый месяц,
+                    // целевого и итогового значения купленных билетов
+                    ResultSet resNumber = getDatabase(String.format("select COUNT((MONTH(date))) " +
+                                    "from seance " +
+                                    "where month(date)=month('%s') and spectacle_id=%d",
+                            currentDate, result.getInt("id")));
+                    resNumber.next();
+
+                    //выбор количества купленных билетов конкретного спектакля за определённый месяц
+                    ResultSet res = getDatabase(String.format("select count(booking.id) " +
+                                    "from booking " +
+                                    "inner join seance s on s.id = booking.seance_id " +
+                                    "inner join spectacle s2 on s.spectacle_id = s2.id " +
+                                    "where month(s.date)=month('%s') and s.id=booking.seance_id and s.spectacle_id=s2.id " +
+                                    "AND title='%s'",
+                            currentDate, result.getString("s.title")));
+                    res.next();
+
+                    execute(String.format("insert into statistics (spectacle_id, date, number_of_shows, goal, result) " +
+                                    "value (%d, '%s', %d, %d, %d) ",
+                            result.getInt("id"), currentDate,
+                            resNumber.getInt(1), resNumber.getInt(1) * 20,
+                            res.getInt(1)));
+
+                }
+            }
+            //обновление эффективности
+            ResultSet resEf = getDatabase("select ifnull(result/goal, 0.0) as eff from statistics");
+            int i = 1;
+            while (resEf.next()) {
+                // System.out.println(resEf.getDouble(1));
+                execute("update statistics set efficiency=" + resEf.getDouble(1) + " where id=" + i);
+                i++;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        ResultSet result2 = getDatabase(selectSQLOnTitle);
+        ResultSet parametres = getDatabase("select efficiency from statistics");
+        while (result2.next()) {
+            ResultSet sp = getDatabase(String.format("select sum(efficiency) from statistics where spectacle_id=%d",
+                    result2.getInt(1)));
+            sp.next();
+
+            StringBuilder str = new StringBuilder();
+            str.append("insert into results (spectacle_id,first_param,second_param,third_param,specific_efficiency,risk) value (");
+            str.append(result2.getInt("id"));
+            str.append(",");
+            parametres.next();
+            double one = parametres.getDouble(1);
+
+            str.append(parametres.getDouble(1));
+            str.append(",");
+            parametres.next();
+            double two = parametres.getDouble(1);
+
+            str.append(parametres.getDouble(1));
+            str.append(",");
+            parametres.next();
+            double three = parametres.getDouble(1);
+
+            str.append(parametres.getDouble(1));
+            str.append(",");
+            double sumDivThree = (one + two + three) / 3;
+            str.append(sumDivThree);
+            str.append(",");
+            str.append(((Math.pow(one - sumDivThree, 2)
+                    + Math.pow(two - sumDivThree, 2)
+                    + Math.pow(three - sumDivThree, 2)) / 3));
+            str.append(")");
+            execute(str.toString());
+        }
+    }
 }
