@@ -4,6 +4,7 @@ import account.Account;
 import account.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import statistics.Statistics;
 import theatre.Booking;
 import theatre.Seance;
 import theatre.Spectacle;
@@ -31,7 +32,7 @@ public class Client {
     public static Client getInstanceClient() { //установление соединения
         if (client == null) {
             try {
-                cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 8001);
+                cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 8002);
                 clout = new PrintStream(cl.getOutputStream());
                 clin = new BufferedReader(new InputStreamReader(cl.getInputStream()));
             } catch (IOException ex) {
@@ -197,6 +198,16 @@ public class Client {
         return arrayList;
     }
 
+    public static ArrayList<Statistics> getStatistics() throws IOException { //
+        String GetNuserStatement = new String("getStatistics");
+        clout.println(GetNuserStatement);
+        String receive = clin.readLine();
+        ArrayList<Statistics> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<Statistics>>() {
+                }.getType());
+        return arrayList;
+    }
+
     public static ArrayList<String> getSpectacleTitles() throws IOException { //
         String GetNuserStatement = new String("getSpectacleTitles");
         clout.println(GetNuserStatement);
@@ -206,6 +217,7 @@ public class Client {
                 }.getType());
         return arrayList;
     }
+
 
     public static void deleteSelectedAccount(String str) { //
         String delSelectedAcc = new String("deleteSelectedAccount");
@@ -231,6 +243,18 @@ public class Client {
         clout.println(delSelectedSeance);
         String str = new Gson().toJson(seance);
         clout.println(str);
+    }
+
+    public static ArrayList<Integer> getSeancePlaces(Seance seance) throws IOException{
+        String GetNuserStatement = new String("getSeancePlaces");
+        clout.println(GetNuserStatement);
+        String gson = new Gson().toJson(seance);
+        clout.println(gson);
+        String receive = clin.readLine();
+        ArrayList<Integer> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<Integer>>() {
+                }.getType());
+        return arrayList;
     }
 
     public static void editPassword(String str, String log) { //
@@ -268,4 +292,7 @@ public class Client {
         clout.println(str);
     }
 
+    public static void getReport() {
+        clout.println("getReport");
+    }
 }

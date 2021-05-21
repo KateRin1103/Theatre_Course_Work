@@ -1,5 +1,6 @@
 package controller;
 
+import client.Client;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,6 +15,7 @@ import static client.Client.adminCheck;
 import static client.Client.userCheck;
 
 public class AccountLogin {
+    public static String enteredUserLogin;
     public TextField adminLogin;
     public PasswordField adminPassword;
 
@@ -43,16 +45,17 @@ public class AccountLogin {
     }
 
     public void AdminMenu(ActionEvent actionEvent) throws IOException {
-            Sample.windowStart.close();
-            Sample.windowLogin.close();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
-            MainClient.primaryStage.setScene(new Scene(root));
-            MainClient.primaryStage.show();
+        Sample.windowStart.close();
+        Sample.windowLogin.close();
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
     }
 
     public void enterUser(ActionEvent actionEvent) throws IOException {
         boolean flag = userCheck(getLogin(), getPassword());
         if (flag) {
+            enteredUserLogin = getLogin();
             Sample.windowStart.close();
             Sample.windowLogin.close();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserMenu.fxml"));
@@ -156,26 +159,14 @@ public class AccountLogin {
         MainClient.primaryStage.show();
     }
 
+    public void toShowSeancesForUser(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/ShowSeances.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
     public void toDeleteSeance(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/DeleteSeances.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toAddresses(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/Addresses.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toSocialNetwork(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/SocialNetwork.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toAboutCompany(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/AboutCompany.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
@@ -205,29 +196,17 @@ public class AccountLogin {
     }
 
     public void toBarChart(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/BarChart.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toShowShowPurchasedProduct(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowPurchasedProduct.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toProfitСalculation(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ProfitСalculation.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowStatistics.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
 
     public void makeAccReport(ActionEvent actionEvent) {
-        //accReport();
+        Client.getReport();
         successReport();
     }
 
-    public void successReport(){
+    public void successReport() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(null);
         alert.setHeaderText(null);

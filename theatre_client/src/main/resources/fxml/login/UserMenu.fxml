@@ -24,31 +24,18 @@
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutY="235.0" onAction="#toBestsellers" prefHeight="50.0" prefWidth="306.0" text="Афиша" textAlignment="CENTER" textFill="#ccc5c5">
+                <JFXButton layoutY="285.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Афиша" textAlignment="CENTER" textFill="#ccc5c5">
                     <font>
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutY="285.0" onAction="#toContacts" prefHeight="50.0" prefWidth="306.0" text="Контакты" textAlignment="CENTER" textFill="#ccc5c5">
+
+                <JFXButton layoutY="385.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Редактировать профиль" textAlignment="CENTER" textFill="#ccc5c5">
                     <font>
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>
                 </JFXButton>
-            <JFXButton layoutY="335.0" onAction="#toAboutCompany" prefHeight="50.0" prefWidth="306.0" text="О компании" textAlignment="JUSTIFY" textFill="#ccc5c5">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="1.0" layoutY="385.0" onAction="#toAddresses" prefHeight="50.0" prefWidth="306.0" text="Адреса" textAlignment="CENTER" textFill="#ccc5c5">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="16.0" />
-               </font>
-            </JFXButton>
-            <JFXButton layoutX="1.0" layoutY="435.0" onAction="#toSocialNetwork" prefHeight="50.0" prefWidth="306.0" text="Социальные сети" textAlignment="CENTER" textFill="#ccc5c5">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="16.0" />
-               </font>
-            </JFXButton>
+
             </children>
         </AnchorPane>
         <AnchorPane layoutX="308.0" prefHeight="688.0" prefWidth="895.0">

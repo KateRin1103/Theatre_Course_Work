@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -43,35 +44,11 @@ public class AdminWorkWithSeances implements Initializable {
 
         seanceTitle.setCellValueFactory(new PropertyValueFactory<Seance, String>("spectacle"));
         seanceTime.setCellValueFactory(new PropertyValueFactory<Seance, LocalTime>("time"));
-        /*seanceDate.setCellFactory(sd -> {
-            TableCell<Seance, LocalDate> cell = new TableCell<Seance, LocalDate>() { //метод конфигурации
-                private SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-
-                @Override
-                protected void updateItem(LocalDate item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setText(null);
-                    } else {
-                        this.setText(format.format(item));
-
-                    }
-                }
-            };
-            return cell;
-        });*/
         seanceDate.setCellValueFactory(new PropertyValueFactory<Seance, LocalDate>("date"));
         seancePrice.setCellValueFactory(new PropertyValueFactory<Seance,Integer>("price"));
         Seance.setItems(nSeances);
 
         Seance.setEditable(true);
-    }
-
-
-    public void toMain(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/start/Main.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
     }
 
 

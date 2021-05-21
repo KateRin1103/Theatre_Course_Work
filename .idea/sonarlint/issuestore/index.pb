@@ -9,8 +9,6 @@ O
 0theatre_server/src/main/java/start/ServMain.java,1\0\10a71f18ea02925afd3143c69d6e391403b9b3e8
 c
 3theatre_client/src/main/java/theatre/Spectacle.java,f\2\f2aac327a8131e4c04fa5ff9fada553e65cd59da
-t
-Dtheatre_client/src/main/java/controller/AdminWorkWithSpectacles.java,3\f\3f81f5854be570ac7d2793950c903b722fb8fda3
 f
 6theatre_server/src/main/java/handlers/DateHandler.java,5\a\5a34897a254b1045e04ef3d4d418d8f1079025d8
 F
@@ -18,8 +16,10 @@ F
 F
 theatre_server/pom.xml,8\6\8609ba2ad09de8baec4d62d0ed99d5c380595441
 Q
-!theatre_client/theatre_client.iml,7\7\776afd1d719a80fe3803b96c94ce5b065dd00ac1
-Q
 !theatre_server/theatre_server.iml,2\4\2404780eaaea115b89d32656d671e51eb9dcb7be
-i
-9theatre_client/src/main/java/controller/AccountLogin.java,4\0\40228fafc236bcb14978b2d22c742e7ae2c82ce3
+c
+3theatre_server/src/main/java/dataBase/DataBase.java,e\f\ef246e6cf066046e13ef07cd2a82997784ed0eb2
+g
+7theatre_client/src/main/java/controller/RedAccount.java,f\b\fbc0b68fd718c0726623312cf7da59ad0158e170
+q
+Atheatre_client/src/main/java/controller/AdminWorkWithAccount.java,a\8\a8cd6066a31bdb455d60311aeb5a8e3422287245

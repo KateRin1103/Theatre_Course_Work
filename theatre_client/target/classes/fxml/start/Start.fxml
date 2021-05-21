@@ -8,7 +8,9 @@
 <?import javafx.scene.text.Text?>
 
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="559.0" style="-fx-background-color: #dddddd;" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Sample">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0"
+            prefWidth="559.0" style="-fx-background-color: #dddddd;" xmlns="http://javafx.com/javafx/8.0.271"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Sample">
    <children>
       <AnchorPane layoutX="278.0" prefHeight="364.0" prefWidth="2.0" style="-fx-background-color: black;" />
       <Text layoutX="82.0" layoutY="312.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пользователь">

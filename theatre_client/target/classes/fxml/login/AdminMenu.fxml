@@ -60,7 +60,7 @@
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutX="-2.0" layoutY="585.0" onAction="#toBarChart" prefHeight="50.0" prefWidth="306.0" text="Посмотреть график" textFill="#ccc5c5">
+                <JFXButton layoutX="-2.0" layoutY="585.0" onAction="#toBarChart" prefHeight="50.0" prefWidth="306.0" text="Статистика за квартал" textFill="#ccc5c5">
                     <font>
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>

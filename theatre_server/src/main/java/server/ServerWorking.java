@@ -6,14 +6,13 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.apache.log4j.Logger;
+import statistics.Statistics;
 import theatre.Booking;
 import theatre.Seance;
 import theatre.Spectacle;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintStream;
+import java.awt.*;
+import java.io.*;
 import java.lang.reflect.Type;
 import java.net.Socket;
 import java.net.SocketException;
@@ -21,6 +20,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 import static dataBase.DataBase.*;
 
@@ -52,13 +52,15 @@ public class ServerWorking extends Thread {
     private static final String end = "end";
     private static final String addSpectacle = "addSpectacle";
 
+    private static final String getSeancePlaces = "getSeancePlaces";
+
     private static final String buyTickets = "buyTickets";
     private static final String showBoughtTickets = "showBoughtTickets";
     private static final String showUsersBoughtTickets = "showUsersBoughtTickets";
     private static final String updateStatistics = "updateStatistics";
     private static final String getStatistics = "getStatistics";
     private static final String getResult = "getResult";
-    private static final String accReport = "accReport";
+    private static final String getReport = "getReport";
 
     static Logger logger = Logger.getLogger(ServerWorking.class);
 
@@ -124,14 +126,17 @@ public class ServerWorking extends Thread {
                         if (input.equals(addNewSpectacle)) {
                             addNewSpectacle();
                         }
+                        if (input.equals(getSeancePlaces)) {
+                            getSeancePlaces();
+                        }
                         if (input.equals(addNewSeances)) {
                             addNewSeances();
                         }
+                        if (input.equals(getReport)) {
+                            writeInFile();
+                        }
                         if (input.equals(getAllBookings)) {
                             getAllBookings();
-                        }
-                        if (input.equals(getAllAccount)) {
-                            //  getAcc();
                         }
                         if (input.equals(getAllAccountUser)) {
                             getAccUser();
@@ -166,9 +171,6 @@ public class ServerWorking extends Thread {
                         if (input.equals(editMail)) {
                             editMail();
                         }
-                        if (input.equals(addSpectacle)) {
-                            //addSpectacle();
-                        }
                         if (input.equals(getAllSpectacles)) {
                             getAllSpectacles();
                         }
@@ -182,7 +184,7 @@ public class ServerWorking extends Thread {
                             //   showUsersBoughtTickets();
                         }
                     }
-                } catch (SQLException e) {
+                } catch (SQLException | IOException e) {
                     e.printStackTrace();
                 }
             }
@@ -264,6 +266,30 @@ public class ServerWorking extends Thread {
             seance.setTime(resultSet.getTime("time").toLocalTime());
             seance.setRow(resultSet.getInt("row"));
             seance.setPlace(resultSet.getInt("place"));
+            arrayList.add(seance);
+        }
+        GsonBuilder gb = new GsonBuilder();
+        gb.setDateFormat("yyyy-MM-dd");
+        Gson gson = gb.create();
+        String sent = gson.toJson(arrayList);
+        printStream.println(sent);
+    }
+
+    private void getStatistics() throws SQLException {
+        updateStatistics();
+        String sqlst = String.format("select * " +
+                "from statistics " +
+                "         inner join spectacle s on statistics.spectacle_id = s.id");
+        openDatabase();
+        ResultSet resultSet = getDatabase(sqlst);
+        ArrayList<Statistics> arrayList = new ArrayList<>();
+        while (resultSet.next()) {
+            Statistics seance = new Statistics();
+            seance.setTitle(resultSet.getString("title"));
+            seance.setDate(resultSet.getDate("date").toLocalDate());
+            seance.setGoal(resultSet.getInt("goal"));
+            seance.setNumberOfShows(resultSet.getInt("number_of_shows"));
+            seance.setResult(resultSet.getInt("result"));
             arrayList.add(seance);
         }
         GsonBuilder gb = new GsonBuilder();
@@ -559,6 +585,37 @@ public class ServerWorking extends Thread {
         printStream.println(sent);
     }
 
+    void getSeancePlaces() throws SQLException {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson g = new Gson();
+
+        Type Tip = new TypeToken<Seance>() {
+        }.getType();
+        Seance seance = g.fromJson(get, Tip);
+        openDatabase();
+
+        ResultSet resultSet = getDatabase("SELECT id FROM seance inner join spectacle s on seance.spectacle_id = s.id" +
+                " WHERE date=" + seance.getDate() + " AND time=" + seance.getTime() + " AND title="+seance.getSpectacle());
+        resultSet.next();
+        int seanceID = resultSet.getInt(1);
+
+        ResultSet placesID = getDatabase("select place_id " +
+                "from booking " +
+                "inner join place p on p.id = booking.place_id" +
+                "where seance_id = " + seanceID);
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        while (placesID.next()) {
+            arrayList.add(resultSet.getInt("place_id"));
+        }
+        String sent = new Gson().toJson(arrayList);
+        printStream.println(sent);
+    }
+
     void editPass() {
         String getl = "";
         String getp = "";
@@ -721,9 +778,100 @@ public class ServerWorking extends Thread {
             str.append(",");
             str.append(((Math.pow(one - sumDivThree, 2)
                     + Math.pow(two - sumDivThree, 2)
-                    + Math.pow(three - sumDivThree, 2)) / 3));
+                    + Math.pow(three - sumDivThree, 2)) / 2));
             str.append(")");
             execute(str.toString());
         }
+    }
+
+    void writeInFile() throws SQLException, IOException {
+        openDatabase();
+        List<String> data = new ArrayList<>();
+        List<String> risks = new ArrayList<>();
+        ResultSet res = getDatabase("select *, title " +
+                "from statistics " +
+                "inner join spectacle s on statistics.spectacle_id = s.id");
+        while (res.next()) {
+            String title = res.getString("title");
+            String date = res.getDate("date").toLocalDate().toString();
+            int number = res.getInt("number_of_shows");
+            int goal = res.getInt("goal");
+            int result = res.getInt("result");
+            double efficiency = res.getDouble("efficiency");
+            data.add(String.format("|%25s|%15s|%15d|%10d|%10d|%16f|", title, date, number, goal, result, efficiency));
+        }
+        ResultSet report = getDatabase("select *, title " +
+                "from results " +
+                "inner join spectacle s on results.spectacle_id = s.id");
+        while (report.next()) {
+            String title = report.getString("title");
+            double efficiency = report.getDouble("specific_efficiency");
+            double risk = report.getDouble("risk");
+            risks.add(String.format("|%31s|%31f|%32f|", title, efficiency, risk));
+        }
+        File file = new File("D:/Report.txt");
+        file.delete();
+        if (file.delete()) {
+            file.createNewFile();
+        }
+        BufferedWriter out = new BufferedWriter(new FileWriter(file, true));
+        out.flush();
+        out.write(String.format("\n           ОТЧЕТ ПРЕДЫДУЩЕГО КВАРТАЛА ПО ПРОДАЖАМ БИЛЕТОВ НА СПЕКТАКЛИ ОТ %s\n\n",
+                LocalDate.now().toString()));
+        out.write("+------------------------------------------------------------------------------------------------+\n");
+        out.write(String.format("|%25s|%15s|%15s|%10s|%10s|%15s|\n", "Название", "Месяц", "Число показов", "Цель", "Итог", "Уд.эффективность"));
+        out.write("+------------------------------------------------------------------------------------------------+\n");
+        for (Object o : data) {
+            out.write(o.toString());
+            out.newLine();
+        }
+        out.write("+------------------------------------------------------------------------------------------------+\n");
+
+        out.write("  По результатам анализа сведений об эффективности каждого спектакля в прошлом была\nоценена удельная эффективность каждой единицы.\n");
+        out.write("  В качестве оценки эффективности решений (спектаклей для показа) была использована\n" +
+                "средняя удельная эффективность. Найдена оценка эффективности показов:");
+        out.newLine();
+
+        out.write(String.format("\n           ОЦЕНКА РИСКА ПО ПРОДАЖАМ БИЛЕТОВ НА СПЕКТАКЛИ ОТ %s",
+                LocalDate.now().toString()));
+        out.newLine();
+        out.write("+------------------------------------------------------------------------------------------------+\n");
+        out.write(String.format("|%31s|%31s|%32s|\n", "Название", "Удельная эффективность", "Оценка риска"));
+        out.write("+------------------------------------------------------------------------------------------------+\n");
+        for (Object o : risks) {
+            out.write(o.toString());
+            out.newLine();
+        }
+        out.write("+------------------------------------------------------------------------------------------------+\n");
+
+        out.write("По данным отчёта можно оценить эффективность проведения заданного количества\n " +
+                "показов ранеее для дальнейшего принятия решений об увеличении, уменьшении либо сохранении \n" +
+                "количества показов представленных спектаклей.");
+        ResultSet max = getDatabase("select title\n" +
+                "from results\n" +
+                "inner join spectacle s on results.spectacle_id = s.id\n" +
+                "where risk=(select max(risk)from results)");
+        max.next();
+        String maxTitle = max.getString(1);
+
+        ResultSet min = getDatabase("select title\n" +
+                "from results\n" +
+                "inner join spectacle s on results.spectacle_id = s.id\n" +
+                "where risk=(select min(risk)from results)");
+        min.next();
+        String minTitle = min.getString(1);
+
+        out.newLine();
+        out.newLine();
+        out.newLine();
+        out.write("                                  ВЫВОД\n");
+        out.newLine();
+        out.write("    По результатам оценки рисков для повышения эффективности " +
+                "работы\nучреждения рекомендовано сокращение ежемесячного количества" +
+                "показов\nспектакля '" + maxTitle + "' и увеличение количества показов спектакля '" + minTitle + "'.");
+
+        out.close();
+        Desktop d = Desktop.getDesktop();
+        d.open(file);
     }
 }

@@ -148,18 +148,70 @@ where month(s.date) = 2
 select ifnull(result / goal, 0.000) as eff
 from statistics;
 
-insert into statistics(`efficiency`) select (`result`/`goal`) from statistics;
+insert into statistics(`efficiency`)
+select (`result` / `goal`)
+from statistics;
 
-update statistics set efficiency='?' where id=?;
+update statistics
+set efficiency='?'
+where id = ?;
 
-select sum(efficiency) from statistics where spectacle_id=1;
+select sum(efficiency)
+from statistics
+where spectacle_id = 1;
 
-insert into results (spectacle_id,specific_efficiency) value (?,?);
+insert into results (spectacle_id, specific_efficiency) value (?, ?);
 
-select max(risk) from results;
+select max(risk), title
+from results
+         inner join spectacle s on s.id = results.spectacle_id;
 
-select min(risk) from results;
 
+select min(risk), s.title
+from results
+         inner join spectacle s on s.id = results.spectacle_id
+group by spectacle_id;
 
+select max(risk), s.title
+from results
+         inner join spectacle s on s.id = results.spectacle_id
+group by spectacle_id;
 
+select title
+from results
+         inner join spectacle s on results.spectacle_id = s.id
+where risk = (select max(risk) from results);
+
+select title
+from results
+         inner join spectacle s on results.spectacle_id = s.id
+where risk = (select min(risk) from results);
+
+select *
+from statistics
+         inner join spectacle s on statistics.spectacle_id = s.id;
+
+select `row`, `place`, seance_id, place_id
+from booking
+         inner join seance s on booking.seance_id = s.id
+         inner join place p on booking.place_id = p.id
+where seance_id = 10;
+
+select *, title
+from statistics
+         inner join spectacle s on statistics.spectacle_id = s.id;
+
+select *, title
+from results
+         inner join spectacle s on results.spectacle_id = s.id;
+
+select id
+from seance
+inner join spectacle s on seance.spectacle_id = s.id
+where title=
+
+select place_id
+from booking
+         inner join place p on p.id = booking.place_id
+where seance_id = 17;
 
