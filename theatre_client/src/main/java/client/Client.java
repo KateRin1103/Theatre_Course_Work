@@ -32,7 +32,7 @@ public class Client {
     public static Client getInstanceClient() { //установление соединения
         if (client == null) {
             try {
-                cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 8002);
+                cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 3030);
                 clout = new PrintStream(cl.getOutputStream());
                 clin = new BufferedReader(new InputStreamReader(cl.getInputStream()));
             } catch (IOException ex) {
@@ -62,6 +62,12 @@ public class Client {
         String userStatement = "addNewSeances";
         clout.println(userStatement);
         String str = new Gson().toJson(acc);
+        clout.println(str);
+    }
+
+    public static void addBooking(Booking booking){
+        clout.println("addBooking");
+        String str = new Gson().toJson(booking);
         clout.println(str);
     }
 

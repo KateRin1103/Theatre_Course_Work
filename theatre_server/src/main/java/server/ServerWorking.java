@@ -54,7 +54,7 @@ public class ServerWorking extends Thread {
 
     private static final String getSeancePlaces = "getSeancePlaces";
 
-    private static final String buyTickets = "buyTickets";
+    private static final String addBooking = "addBooking";
     private static final String showBoughtTickets = "showBoughtTickets";
     private static final String showUsersBoughtTickets = "showUsersBoughtTickets";
     private static final String updateStatistics = "updateStatistics";
@@ -123,6 +123,9 @@ public class ServerWorking extends Thread {
                         if (input.equals(addNewAccountAdmin)) {
                             addAccAdmin();
                         }
+                        if (input.equals(getStatistics)) {
+                            getStatistics();
+                        }
                         if (input.equals(addNewSpectacle)) {
                             addNewSpectacle();
                         }
@@ -134,6 +137,9 @@ public class ServerWorking extends Thread {
                         }
                         if (input.equals(getReport)) {
                             writeInFile();
+                        }
+                        if (input.equals(addBooking)) {
+                            addBooking();
                         }
                         if (input.equals(getAllBookings)) {
                             getAllBookings();
@@ -176,9 +182,6 @@ public class ServerWorking extends Thread {
                         }
                         if (input.equals(showBoughtTickets)) {
                             //  showBoughtTickets();
-                        }
-                        if (input.equals(buyTickets)) {
-                            //   buyTickets();
                         }
                         if (input.equals(showUsersBoughtTickets)) {
                             //   showUsersBoughtTickets();
@@ -425,6 +428,37 @@ public class ServerWorking extends Thread {
         execute(sqlst);
     }
 
+    void addBooking() throws SQLException {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson g = new Gson();
+        Type Tip = new TypeToken<Booking>() {
+        }.getType();
+        Booking booking = g.fromJson(get, Tip);
+        openDatabase();
+        ResultSet resultSet = getDatabase(String.format("SELECT id FROM user WHERE login='%s'", booking.getLogin()));
+        resultSet.next();
+        int id = resultSet.getInt(1);
+
+        ResultSet resultSeance = getDatabase(String.format("SELECT id FROM seance WHERE date='%s' AND time='%s:00' AND title='%s'",
+                booking.getDate().toString(),booking.getTime().toString(), booking.getTitle()));
+        resultSeance.next();
+        int idSeance = resultSeance.getInt(1);
+
+        ResultSet resultPlace = getDatabase(String.format("SELECT id FROM place WHERE row=%d AND place=%d",
+                booking.getRow(), booking.getPlace()));
+        resultPlace.next();
+        int idPlace = resultPlace.getInt(1);
+
+        String sqlst = String.format("INSERT INTO booking (seance_id,user_id,place_id) VALUES ('%d','%s','%s:00','%d')",
+                idSeance, id, idPlace);
+        execute(sqlst);
+    }
+
     void checkSameUser() {
         String outline = "false";
         String get = "";
@@ -599,18 +633,19 @@ public class ServerWorking extends Thread {
         Seance seance = g.fromJson(get, Tip);
         openDatabase();
 
-        ResultSet resultSet = getDatabase("SELECT id FROM seance inner join spectacle s on seance.spectacle_id = s.id" +
-                " WHERE date=" + seance.getDate() + " AND time=" + seance.getTime() + " AND title="+seance.getSpectacle());
+        String str = "SELECT seance.id FROM seance inner join spectacle s on seance.spectacle_id = s.id" +
+                " WHERE date='" + seance.getDate() + "' AND time='" + seance.getTime() + ":00' AND title='" + seance.getSpectacle() + "'";
+        ResultSet resultSet = getDatabase(str);
         resultSet.next();
         int seanceID = resultSet.getInt(1);
 
         ResultSet placesID = getDatabase("select place_id " +
                 "from booking " +
-                "inner join place p on p.id = booking.place_id" +
+                "inner join place p on p.id = booking.place_id " +
                 "where seance_id = " + seanceID);
         ArrayList<Integer> arrayList = new ArrayList<>();
         while (placesID.next()) {
-            arrayList.add(resultSet.getInt("place_id"));
+            arrayList.add(placesID.getInt(1));
         }
         String sent = new Gson().toJson(arrayList);
         printStream.println(sent);

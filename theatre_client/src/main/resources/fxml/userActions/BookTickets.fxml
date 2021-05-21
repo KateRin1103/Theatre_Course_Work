@@ -8,11 +8,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserSeancesVision">
-    <children>
-        <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="688.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserSeancesVision">
+
+<children>
+        <AnchorPane layoutX="3.0" opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
             <children>
-                <Pane opacity="0.71" prefHeight="100.0" prefWidth="318.0" style="-fx-background-color: #990066;">
+                <Pane layoutX="-4.0" opacity="0.71" prefHeight="100.0" prefWidth="326.0" style="-fx-background-color: #990066;">
                     <children>
                         <Label layoutX="37.0" layoutY="34.0" text="Меню Пользователя" textFill="WHITE">
                             <font>
@@ -30,7 +31,7 @@
         </AnchorPane>
         <AnchorPane layoutX="310.0" prefHeight="688.0" prefWidth="891.0">
             <children>
-                <Pane layoutX="6.0" prefHeight="50.0" prefWidth="888.0" style="-fx-background-color: #ff99ff;">
+                <Pane layoutX="16.0" prefHeight="50.0" prefWidth="878.0" style="-fx-background-color: #ff99ff;">
                     <children>
                         <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -40,7 +41,7 @@
                         <Button layoutX="849.0" layoutY="7.0" mnemonicParsing="false" onAction="#toMainUser" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
                     </children>
                 </Pane>
-                <TableView fx:id="Seance" layoutX="6.0" layoutY="48.0" prefHeight="311.0" prefWidth="888.0">
+                <TableView fx:id="Seance" layoutX="16.0" layoutY="48.0" prefHeight="311.0" prefWidth="878.0">
                     <columns>
                         <TableColumn fx:id="seanceTitle" prefWidth="282.0" text="Название" />
                         <TableColumn fx:id="seanceDate" prefWidth="295.00006103515625" text="Дата проведения" />
@@ -50,7 +51,7 @@
                 </TableView>
                 <AnchorPane layoutX="201.0" layoutY="516.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1D2026;">
                     <children>
-                        <JFXButton layoutX="1.0" layoutY="-5.0" onAction="#delSeance" prefHeight="27.0" prefWidth="200.0" text="Купить" textFill="#ccc5c5">
+                        <JFXButton layoutX="1.0" layoutY="-3.0" onAction="#delSeance" prefHeight="27.0" prefWidth="201.0" ripplerFill="#7c44ff" text="Купить" textFill="#ccc5c5">
                             <font>
                                 <Font name="Microsoft JhengHei Light" size="21.0" />
                             </font>
@@ -58,16 +59,16 @@
                     </children>
                 </AnchorPane>
 
-                <AnchorPane layoutX="564.0" layoutY="519.0" prefHeight="32.0" prefWidth="275.0" style="-fx-background-color: #1D2026;">
+                <AnchorPane layoutX="548.0" layoutY="557.0" prefHeight="40.0" prefWidth="275.0" style="-fx-background-color: #1D2026;">
                     <children>
-                        <JFXButton layoutX="8.0" layoutY="-4.0" onAction="#getPlaces" prefHeight="44.0" prefWidth="267.0" text="Найти свободные места" textFill="#ccc5c5">
+                        <JFXButton layoutY="-4.0" onAction="#getPlaces" prefHeight="32.0" prefWidth="247.0" text="Найти свободные места" textFill="#ccc5c5">
                             <font>
                                 <Font name="Microsoft JhengHei Light" size="21.0" />
                             </font>
                         </JFXButton>
                     </children>
                 </AnchorPane>
-      
+
               <ComboBox fx:id="place" layoutX="106.0" layoutY="381.0" prefHeight="40.0" prefWidth="107.0">
                   <items>
                       <FXCollections fx:factory="observableArrayList">
@@ -79,15 +80,48 @@
                       </FXCollections>
                   </items>
               </ComboBox>
-
-                <CheckBox>
-                    <graphic>
-
-                    </graphic>
-                </CheckBox>
+            <Label layoutX="39.0" layoutY="385.0" prefHeight="32.0" prefWidth="98.0" text="Ряд" textFill="#814aff">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="242.0" layoutY="384.0" prefHeight="32.0" prefWidth="98.0" text="Место" textFill="#814aff">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="24.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="s1" graphicTextGap="5.0" layoutX="598.0" layoutY="399.0" mnemonicParsing="false" onAction="#getSeat" prefHeight="32.0" prefWidth="35.0" styleClass="radio.css" text="1">
+               <toggleGroup>
+                  <ToggleGroup fx:id="seats" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="s2" layoutX="637.0" layoutY="409.0" mnemonicParsing="false" onAction="#getSeat" text="2" toggleGroup="$seats" />
+            <RadioButton fx:id="s3" layoutX="676.0" layoutY="409.0" mnemonicParsing="false" onAction="#getSeat" text="3" toggleGroup="$seats" />
+            <RadioButton fx:id="s4" layoutX="715.0" layoutY="409.0" mnemonicParsing="false" onAction="#getSeat" text="4" toggleGroup="$seats" />
+            <RadioButton fx:id="s5" layoutX="752.0" layoutY="409.0" mnemonicParsing="false" onAction="#getSeat" text="5" toggleGroup="$seats" />
+            <RadioButton fx:id="s6" layoutX="598.0" layoutY="434.0" mnemonicParsing="false" onAction="#getSeat" text="6" toggleGroup="$seats" />
+            <RadioButton fx:id="s7" layoutX="637.0" layoutY="434.0" mnemonicParsing="false" onAction="#getSeat" text="7" toggleGroup="$seats" />
+            <RadioButton fx:id="s8" layoutX="675.0" layoutY="434.0" mnemonicParsing="false" onAction="#getSeat" text="8" toggleGroup="$seats" />
+            <RadioButton fx:id="s9" layoutX="715.0" layoutY="434.0" mnemonicParsing="false" onAction="#getSeat" text="9" toggleGroup="$seats" />
+            <RadioButton fx:id="s10" layoutX="752.0" layoutY="434.0" mnemonicParsing="false" onAction="#getSeat" text="10" toggleGroup="$seats" />
+            <RadioButton fx:id="s11" layoutX="598.0" layoutY="459.0" mnemonicParsing="false" onAction="#getSeat" text="11" toggleGroup="$seats"  />
+            <RadioButton fx:id="s12" layoutX="637.0" layoutY="459.0" mnemonicParsing="false" onAction="#getSeat" text="12" toggleGroup="$seats" />
+            <RadioButton fx:id="s13" layoutX="675.0" layoutY="459.0" mnemonicParsing="false" onAction="#getSeat" text="13" toggleGroup="$seats" />
+            <RadioButton fx:id="s14" layoutX="715.0" layoutY="459.0" mnemonicParsing="false" onAction="#getSeat" text="14" toggleGroup="$seats" />
+            <RadioButton fx:id="s15" layoutX="752.0" layoutY="459.0" mnemonicParsing="false" onAction="#getSeat" text="15" toggleGroup="$seats" />
+            <RadioButton fx:id="s16" layoutX="598.0" layoutY="485.0" mnemonicParsing="false" onAction="#getSeat" text="16" toggleGroup="$seats" />
+            <RadioButton fx:id="s17" layoutX="637.0" layoutY="485.0" mnemonicParsing="false" onAction="#getSeat" text="17" toggleGroup="$seats" />
+            <RadioButton fx:id="s18" layoutX="675.0" layoutY="485.0" mnemonicParsing="false" onAction="#getSeat" text="18" toggleGroup="$seats" />
+            <RadioButton fx:id="s19" layoutX="715.0" layoutY="485.0" mnemonicParsing="false" onAction="#getSeat" text="19" toggleGroup="$seats" />
+            <RadioButton fx:id="s20" layoutX="752.0" layoutY="485.0" mnemonicParsing="false" onAction="#getSeat" text="20" toggleGroup="$seats" />
+            <RadioButton fx:id="s21" layoutX="598.0" layoutY="510.0" mnemonicParsing="false" onAction="#getSeat" text="21" toggleGroup="$seats" />
+            <RadioButton fx:id="s22" layoutX="637.0" layoutY="510.0" mnemonicParsing="false" onAction="#getSeat" text="22" toggleGroup="$seats" />
+            <RadioButton fx:id="s23" layoutX="675.0" layoutY="510.0" mnemonicParsing="false" onAction="#getSeat" text="23" toggleGroup="$seats" />
+            <RadioButton fx:id="s24" layoutX="715.0" layoutY="510.0" mnemonicParsing="false" onAction="#getSeat" text="24" toggleGroup="$seats" />
+            <RadioButton fx:id="s25" layoutX="752.0" layoutY="510.0" mnemonicParsing="false" onAction="#getSeat" text="25" toggleGroup="$seats" />
             </children>
         </AnchorPane>
-        <ImageView fitHeight="688.0" fitWidth="321.0" layoutX="-3.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="705.0" fitWidth="327.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/pictures/Небо.jpg" />
             </image>

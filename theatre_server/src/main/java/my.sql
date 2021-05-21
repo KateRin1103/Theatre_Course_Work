@@ -205,13 +205,13 @@ select *, title
 from results
          inner join spectacle s on results.spectacle_id = s.id;
 
-select id
-from seance
-inner join spectacle s on seance.spectacle_id = s.id
-where title=
-
 select place_id
 from booking
          inner join place p on p.id = booking.place_id
 where seance_id = 17;
 
+SELECT seance.id FROM seance inner join spectacle s on seance.spectacle_id = s.id WHERE date='2021-03-05' AND time='14:00:00' AND title='Шрэк';
+
+select place_id from booking inner join place p on p.id = booking.place_id where seance_id = 4;
+
+SELECT id FROM user WHERE login='1';

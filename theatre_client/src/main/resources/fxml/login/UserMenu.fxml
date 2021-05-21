@@ -30,12 +30,6 @@
                     </font>
                 </JFXButton>
 
-                <JFXButton layoutY="385.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Редактировать профиль" textAlignment="CENTER" textFill="#ccc5c5">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
-                    </font>
-                </JFXButton>
-
             </children>
         </AnchorPane>
         <AnchorPane layoutX="308.0" prefHeight="688.0" prefWidth="895.0">

@@ -27,7 +27,7 @@ public class DataBase {
         if (database == null) {
             try {
                 new DataBase();
-                //Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
+                Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
                 if (!connection.isClosed()) ;
             } catch (SQLException ex) {

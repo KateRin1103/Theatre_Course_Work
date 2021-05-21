@@ -81,7 +81,7 @@ public class AdminBookingVision implements Initializable {
         }
     }
 
-    public void toMainAdmin(ActionEvent actionEvent) throws IOException {
+    public void  toMainAdmin(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();

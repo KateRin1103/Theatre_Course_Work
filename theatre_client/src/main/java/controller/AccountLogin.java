@@ -55,7 +55,7 @@ public class AccountLogin {
     public void enterUser(ActionEvent actionEvent) throws IOException {
         boolean flag = userCheck(getLogin(), getPassword());
         if (flag) {
-            enteredUserLogin = getLogin();
+           // enteredUserLogin = getLogin();
             Sample.windowStart.close();
             Sample.windowLogin.close();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserMenu.fxml"));
@@ -190,7 +190,7 @@ public class AccountLogin {
     }
 
     public void toBuyProduct(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/BuyProduct.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/BookTickets.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }

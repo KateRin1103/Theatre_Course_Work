@@ -23,7 +23,6 @@ public class Sample {
         windowLogin = new Stage();
         windowLogin.setTitle("Авторизация админа");
         windowLogin.setResizable(false);
-//        windowLogin.getIcons().add(new Image("/resources/icon.png"));
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminLogin.fxml"));
         Scene scene = new Scene(root);
         windowLogin.setScene(scene);
@@ -34,7 +33,6 @@ public class Sample {
         windowLogin = new Stage();
         windowLogin.setTitle("User authorization");
         windowLogin.setResizable(false);
-        //windowLogin.getIcons().add(new Image("/resources/icon.png"));
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserLogin.fxml"));
         Scene scene = new Scene(root);
         windowLogin.setScene(scene);
@@ -45,7 +43,6 @@ public class Sample {
         windowStart = new Stage();
         windowStart.setTitle("Authorization");
         windowStart.setResizable(false);
-//        windowStart.getIcons().add(new Image("/resources/icon.png"));
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/start/Start.fxml"));
         Scene scene = new Scene(root);
         windowStart.setScene(scene);
@@ -68,7 +65,6 @@ public class Sample {
         windowRegistration = new Stage();
         windowRegistration.setTitle("Регистрация");
         windowRegistration.setResizable(false);
-        //windowRegistration.getIcons().add(new Image("/resources/pictures/enter.png"));
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/registration/Registration.fxml"));
         Scene scene = new Scene(root);
         windowRegistration.setScene(scene);

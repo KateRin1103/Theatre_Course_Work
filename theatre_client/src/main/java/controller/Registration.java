@@ -170,6 +170,13 @@ public class Registration {
         alert.showAndWait();
     }
 
+    public void toMain (ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/start/Main.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
+
     public static boolean checkCorrectInt(String str) {
         for (var i = 0; i < str.length(); i++) {
             if (!(str.charAt(0) >= 'А' && str.charAt(0) <= 'Я'))
