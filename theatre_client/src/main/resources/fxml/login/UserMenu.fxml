@@ -24,7 +24,12 @@
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutY="285.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Афиша" textAlignment="CENTER" textFill="#ccc5c5">
+                <JFXButton layoutY="234.0" onAction="#toDelBookingsUser" prefHeight="50.0" prefWidth="306.0" text="Управление корзиной" textAlignment="CENTER" textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton layoutY="284.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Афиша" textAlignment="CENTER" textFill="#ccc5c5">
                     <font>
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>

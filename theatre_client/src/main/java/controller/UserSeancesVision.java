@@ -1,5 +1,6 @@
 package controller;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -21,6 +22,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.stream.Stream;
 
 import static client.Client.*;
 import static controller.AccountLogin.enteredUserLogin;
@@ -35,6 +37,8 @@ public class UserSeancesVision implements Initializable {
     public TableColumn<Seance, Integer> seancePrice;
     public ComboBox row;
     public ComboBox place;
+    public DatePicker startPicker;
+    public DatePicker endPicker;
 
     ObservableList<Seance> dataList;
     @FXML
@@ -44,11 +48,15 @@ public class UserSeancesVision implements Initializable {
     @FXML
     RadioButton s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25;
 
-    int selectedPlace, selectedRow;
+    int selectedPlace, selectedRow = 0;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        update();
+        searchSeances();
+    }
 
+    public void update() {
         ObservableList<Seance> nSeances = null;
         try {
             nSeances = FXCollections.observableArrayList(getAllSeances());
@@ -63,8 +71,9 @@ public class UserSeancesVision implements Initializable {
         Seance.setItems(nSeances);
 
         Seance.setEditable(true);
-        searchSeances();
     }
+
+
 
     public void toMainUser(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserMenu.fxml"));
@@ -72,7 +81,7 @@ public class UserSeancesVision implements Initializable {
         MainClient.primaryStage.show();
     }
 
-    public void getSeat(ActionEvent actionEvent) {
+    public void getSeat() {
         if (s1.isSelected()) {
             selectedPlace = 1;
             selectedRow = 1;
@@ -175,21 +184,17 @@ public class UserSeancesVision implements Initializable {
         }
     }
 
-    public void delSeance(ActionEvent actionEvent) {
+    public void addBookingUser(ActionEvent actionEvent) {
         String selectedTitle = Seance.getSelectionModel().getSelectedItem().getSpectacle();
         LocalDate selectedDate = Seance.getSelectionModel().getSelectedItem().getDate();
         LocalTime selectedTime = Seance.getSelectionModel().getSelectedItem().getTime();
-        int selectedRow = parseInt(row.getValue().toString());
-        int selectedPlace = parseInt(place.getValue().toString());
         String login = enteredUserLogin;
+        getSeat();
         searchSeances();
         Booking booking = new Booking(selectedRow, selectedPlace, login, selectedTitle, selectedDate, selectedTime);
-        if (Seance.getSelectionModel().getSelectedItem() == null || place.getValue() == null
-                || place.getValue() == null) {
+        if (Seance.getSelectionModel().getSelectedItem() == null || selectedRow == 0 || selectedPlace == 0) {
             showAlertNoSelected();
         } else {
-            // Seance.getItems().removeAll(selectedSeance);
-            // deleteSelectedSeance(selectedSeance);
             try {
                 addBooking(booking);
                 showAlertSuccess();
@@ -197,8 +202,6 @@ public class UserSeancesVision implements Initializable {
                 showAlertEmptySpect();
             }
         }
-        row.setValue(null);
-        place.setValue(null);
     }
 
     public void showAlertSuccess() {
@@ -218,10 +221,11 @@ public class UserSeancesVision implements Initializable {
     }
 
     public void getPlaces() throws IOException {
+        Stream.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25).
+                forEach(s -> s.setVisible(true));
         if (Seance.getSelectionModel().getSelectedItem() == null) {
             showAlertNoSelected();
-        } else { //вернуло лист занятых мест и
-            //для каждой чекбокс по номеру установило галочки по id из листа занятых
+        } else {
             ArrayList<Integer> bookedPlaces = getSeancePlaces(Seance.getSelectionModel().getSelectedItem());
             for (Integer bookedPlace : bookedPlaces) {
                 if (bookedPlace == parseInt(s2.getText())) s2.setVisible(false);
@@ -271,7 +275,6 @@ public class UserSeancesVision implements Initializable {
             e.printStackTrace();
         }
 
-
         seanceTitle.setCellValueFactory(new PropertyValueFactory<Seance, String>("spectacle"));
         seanceTime.setCellValueFactory(new PropertyValueFactory<Seance, LocalTime>("time"));
         seanceDate.setCellValueFactory(new PropertyValueFactory<Seance, LocalDate>("date"));
@@ -294,10 +297,58 @@ public class UserSeancesVision implements Initializable {
                     return true;
                 } else return false;
             });
+            filteredData.predicateProperty().bind(Bindings.createObjectBinding(()->{
+                        LocalDate minDate = startPicker.getValue();
+                        LocalDate maxDate = endPicker.getValue();
+
+                        // get final values != null
+                        final LocalDate finalMin = minDate == null ? LocalDate.MIN : minDate;
+                        final LocalDate finalMax = maxDate == null ? LocalDate.MAX : maxDate;
+
+                        // values for openDate need to be in the interval [finalMin, finalMax]
+                        return ti -> !finalMin.isAfter(ti.getDate()) && !finalMax.isBefore(ti.getDate());
+
+                    },startPicker.valueProperty(),
+                    endPicker.valueProperty()));
         });
         SortedList<Seance> sortedData = new SortedList<>(filteredData);
         sortedData.comparatorProperty().bind(Seance.comparatorProperty());
         Seance.setItems(sortedData);
     }
+
+    /*public void searchSeancesByDate() {
+
+        ObservableList<Seance> nSeances = null;
+        try {
+            nSeances = FXCollections.observableArrayList(getAllSeances());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        seanceTitle.setCellValueFactory(new PropertyValueFactory<Seance, String>("spectacle"));
+        seanceTime.setCellValueFactory(new PropertyValueFactory<Seance, LocalTime>("time"));
+        seanceDate.setCellValueFactory(new PropertyValueFactory<Seance, LocalDate>("date"));
+        seancePrice.setCellValueFactory(new PropertyValueFactory<Seance, Integer>("price"));
+
+        FilteredList<Seance> filteredData = new FilteredList<>(nSeances, b -> true);
+        filteredData.predicateProperty().bind(Bindings.createObjectBinding(()->{
+            LocalDate minDate = startPicker.getValue();
+            LocalDate maxDate = endPicker.getValue();
+
+            // get final values != null
+            final LocalDate finalMin = minDate == null ? LocalDate.MIN : minDate;
+            final LocalDate finalMax = maxDate == null ? LocalDate.MAX : maxDate;
+
+            // values for openDate need to be in the interval [finalMin, finalMax]
+            return ti -> !finalMin.isAfter(ti.getDate()) && !finalMax.isBefore(ti.getDate());
+
+        },startPicker.valueProperty(),
+                endPicker.valueProperty()));
+        SortedList<Seance> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(Seance.comparatorProperty());
+        Seance.setItems(sortedData);
+    }*/
+
+
 
 }

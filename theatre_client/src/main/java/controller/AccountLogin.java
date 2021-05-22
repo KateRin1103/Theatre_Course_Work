@@ -55,7 +55,7 @@ public class AccountLogin {
     public void enterUser(ActionEvent actionEvent) throws IOException {
         boolean flag = userCheck(getLogin(), getPassword());
         if (flag) {
-           // enteredUserLogin = getLogin();
+            enteredUserLogin = getLogin();
             Sample.windowStart.close();
             Sample.windowLogin.close();
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserMenu.fxml"));
@@ -161,6 +161,12 @@ public class AccountLogin {
 
     public void toShowSeancesForUser(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/ShowSeances.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
+    public void toDelBookingsUser(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/DeleteBooking.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }

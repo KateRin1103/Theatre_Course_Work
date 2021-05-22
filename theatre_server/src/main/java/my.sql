@@ -215,3 +215,14 @@ SELECT seance.id FROM seance inner join spectacle s on seance.spectacle_id = s.i
 select place_id from booking inner join place p on p.id = booking.place_id where seance_id = 4;
 
 SELECT id FROM user WHERE login='1';
+
+SELECT seance.id FROM seance inner join spectacle s on seance.spectacle_id = s.id
+WHERE date='2021-04-22' AND time='16:45:00' AND title='Шрэк';
+
+SELECT u.login AS `log`, sp.title, se.time, se.date, p.place, p.row
+                FROM booking b
+                        INNER JOIN place p on b.place_id = p.id
+                         INNER JOIN user u on b.user_id = u.id
+                         INNER JOIN seance se on b.seance_id = se.id
+                        INNER JOIN spectacle sp on se.spectacle_id = sp.id
+                WHERE u.login='1';

@@ -194,6 +194,17 @@ public class Client {
         return arrayList;
     }
 
+    public static ArrayList<Booking> getAllBookingsByLogin(String str) throws IOException { //
+        String GetNuserStatement = new String("getAllBookingsByLogin");
+        clout.println(GetNuserStatement);
+        clout.println(str);
+        String receive = clin.readLine();
+        ArrayList<Booking> arrayList = new Gson()
+                .fromJson(receive, new TypeToken<ArrayList<Booking>>() {
+                }.getType());
+        return arrayList;
+    }
+
     public static ArrayList<Spectacle> getAllSpectacles() throws IOException { //
         String GetNuserStatement = new String("getAllSpectacles");
         clout.println(GetNuserStatement);

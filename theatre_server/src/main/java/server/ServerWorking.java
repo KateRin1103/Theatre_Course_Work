@@ -50,6 +50,7 @@ public class ServerWorking extends Thread {
     private static final String editName = "editName";
     private static final String editMail = "editMail";
     private static final String end = "end";
+    private static final String getAllBookingsByLogin = "getAllBookingsByLogin";
     private static final String addSpectacle = "addSpectacle";
 
     private static final String getSeancePlaces = "getSeancePlaces";
@@ -117,6 +118,10 @@ public class ServerWorking extends Thread {
                         if (input.equals(addNewAccountUser)) {
                             addAccUser();
                         }
+                        if (input.equals(getAllBookingsByLogin)) {
+                            getAllBookingsByLogin();
+                        }
+
                         if (input.equals(getAllSeances)) {
                             getAllSeances();
                         }
@@ -258,6 +263,40 @@ public class ServerWorking extends Thread {
                 "         INNER JOIN user u on b.user_id = u.id\n" +
                 "         INNER JOIN seance se on b.seance_id = se.id\n" +
                 "         INNER JOIN spectacle sp on se.spectacle_id = sp.id");
+        openDatabase();
+        ResultSet resultSet = getDatabase(sqlst);
+        ArrayList<Booking> arrayList = new ArrayList<>();
+        while (resultSet.next()) {
+            Booking seance = new Booking();
+            seance.setTitle(resultSet.getString("title"));
+            seance.setLogin(resultSet.getString("log"));
+            seance.setDate(resultSet.getDate("date").toLocalDate());
+            seance.setTime(resultSet.getTime("time").toLocalTime());
+            seance.setRow(resultSet.getInt("row"));
+            seance.setPlace(resultSet.getInt("place"));
+            arrayList.add(seance);
+        }
+        GsonBuilder gb = new GsonBuilder();
+        gb.setDateFormat("yyyy-MM-dd");
+        Gson gson = gb.create();
+        String sent = gson.toJson(arrayList);
+        printStream.println(sent);
+    }
+
+    private void getAllBookingsByLogin() throws SQLException {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = String.format("SELECT u.login AS `log`, sp.title, se.time, se.date, p.place, p.row " +
+                "FROM booking b " +
+                "INNER JOIN place p on b.place_id = p.id " +
+                "INNER JOIN user u on b.user_id = u.id " +
+                "INNER JOIN seance se on b.seance_id = se.id " +
+                "INNER JOIN spectacle sp on se.spectacle_id = sp.id " +
+                "WHERE u.login='" + get + "'");
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
         ArrayList<Booking> arrayList = new ArrayList<>();
@@ -444,17 +483,19 @@ public class ServerWorking extends Thread {
         resultSet.next();
         int id = resultSet.getInt(1);
 
-        ResultSet resultSeance = getDatabase(String.format("SELECT id FROM seance WHERE date='%s' AND time='%s:00' AND title='%s'",
-                booking.getDate().toString(),booking.getTime().toString(), booking.getTitle()));
+        String str = String.format("SELECT seance.id FROM seance inner join spectacle s on seance.spectacle_id = s.id" +
+                        " WHERE date='%s' AND time='%s:00' AND title='%s'",
+                booking.getDate().toString(), booking.getTime().toString(), booking.getTitle());
+        ResultSet resultSeance = getDatabase(str);
         resultSeance.next();
         int idSeance = resultSeance.getInt(1);
 
-        ResultSet resultPlace = getDatabase(String.format("SELECT id FROM place WHERE row=%d AND place=%d",
+        ResultSet resultPlace = getDatabase(String.format("SELECT id FROM place WHERE `row`=%d AND `place`=%d",
                 booking.getRow(), booking.getPlace()));
         resultPlace.next();
         int idPlace = resultPlace.getInt(1);
 
-        String sqlst = String.format("INSERT INTO booking (seance_id,user_id,place_id) VALUES ('%d','%s','%s:00','%d')",
+        String sqlst = String.format("INSERT INTO booking (seance_id,user_id,place_id) VALUES ('%d','%d','%d')",
                 idSeance, id, idPlace);
         execute(sqlst);
     }
