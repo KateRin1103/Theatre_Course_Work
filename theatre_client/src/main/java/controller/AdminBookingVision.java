@@ -56,6 +56,7 @@ public class AdminBookingVision implements Initializable {
         place.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("place"));
         Booking.setItems(nSeances);
 
+        searchSeances();
         Booking.setEditable(true);
     }
 
@@ -102,7 +103,7 @@ public class AdminBookingVision implements Initializable {
             e.printStackTrace();
         }
 
-        seanceTitle.setCellValueFactory(new PropertyValueFactory<Booking, String>("spectacle"));
+        seanceTitle.setCellValueFactory(new PropertyValueFactory<Booking, String>("title"));
         login.setCellValueFactory(new PropertyValueFactory<Booking,String>("login"));
         seanceTime.setCellValueFactory(new PropertyValueFactory<Booking, LocalTime>("time"));
         row.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("row"));
