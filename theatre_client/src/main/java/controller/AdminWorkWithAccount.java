@@ -3,7 +3,10 @@ package controller;
 import account.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -11,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
@@ -30,6 +34,8 @@ public class AdminWorkWithAccount implements Initializable {
     public TableColumn<User, String> userName;
     public TableColumn<User, String> userPhone;
 
+    public TextField filterField = new TextField();
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
@@ -48,6 +54,7 @@ public class AdminWorkWithAccount implements Initializable {
         User.setItems(nAccs);
 
         User.setEditable(true);
+        searchUser();
     }
 
     public void editLogin(ActionEvent actionEvent) throws IOException{
@@ -61,24 +68,6 @@ public class AdminWorkWithAccount implements Initializable {
             windowRedact.setTitle("Редактирование логина");
             windowRedact.setResizable(false);
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/Redact/RedactLogin.fxml"));
-            Scene scene = new Scene(root);
-            MainClient.primaryStage.show();
-            windowRedact.setScene(scene);
-            windowRedact.show();
-        }
-    }
-
-    public void editPassword(ActionEvent actionEvent) throws IOException{
-        User selectedAcc = User.getSelectionModel().getSelectedItem();
-        if (selectedAcc == null) {
-            showAlertNoSelected();
-        }
-        else {
-            RedAccount.user = selectedAcc;
-            windowRedact = new Stage();
-            windowRedact.setTitle("Редактирование пароля");
-            windowRedact.setResizable(false);
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/Redact/RedactPassword.fxml"));
             Scene scene = new Scene(root);
             MainClient.primaryStage.show();
             windowRedact.setScene(scene);
@@ -132,7 +121,6 @@ public class AdminWorkWithAccount implements Initializable {
             windowRedact = new Stage();
             windowRedact.setTitle("Редактирование почты");
             windowRedact.setResizable(false);
-//            windowRedact.getIcons().add(new Image("/resources/icon.png"));
             Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/Redact/RedactMail.fxml"));
             Scene scene = new Scene(root);
             MainClient.primaryStage.show();
@@ -141,38 +129,26 @@ public class AdminWorkWithAccount implements Initializable {
         }
     }
 
-    public void toMain (ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/start/Main.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
+    public void editPassword(ActionEvent actionEvent) throws IOException{
+        User selectedAcc = User.getSelectionModel().getSelectedItem();
+        if (selectedAcc == null) {
+            showAlertNoSelected();
+        }
+        else {
+            RedAccount.user = selectedAcc;
+            windowRedact = new Stage();
+            windowRedact.setTitle("Редактирование пароля");
+            windowRedact.setResizable(false);
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/Redact/RedactPassword.fxml"));
+            Scene scene = new Scene(root);
+            MainClient.primaryStage.show();
+            windowRedact.setScene(scene);
+            windowRedact.show();
+        }
     }
 
     public void toMainAdmin (ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toAddNewUser (ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddNewUser.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toShowUser (ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowUser.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toShowSeances (ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowSeances.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toDeleteUser(ActionEvent actionEvent) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/DeleteUser.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
@@ -205,29 +181,43 @@ public class AdminWorkWithAccount implements Initializable {
         alert.showAndWait();
     }
 
-    public void toAddNewProduct(ActionEvent actionEvent) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddNewProduct.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
+    @FXML
+    public void searchUser() {
+
+        ObservableList<User> nSeances = null;
+        try {
+            nSeances = FXCollections.observableArrayList(getAllAccountUser());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        userLogin.setCellValueFactory(new PropertyValueFactory<User, String>("login"));
+        userPassword.setCellValueFactory(new PropertyValueFactory<User, String>("password"));
+        userSurname.setCellValueFactory(new PropertyValueFactory<User, String>("lastname"));
+        userName.setCellValueFactory(new PropertyValueFactory<User, String>("firstname"));
+        userPhone.setCellValueFactory(new PropertyValueFactory<User, String>("phone"));
+
+
+        FilteredList<User> filteredData = new FilteredList<>(nSeances, b -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(user -> {
+                if (newValue == null) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (user.getLogin().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (user.getFirstname().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (user.getLastname().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                }else if (user.getPhone().toLowerCase().contains(lowerCaseFilter)) {
+                    return true;
+                } else return false;
+            });
+        });
+        SortedList<User> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(User.comparatorProperty());
+        User.setItems(sortedData);
     }
-
-    public void toRedactUser(ActionEvent actionEvent) throws IOException{
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactUser.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toShowShowPurchasedProduct(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowPurchasedProduct.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toProfitСalculation(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("../fxml/adminActions/ProfitСalculation.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-
 }

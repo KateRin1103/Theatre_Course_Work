@@ -16,6 +16,7 @@ import static client.Client.userCheck;
 
 public class AccountLogin {
     public static String enteredUserLogin;
+    public static Client enteredClient;
     public TextField adminLogin;
     public PasswordField adminPassword;
 
@@ -42,14 +43,6 @@ public class AccountLogin {
             adminPassword.clear();
             showAlert();
         }
-    }
-
-    public void AdminMenu(ActionEvent actionEvent) throws IOException {
-        Sample.windowStart.close();
-        Sample.windowLogin.close();
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
     }
 
     public void enterUser(ActionEvent actionEvent) throws IOException {

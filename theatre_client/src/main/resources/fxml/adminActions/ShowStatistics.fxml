@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -36,7 +37,7 @@
                         </ImageView>
                         <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
                     </children></Pane>
-                <TableView fx:id="Statistics" layoutX="4.0" layoutY="48.0" prefHeight="640.0" prefWidth="890.0">
+                <TableView fx:id="Statistics" layoutX="4.0" layoutY="48.0" prefHeight="226.0" prefWidth="890.0">
                     <columns>
                         <TableColumn fx:id="titleS" prefWidth="150" text="Спектакль" />
                         <TableColumn fx:id="numOfShows" prefWidth="164.0" text="Количество показов" />
@@ -45,6 +46,14 @@
                         <TableColumn fx:id="result" prefWidth="242.0" text="Итоговое значение продаж" />
                     </columns>
                 </TableView>
+            <BarChart fx:id="bc" layoutX="25.0" layoutY="288.0" prefHeight="339.0" prefWidth="848.0">
+              <xAxis>
+                <CategoryAxis label="Спектакль" side="BOTTOM" fx:id="x" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="y" label="Кол-во проданных билетов" side="LEFT" />
+              </yAxis>
+            </BarChart>
             </children>
         </AnchorPane>
         <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">

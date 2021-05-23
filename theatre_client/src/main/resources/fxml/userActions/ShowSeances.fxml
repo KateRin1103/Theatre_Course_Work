@@ -5,20 +5,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserSeancesVision">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserSearchAfisha">
     <children>
-        <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
+        <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #b8c689;">
             <children>
-                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #990066;">
+                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #f5d37c;">
                     <children>
-                        <Label layoutX="26.0" layoutY="34.0" text="Меню Пользователя" textFill="WHITE">
+                        <Label layoutX="98.0" layoutY="13.0" prefHeight="82.0" prefWidth="200.0" text="Афиша" textFill="#637a18">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="15.0" layoutY="394.0" prefHeight="32.0" prefWidth="300.0" text="Запланированные сеансы" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                                <Font name="Microsoft JhengHei Light" size="55.0" />
                             </font>
                         </Label>
                     </children>
@@ -47,7 +42,7 @@
         </AnchorPane>
         <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
             <children>
-                <Pane layoutX="4.0" prefHeight="52.0" prefWidth="890.0" style="-fx-background-color: #7a787a;">
+                <Pane layoutX="4.0" prefHeight="52.0" prefWidth="890.0" style="-fx-background-color: #c4ba9b;">
                     <children>
                         <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                             <image>
@@ -55,6 +50,13 @@
                             </image>
                         </ImageView>
                         <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainUser" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
+                        <Label layoutX="306.0" layoutY="10.0" prefHeight="32.0" prefWidth="300.0" text="Запланированные сеансы" textFill="#748301">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                            </font>
+                        </Label>
+                  <DatePicker fx:id="startPicker" layoutX="7.0" layoutY="14.0" prefHeight="25.0" prefWidth="110.0" promptText="Дата с" />
+                  <DatePicker fx:id="endPicker" layoutX="132.0" layoutY="14.0" prefHeight="25.0" prefWidth="110.0" promptText="Дата по" />
                     </children></Pane>
             <TableView fx:id="Seance" layoutX="4.0" layoutY="48.0" prefHeight="393.0" prefWidth="890.0">
               <columns>
@@ -64,6 +66,7 @@
                   <TableColumn fx:id="seancePrice" prefWidth="168.666748046875" text="Цена" />
               </columns>
             </TableView>
+
             <ImageView fitHeight="200.0" fitWidth="141.0" layoutX="22.0" layoutY="441.0">
                <image>
                   <Image url="@../../pictures/ВинниПух.jpg" />
@@ -94,9 +97,9 @@
 
 
         </AnchorPane>
-        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="308.0" fitWidth="278.0" layoutX="16.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@/pictures/drama.png" />
+                <Image url="@../../pictures/Терпсихора1.jpg" />
             </image>
         </ImageView>
     </children>

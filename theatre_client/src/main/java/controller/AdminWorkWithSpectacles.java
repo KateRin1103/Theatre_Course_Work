@@ -2,7 +2,10 @@ package controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
@@ -10,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import theatre.Spectacle;
 
@@ -25,6 +29,7 @@ public class AdminWorkWithSpectacles implements Initializable {
     public TableColumn<Spectacle, String> title;
     public TableColumn<Spectacle, Integer> duration;
 
+    public TextField filterField = new TextField();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -41,6 +46,39 @@ public class AdminWorkWithSpectacles implements Initializable {
         Spectacle.setItems(nSeances);
 
         Spectacle.setEditable(true);
+        searchSepectacles();
+    }
+
+    @FXML
+    public void searchSepectacles() {
+
+        ObservableList<Spectacle> nSeances = null;
+        try {
+            nSeances = FXCollections.observableArrayList(getAllSpectacles());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        title.setCellValueFactory(new PropertyValueFactory<Spectacle, String>("title"));
+        duration.setCellValueFactory(new PropertyValueFactory<Spectacle, Integer>("duration"));
+
+        FilteredList<Spectacle> filteredData = new FilteredList<>(nSeances, b -> true);
+        filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filteredData.setPredicate(oneSeance -> {
+                if (newValue == null) {
+                    return true;
+                }
+                String lowerCaseFilter = newValue.toLowerCase();
+                if (oneSeance.getTitle().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else if (String.valueOf(oneSeance.getDuration()).indexOf(lowerCaseFilter) != -1) {
+                    return true;
+                } else return false;
+            });
+        });
+        SortedList<Spectacle> sortedData = new SortedList<>(filteredData);
+        sortedData.comparatorProperty().bind(Spectacle.comparatorProperty());
+        Spectacle.setItems(sortedData);
     }
 
     public void delSpectacle(ActionEvent actionEvent) {

@@ -32,7 +32,7 @@ public class Client {
     public static Client getInstanceClient() { //установление соединения
         if (client == null) {
             try {
-                cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 3030);
+                cl = new Socket(InetAddress.getLocalHost().getLocalHost(), 3036);
                 clout = new PrintStream(cl.getOutputStream());
                 clin = new BufferedReader(new InputStreamReader(cl.getInputStream()));
             } catch (IOException ex) {

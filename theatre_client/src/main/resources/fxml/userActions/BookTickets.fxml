@@ -4,26 +4,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="688.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserSeancesVision">
 
 <children>
-        <ImageView fitHeight="714.0" fitWidth="326.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/pictures/Небо.jpg" />
-            </image>
-        </ImageView>
-        <AnchorPane layoutX="3.0" opacity="0.87" prefHeight="688.0" prefWidth="338.0" style="-fx-background-color: #660099;">
+        <AnchorPane layoutX="3.0" opacity="0.87" prefHeight="688.0" prefWidth="313.0" style="-fx-background-color: #660099;">
             <children>
                 <Pane layoutX="-4.0" opacity="0.71" prefHeight="100.0" prefWidth="338.0" style="-fx-background-color: #990066;">
                     <children>
-                        <Label layoutX="37.0" layoutY="34.0" text="Меню Пользователя" textFill="WHITE">
+                        <Label layoutX="61.0" layoutY="34.0" prefHeight="32.0" prefWidth="224.0" text="Меню Пользователя" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </Label>
-                        <Label layoutX="66.0" layoutY="116.0" prefHeight="32.0" prefWidth="282.0" text="Покупка билетов" textFill="WHITE">
+                        <Label layoutX="72.0" layoutY="116.0" prefHeight="32.0" prefWidth="224.0" text="Покупка билетов" textFill="WHITE">
                             <font>
                                 <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
@@ -33,8 +29,19 @@
 
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="310.0" prefHeight="688.0" prefWidth="894.0">
+        <ImageView fitHeight="749.0" fitWidth="338.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/pictures/Небо.jpg" />
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="337.0" prefHeight="688.0" prefWidth="868.0">
             <children>
+            <ImageView fitHeight="639.0" fitWidth="427.0" layoutX="474.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../pictures/Балерина.png" />
+               </image>
+            </ImageView>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="286.0" layoutX="-317.0" layoutY="149.0" stroke="WHITE" strokeType="INSIDE" width="324.0" />
             <ImageView fitHeight="40.0" fitWidth="43.0" layoutX="-241.0" layoutY="172.0">
                <image>
                   <Image url="@/pictures/seat.png" />
@@ -160,34 +167,25 @@
                         <Image url="@/pictures/seat.png" />
                     </image>
                 </ImageView>
-                <Pane layoutX="31.0" prefHeight="50.0" prefWidth="863.0" style="-fx-background-color: #ff99ff;">
+                <Pane layoutX="-1.0" prefHeight="50.0" prefWidth="866.0" style="-fx-background-color: #eeb9fc;">
                     <children>
-                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="817.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@/pictures/enter.png" />
                             </image>
                         </ImageView>
-                        <Button layoutX="849.0" layoutY="7.0" mnemonicParsing="false" onAction="#toMainUser" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
-                  <TextField fx:id="filterField" layoutX="14.0" layoutY="13.0" prefHeight="25.0" prefWidth="268.0" promptText="Поиск" />
+                        <Button layoutX="813.0" layoutY="7.0" mnemonicParsing="false" onAction="#toMainUser" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
+                  <TextField fx:id="filterField" layoutX="11.0" layoutY="9.0" prefHeight="32.0" prefWidth="427.0" promptText="Поиск" />
                     </children>
                 </Pane>
-                <TableView fx:id="Seance" layoutX="31.0" layoutY="48.0" prefHeight="341.0" prefWidth="863.0">
+                <TableView fx:id="Seance" layoutY="50.0" onMouseClicked="#getSelected" prefHeight="639.0" prefWidth="556.0">
                     <columns>
-                        <TableColumn fx:id="seanceTitle" prefWidth="282.0" text="Название" />
-                        <TableColumn fx:id="seanceDate" prefWidth="295.00006103515625" text="Дата проведения" />
-                        <TableColumn fx:id="seanceTime" prefWidth="155.33331298828125" text="Время проведения" />
-                        <TableColumn fx:id="seancePrice" prefWidth="152.6666259765625" text="Цена" />
+                        <TableColumn fx:id="seanceTitle" prefWidth="149.3333740234375" text="Название" />
+                        <TableColumn fx:id="seanceDate" prefWidth="162.66665649414062" text="Дата проведения" />
+                        <TableColumn fx:id="seanceTime" prefWidth="119.33331298828125" text="Время проведения" />
+                        <TableColumn fx:id="seancePrice" prefWidth="129.66668701171875" text="Цена" />
                     </columns>
                 </TableView>
-
-                <AnchorPane layoutX="408.0" layoutY="522.0" prefHeight="41.0" prefWidth="0.0" style="-fx-background-color: #1D2026;">
-               <children>
-                        <JFXButton layoutX="83.0" layoutY="-9.0" onAction="#getPlaces" prefHeight="50.0" prefWidth="200.0" text="Найти свободные места" textFill="#ccc5c5">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="21.0" />
-                            </font>
-                        </JFXButton>
-               </children></AnchorPane>
             <RadioButton fx:id="s1" graphicTextGap="5.0" layoutX="-227.0" layoutY="326.0" mnemonicParsing="false" onAction="#getSeat" prefHeight="32.0" prefWidth="35.0" styleClass="radio.css" text="1" textFill="WHITE">
                <toggleGroup>
                   <ToggleGroup fx:id="seats" />
@@ -217,61 +215,92 @@
             <RadioButton fx:id="s23" layoutX="-132.0" layoutY="174.0" mnemonicParsing="false" onAction="#getSeat" text="23" textFill="WHITE" toggleGroup="$seats" />
             <RadioButton fx:id="s24" layoutX="-83.0" layoutY="174.0" mnemonicParsing="false" onAction="#getSeat" text="24" textFill="WHITE" toggleGroup="$seats" />
             <RadioButton fx:id="s25" layoutX="-36.0" layoutY="174.0" mnemonicParsing="false" onAction="#getSeat" text="25" textFill="WHITE" toggleGroup="$seats" />
-            <Label layoutX="-298.0" layoutY="328.0" prefHeight="32.0" prefWidth="43.0" text="Ряд 1" textFill="#814aff">
+            <Label layoutX="-298.0" layoutY="328.0" prefHeight="32.0" prefWidth="43.0" text="Ряд 1" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-299.0" layoutY="289.0" prefHeight="32.0" prefWidth="43.0" text="Ряд 2" textFill="#814aff">
+            <Label layoutX="-299.0" layoutY="289.0" prefHeight="32.0" prefWidth="43.0" text="Ряд 2" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-298.0" layoutY="249.0" prefHeight="32.0" prefWidth="53.0" text="Ряд 3" textFill="#814aff">
+            <Label layoutX="-298.0" layoutY="249.0" prefHeight="32.0" prefWidth="53.0" text="Ряд 3" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-298.0" layoutY="208.0" prefHeight="32.0" prefWidth="53.0" text="Ряд 4" textFill="#814aff">
+            <Label layoutX="-298.0" layoutY="208.0" prefHeight="32.0" prefWidth="53.0" text="Ряд 4" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-297.0" layoutY="168.0" prefHeight="32.0" prefWidth="53.0" text="Ряд 5" textFill="#814aff">
+            <Label layoutX="-297.0" layoutY="168.0" prefHeight="32.0" prefWidth="53.0" text="Ряд 5" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-223.0" layoutY="361.0" prefHeight="32.0" prefWidth="43.0" text="1" textFill="#814aff">
+            <Label layoutX="-223.0" layoutY="362.0" prefHeight="32.0" prefWidth="43.0" text="1" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-175.0" layoutY="361.0" prefHeight="32.0" prefWidth="43.0" text="2" textFill="#814aff">
+            <Label layoutX="-175.0" layoutY="362.0" prefHeight="32.0" prefWidth="43.0" text="2" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-128.0" layoutY="362.0" prefHeight="32.0" prefWidth="43.0" text="3" textFill="#814aff">
+            <Label layoutX="-128.0" layoutY="363.0" prefHeight="32.0" prefWidth="43.0" text="3" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-81.0" layoutY="362.0" prefHeight="32.0" prefWidth="43.0" text="4" textFill="#814aff">
+            <Label layoutX="-81.0" layoutY="363.0" prefHeight="32.0" prefWidth="43.0" text="4" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
-            <Label layoutX="-30.0" layoutY="362.0" prefHeight="32.0" prefWidth="43.0" text="5" textFill="#814aff">
+            <Label layoutX="-30.0" layoutY="363.0" prefHeight="32.0" prefWidth="43.0" text="5" textFill="#381783">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="-225.0" layoutY="146.0" prefHeight="32.0" prefWidth="43.0" text="1" textFill="#381783">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="-177.0" layoutY="146.0" prefHeight="32.0" prefWidth="43.0" text="2" textFill="#381783">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="-130.0" layoutY="147.0" prefHeight="32.0" prefWidth="43.0" text="3" textFill="#381783">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="-83.0" layoutY="147.0" prefHeight="32.0" prefWidth="43.0" text="4" textFill="#381783">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="-32.0" layoutY="147.0" prefHeight="32.0" prefWidth="43.0" text="5" textFill="#381783">
+               <font>
+                  <Font name="Microsoft JhengHei Light" size="17.0" />
+               </font>
+            </Label>
+            <Line endX="100.0" layoutX="-121.0" layoutY="415.0" startX="-100.0" />
+            <Label layoutX="-156.0" layoutY="387.0" prefHeight="32.0" prefWidth="82.0" text="Экран" textFill="#381783">
                <font>
                   <Font name="Microsoft JhengHei Light" size="17.0" />
                </font>
             </Label>
             </children>
         </AnchorPane>
-          <AnchorPane layoutX="64.0" layoutY="550.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1D2026;">
+          <AnchorPane layoutX="60.0" layoutY="576.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1D2026;">
          <children>
-                  <JFXButton layoutX="11.0" layoutY="-5.0" onAction="#addBookingUser" prefHeight="44.0" prefWidth="183.0" ripplerFill="#7c44ff" text="Забронировать" textFill="#ccc5c5">
+                  <JFXButton layoutX="11.0" layoutY="-5.0" onAction="#addBookingUser" prefHeight="62.0" prefWidth="224.0" ripplerFill="#7c44ff" text="Забронировать" textFill="#ccc5c5">
                       <font>
                           <Font name="Microsoft JhengHei Light" size="21.0" />
                       </font>
