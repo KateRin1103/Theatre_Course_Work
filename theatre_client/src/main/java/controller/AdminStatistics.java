@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 
 import static client.Client.getStatistics;
 
-public class AdminStatistics implements Initializable {
+public class AdminStatistics extends InteractionWithProgInterface implements Initializable {
 
     public TableView<Statistics> Statistics;
     public TableColumn<Statistics, String> titleS;

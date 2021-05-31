@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 import static client.Client.deleteSelectedSeance;
 import static client.Client.getAllSeances;
 
-public class AdminWorkWithSeances implements Initializable {
+public class AdminWorkWithSeances extends InteractionWithProgInterface implements Initializable {
 
     public TableView<Seance> Seance;
     public TableColumn<Seance, String> seanceTitle;

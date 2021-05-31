@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 import static client.Client.deleteSelectedBooking;
 import static client.Client.getAllBookings;
 
-public class AdminBookingVision implements Initializable {
+public class AdminBookingVision extends InteractionWithProgInterface implements Initializable {
 
     public TableView<Booking> Booking;
     public TableColumn<Booking, String> seanceTitle;

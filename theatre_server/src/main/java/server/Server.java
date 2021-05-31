@@ -35,8 +35,8 @@ public class Server {
     }
 
     public static void launchOptions() {
-        setStateInfo("Активен");
-        logger.info("Состояние сервера:" + getStateInfo());
+        setStateInfo("Active");
+        logger.info("Server state" + getStateInfo());
     }
 
     public static void createLink() throws IOException {
@@ -46,18 +46,18 @@ public class Server {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
-        setStateInfo("Ожидайте...");
+        setStateInfo("Wait...");
     }
 
     public static void connectionOptions() {
-        logger.info("Сервер включен...");
-        logger.info("Подключено к серверу:" + connectionNumber);
+        logger.info("Server is on...");
+        logger.info("Connected to server:" + connectionNumber);
     }
 
     public static void afterLinking() {
-        logger.info("Состояние сервера:" + getStateInfo());
+        logger.info("Server state:" + getStateInfo());
         connectionNumber++;
-        logger.info(connectionNumber + " клиент-подключено " + "; " + "Адрес порта:" + cl.getLocalPort() + "; " + "ip адрес:" + cl.getInetAddress());
+        logger.info(connectionNumber + " client-connected " + "; " + "Port address:" + cl.getLocalPort() + "; " + "ip address:" + cl.getInetAddress());
     }
 
     public static void start() {

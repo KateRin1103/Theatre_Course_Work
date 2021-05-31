@@ -26,7 +26,7 @@ import static client.Client.deleteSelectedAccount;
 import static client.Client.getAllAccountUser;
 import static controller.Sample.windowRedact;
 
-public class AdminWorkWithAccount implements Initializable {
+public class AdminWorkWithAccount extends InteractionWithProgInterface implements Initializable {
     public TableView<User> User;
     public TableColumn<User, String> userLogin;
     public TableColumn<User, String> userPassword;

@@ -13,7 +13,7 @@ import java.io.IOException;
 
 import static client.Client.*;
 
-public class RedAccount {
+public class RedAccount extends InteractionWithProgInterface {
     public static User user;
     public PasswordField newPassword;
     public TextField newSurname;
@@ -111,12 +111,6 @@ public class RedAccount {
 
     public void toRedactUser(ActionEvent actionEvent) throws IOException{
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactUser.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toMainAdmin (ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }

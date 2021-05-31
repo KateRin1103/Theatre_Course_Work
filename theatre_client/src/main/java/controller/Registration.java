@@ -18,7 +18,7 @@ import java.time.LocalTime;
 import static client.Client.*;
 import static java.lang.Integer.parseInt;
 
-public class Registration {
+public class Registration extends InteractionWithProgInterface {
     public PasswordField userPassword;
     public TextField userLogin;
     public TextField userSurname;

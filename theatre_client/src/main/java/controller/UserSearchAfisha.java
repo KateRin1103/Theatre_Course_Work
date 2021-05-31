@@ -4,12 +4,8 @@ import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -24,7 +20,7 @@ import java.util.ResourceBundle;
 
 import static client.Client.getAllSeances;
 
-public class UserSearchAfisha implements Initializable {
+public class UserSearchAfisha extends UserInteractionWithProgInterface implements Initializable {
 
     public TableView<theatre.Seance> Seance;
     public TableColumn<Seance, String> seanceTitle;
@@ -59,12 +55,6 @@ public class UserSearchAfisha implements Initializable {
         Seance.setItems(nSeances);
 
         Seance.setEditable(true);
-    }
-
-    public void toMainUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserMenu.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
     }
 
     @FXML

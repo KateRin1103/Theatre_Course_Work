@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 import static client.Client.deleteSelectedSpectacle;
 import static client.Client.getAllSpectacles;
 
-public class AdminWorkWithSpectacles implements Initializable {
+public class AdminWorkWithSpectacles extends InteractionWithProgInterface implements Initializable {
     public TableView<Spectacle> Spectacle;
     public TableColumn<Spectacle, String> title;
     public TableColumn<Spectacle, Integer> duration;

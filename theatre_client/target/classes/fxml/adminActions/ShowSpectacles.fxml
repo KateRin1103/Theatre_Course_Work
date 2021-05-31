@@ -30,6 +30,7 @@
                             </image>
                         </ImageView>
                         <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
+                  <TextField fx:id="filterField" layoutX="14.0" layoutY="13.0" prefHeight="25.0" prefWidth="291.0" promptText="Поиск" />
                     </children>
                 </Pane>
                 <TableView fx:id="Spectacle" layoutX="4.0" layoutY="48.0" prefHeight="640.0" prefWidth="890.0">

@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 
-public class Sample {
+public class Sample extends InteractionWithProgInterface {
 
     public static  Stage windowStart;
 

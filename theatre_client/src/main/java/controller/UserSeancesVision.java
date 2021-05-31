@@ -6,10 +6,7 @@ import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import theatre.Booking;
@@ -27,7 +24,7 @@ import static client.Client.*;
 import static controller.AccountLogin.enteredUserLogin;
 import static java.lang.Integer.parseInt;
 
-public class UserSeancesVision implements Initializable {
+public class UserSeancesVision extends UserInteractionWithProgInterface implements Initializable {
 
     public TableView<theatre.Seance> Seance;
     public TableColumn<Seance, String> seanceTitle;
@@ -41,20 +38,20 @@ public class UserSeancesVision implements Initializable {
     @FXML
     ToggleGroup seats = new ToggleGroup();
     @FXML
-    RadioButton s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25;
+    public RadioButton s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25;
 
     int selectedPlace, selectedRow = 0;
     int index = -1;
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    synchronized public void initialize(URL location, ResourceBundle resources) {
         update();
         searchSeances();
     }
 
-    public void update() {
-        Stream.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25).
-                forEach(s -> s.setVisible(false));
+    synchronized public void update() {
+        Stream.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25)
+                .forEach(s -> s.setVisible(false));
         ObservableList<Seance> nSeances = null;
         try {
             nSeances = FXCollections.observableArrayList(getAllSeances());
@@ -69,13 +66,6 @@ public class UserSeancesVision implements Initializable {
         Seance.setItems(nSeances);
 
         Seance.setEditable(true);
-    }
-
-
-    public void toMainUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserMenu.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
     }
 
     synchronized public void getSeat() {
@@ -205,32 +195,9 @@ public class UserSeancesVision implements Initializable {
                 forEach(s -> s.setVisible(false));
     }
 
-    public void showAlertSuccess() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Поздравляем");
-        alert.setHeaderText(null);
-        alert.setContentText("Запись успешно добавлена!");
-        alert.showAndWait();
-    }
-
-    public void showAlertEmptySpect() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Справка");
-        alert.setContentText("Значения неверны!");
-        alert.showAndWait();
-    }
-
-    public void showAlertNoSelected() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Предупреждение");
-        alert.setHeaderText(null);
-        alert.setContentText("Выберите сеанс!");
-        alert.showAndWait();
-    }
 
     @FXML
-    public void searchSeances() {
+    synchronized public void searchSeances() {
         Stream.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25).
                 forEach(s -> s.setSelected(false));
         Stream.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25).
@@ -271,7 +238,7 @@ public class UserSeancesVision implements Initializable {
         Seance.setItems(sortedData);
     }
 
-    public void getSelected(javafx.scene.input.MouseEvent mouseEvent) throws IOException {
+    synchronized public void getSelected(javafx.scene.input.MouseEvent mouseEvent) throws IOException {
         Stream.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25).
                 forEach(s -> s.setVisible(true));
         Stream.of(s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12, s13, s14, s15, s16, s17, s18, s19, s20, s21, s22, s23, s24, s25).

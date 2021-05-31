@@ -10,7 +10,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -27,7 +26,7 @@ import static client.Client.deleteSelectedBooking;
 import static client.Client.getAllBookingsByLogin;
 import static controller.AccountLogin.enteredUserLogin;
 
-public class UserDeleteBookings implements Initializable {
+public class UserDeleteBookings extends UserInteractionWithProgInterface implements Initializable {
 
     public TableView<theatre.Booking> Booking;
     public TableColumn<Booking, String> seanceTitle;
@@ -61,28 +60,6 @@ public class UserDeleteBookings implements Initializable {
         searchBookings();
 
         Booking.setEditable(true);
-    }
-
-    public void toMainUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserMenu.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void showAlertNoSelected() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Предупреждение");
-        alert.setHeaderText(null);
-        alert.setContentText("Выберите сеанс!");
-        alert.showAndWait();
-    }
-
-    public void delSuccess() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(null);
-        alert.setHeaderText(null);
-        alert.setContentText("Сеанс удалён!");
-        alert.showAndWait();
     }
 
     public void delBooking(ActionEvent actionEvent) throws IOException {

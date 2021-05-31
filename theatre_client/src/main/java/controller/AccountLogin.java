@@ -14,7 +14,7 @@ import java.io.IOException;
 import static client.Client.adminCheck;
 import static client.Client.userCheck;
 
-public class AccountLogin {
+public class AccountLogin extends InteractionWithProgInterface {
     public static String enteredUserLogin;
     public static Client enteredClient;
     public TextField adminLogin;

@@ -24,13 +24,12 @@
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutY="285.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Афиша" textAlignment="CENTER" textFill="#ccc5c5">
+                <JFXButton layoutY="234.0" onAction="#toDelBookingsUser" prefHeight="50.0" prefWidth="306.0" text="Управление корзиной" textAlignment="CENTER" textFill="#ccc5c5">
                     <font>
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>
                 </JFXButton>
-
-                <JFXButton layoutY="385.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Редактировать профиль" textAlignment="CENTER" textFill="#ccc5c5">
+                <JFXButton layoutY="284.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Афиша" textAlignment="CENTER" textFill="#ccc5c5">
                     <font>
                         <Font name="Microsoft JhengHei Light" size="16.0" />
                     </font>
@@ -49,7 +48,7 @@
                         </ImageView>
                         <Button layoutX="849.0" layoutY="14.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="27.0" prefWidth="27.0" textFill="#950808" />
                     </children></Pane>
-            <ImageView fitHeight="552.0" fitWidth="805.0" layoutX="37.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="457.0" fitWidth="807.0" layoutX="37.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@/pictures/Балерина2.jpg" />
                </image>

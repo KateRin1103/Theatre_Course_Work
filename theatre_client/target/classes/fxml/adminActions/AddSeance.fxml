@@ -121,7 +121,7 @@
             </items>
         </ComboBox>
 
-        <ComboBox fx:id="titleChoose" layoutX="527.0" layoutY="217.0" prefHeight="40.0" prefWidth="455.0" />
+        <ComboBox fx:id="titleChoose" layoutX="527.0" layoutY="217.0" onAction="#updateList" prefHeight="40.0" prefWidth="455.0" />
 
         <JFXButton layoutX="993.0" layoutY="215.0" onAction="#updateList" prefHeight="44.0" prefWidth="200.0" text="Обновить список" textFill="#bf12ae">
             <font>
