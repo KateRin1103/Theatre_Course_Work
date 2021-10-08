@@ -153,15 +153,18 @@ public class AdminWorkWithAccount extends InteractionWithProgInterface implement
         MainClient.primaryStage.show();
     }
 
-    public void delAccount(ActionEvent actionEvent) {
+    public void delAccount(ActionEvent actionEvent) throws IOException {
         User selectedAcc = User.getSelectionModel().getSelectedItem();
         if (selectedAcc == null) {
             showAlertNoSelected();
         }
         else {
             deleteSelectedAccount(selectedAcc.getAccount().getLogin());
-            User.getItems().removeAll(selectedAcc);
+            //User.getItems().removeAll(selectedAcc);
             delSuccess();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
+            MainClient.primaryStage.setScene(new Scene(root));
+            MainClient.primaryStage.show();
         }
     }
 

@@ -18,7 +18,7 @@ public class Server {
     private static String stateInfo;
     static int port;
 
-    static Logger logger = Logger.getLogger(Server.class);
+     static Logger logger = Logger.getLogger(Server.class);
 
     public Server() throws IOException {
         Properties property = new Properties();

@@ -81,15 +81,18 @@ public class AdminWorkWithSpectacles extends InteractionWithProgInterface implem
         Spectacle.setItems(sortedData);
     }
 
-    public void delSpectacle(ActionEvent actionEvent) {
+    public void delSpectacle(ActionEvent actionEvent) throws IOException {
         Spectacle selectedAcc = Spectacle.getSelectionModel().getSelectedItem();
         if (selectedAcc == null) {
             showAlertNoSelected();
         }
         else {
             deleteSelectedSpectacle(selectedAcc.getTitle());
-            Spectacle.getItems().removeAll(selectedAcc);
+            //Spectacle.getItems().removeAll(selectedAcc);
             delSuccess();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
+            MainClient.primaryStage.setScene(new Scene(root));
+            MainClient.primaryStage.show();
         }
     }
 

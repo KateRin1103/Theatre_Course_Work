@@ -95,14 +95,17 @@ public class AdminWorkWithSeances extends InteractionWithProgInterface implement
     }
 
 
-    public void delSeance(ActionEvent actionEvent) {
+    public void delSeance(ActionEvent actionEvent) throws IOException {
         Seance selectedSeance = Seance.getSelectionModel().getSelectedItem();
         if (selectedSeance == null) {
             showAlertNoSelected();
         } else {
-            Seance.getItems().removeAll(selectedSeance);
+           // Seance.getItems().removeAll(selectedSeance);
             deleteSelectedSeance(selectedSeance);
             delSuccess();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
+            MainClient.primaryStage.setScene(new Scene(root));
+            MainClient.primaryStage.show();
         }
     }
 

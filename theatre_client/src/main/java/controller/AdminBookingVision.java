@@ -76,14 +76,17 @@ public class AdminBookingVision extends InteractionWithProgInterface implements 
         alert.showAndWait();
     }
 
-    public void delBooking(ActionEvent actionEvent) {
+    public void delBooking(ActionEvent actionEvent) throws IOException {
         Booking selectedBooking = Booking.getSelectionModel().getSelectedItem();
         if (selectedBooking == null) {
             showAlertNoSelected();
         } else {
-            Booking.getItems().removeAll(selectedBooking);
+           // Booking.getItems().removeAll(selectedBooking);
             deleteSelectedBooking(selectedBooking);
             delSuccess();
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
+            MainClient.primaryStage.setScene(new Scene(root));
+            MainClient.primaryStage.show();
         }
     }
 
