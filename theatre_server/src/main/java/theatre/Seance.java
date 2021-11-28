@@ -12,7 +12,7 @@ import java.time.LocalTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Seance implements Serializable {
-    private String spectacle;
+    private String film;
     private LocalDate date;
     private LocalTime time;
     private int price;

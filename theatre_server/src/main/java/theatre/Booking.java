@@ -18,4 +18,5 @@ public class Booking implements Serializable {
     private String title;
     private LocalDate date;
     private LocalTime time;
+    private int returning;
 }

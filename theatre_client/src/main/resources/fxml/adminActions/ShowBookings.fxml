@@ -5,7 +5,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AdminBookingVision">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
+            prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.bookings.AdminBookingVision">
     <children>
         <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
             <children>
@@ -13,45 +15,51 @@
                     <children>
                         <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                                <Font name="Microsoft JhengHei Light" size="23.0"/>
                             </font>
                         </Label>
                     </children>
                 </Pane>
-            <Label layoutX="49.0" layoutY="395.0" prefHeight="32.0" prefWidth="247.0" text="Просмотр броней" textFill="WHITE">
-               <font>
-                  <Font name="Microsoft JhengHei Light" size="23.0" />
-               </font>
-            </Label>
+                <Label layoutX="49.0" layoutY="395.0" prefHeight="32.0" prefWidth="247.0" text="Просмотр броней"
+                       textFill="WHITE">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="23.0"/>
+                    </font>
+                </Label>
             </children>
         </AnchorPane>
         <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
             <children>
                 <Pane layoutX="4.0" prefHeight="52.0" prefWidth="890.0" style="-fx-background-color: #7a787a;">
                     <children>
-                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true"
+                                   preserveRatio="true">
                             <image>
-                                <Image url="@/pictures/enter.png" />
+                                <Image url="@/pictures/enter.png"/>
                             </image>
                         </ImageView>
-                        <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
-                  <TextField fx:id="filterField" layoutX="21.0" layoutY="14.0" prefHeight="25.0" prefWidth="345.0" promptText="Поиск" />
-                    </children></Pane>
+                        <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainAdmin"
+                                opacity="0.0" prefHeight="27.0" prefWidth="27.0"/>
+                        <TextField fx:id="filterField" layoutX="21.0" layoutY="14.0" prefHeight="25.0" prefWidth="345.0"
+                                   promptText="Поиск"/>
+                    </children>
+                </Pane>
                 <TableView fx:id="Booking" layoutX="4.0" layoutY="48.0" prefHeight="600.0" prefWidth="890.0">
                     <columns>
-                        <TableColumn fx:id="seanceTitle" prefWidth="184.99993896484375" text="Название" />
-                        <TableColumn fx:id="login" prefWidth="141.33334350585938" text="Логин" />
-                        <TableColumn fx:id="seanceDate" prefWidth="125.33331298828125" text="Дата" />
-                        <TableColumn fx:id="seanceTime" prefWidth="162.33331298828125" text="Время" />
-                        <TableColumn fx:id="place" prefWidth="169.66668701171875" text="Место" />
-                        <TableColumn fx:id="row" prefWidth="104.0" text="Ряд" />
+                        <TableColumn fx:id="seanceTitle" prefWidth="184.99993896484375" text="Название"/>
+                        <TableColumn fx:id="login" prefWidth="141.33334350585938" text="Логин"/>
+                        <TableColumn fx:id="seanceDate" prefWidth="125.33331298828125" text="Дата"/>
+                        <TableColumn fx:id="seanceTime" prefWidth="162.33331298828125" text="Время"/>
+                        <TableColumn fx:id="place" prefWidth="169.66668701171875" text="Место"/>
+                        <TableColumn fx:id="row" prefWidth="104.0" text="Ряд"/>
                     </columns>
                 </TableView>
             </children>
         </AnchorPane>
-        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true"
+                   preserveRatio="true">
             <image>
-                <Image url="@/pictures/drama.png" />
+                <Image url="@/pictures/drama.png"/>
             </image>
         </ImageView>
     </children>

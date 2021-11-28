@@ -16,7 +16,6 @@ import static client.Client.userCheck;
 
 public class AccountLogin extends InteractionWithProgInterface {
     public static String enteredUserLogin;
-    public static Client enteredClient;
     public TextField adminLogin;
     public PasswordField adminPassword;
 
@@ -85,44 +84,14 @@ public class AccountLogin extends InteractionWithProgInterface {
         alert.showAndWait();
     }
 
-    public void toAddNewUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddNewUser.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
     public void toMain(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/start/Main.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
 
-    public void toShowUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowUser.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toShowSpectacles(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowSpectacles.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toDeleteUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/DeleteUser.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toDeleteSpectacle(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/DeleteSpectacle.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toAddNewSpectacle(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddNewSpectacle.fxml"));
+    public void toEditFilm(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactFilm.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
@@ -135,19 +104,6 @@ public class AccountLogin extends InteractionWithProgInterface {
 
     public void toDelBookings(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/DeleteBooking.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toAddSeance(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddSeance.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-
-    public void toShowSeances(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowSeances.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
@@ -165,19 +121,7 @@ public class AccountLogin extends InteractionWithProgInterface {
     }
 
     public void toDeleteSeance(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/DeleteSeances.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toContacts(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/Contacts.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toAddNewProduct(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddNewProduct.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactSeances.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
@@ -196,6 +140,24 @@ public class AccountLogin extends InteractionWithProgInterface {
 
     public void toBarChart(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowStatistics.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
+    public void toNotification(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowNotifications.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
+    public void toAvgRating(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowAvgRatings.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
+    public void toRating(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowRatings.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }

@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0"
             prefWidth="454.0" xmlns="http://javafx.com/javafx/8.0.271" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.RedAccount">
+            fx:controller="controller.admin.accounts.RedAccount">
     <children>
         <AnchorPane layoutX="161.0" layoutY="149.0" prefHeight="34.0" prefWidth="131.0"
                     style="-fx-background-color: #1D2026;">

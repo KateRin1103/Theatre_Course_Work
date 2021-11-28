@@ -6,10 +6,12 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.apache.log4j.Logger;
+import statistics.Notification;
+import statistics.Rating;
 import statistics.Statistics;
 import theatre.Booking;
+import theatre.Film;
 import theatre.Seance;
-import theatre.Spectacle;
 
 import java.awt.*;
 import java.io.*;
@@ -19,10 +21,12 @@ import java.net.SocketException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import static dataBase.DataBase.*;
+import static java.lang.Integer.parseInt;
 
 public class ServerWorking extends Thread {
 
@@ -31,18 +35,18 @@ public class ServerWorking extends Thread {
     private static final String checkSameUser = "checkSameUser";
     private static final String addNewAccountUser = "addNewAccountUser";
     private static final String addNewAccountAdmin = "addNewAccountAdmin";
-    private static final String addNewSpectacle = "addNewSpectacle";
+    private static final String addNewFilm = "addNewFilm";
     private static final String addNewSeances = "addNewSeances";
     private static final String checkUser = "checkUser";
-    private static final String getAllAccount = "getAllAccount";
     private static final String getAllSeances = "getAllSeances";
-    private static final String getAllSpectacles = "getAllSpectacles";
+    private static final String getAllFilms = "getAllFilms";
     private static final String getAllAccountUser = "getAllAccountUser";
     private static final String getAllBookings = "getAllBookings";
-    private static final String getSpectacleTitles = "getSpectacleTitles";
+    private static final String getAllBookingsToDel = "getAllBookingsToDel";
+    private static final String getFilmTitles = "getFilmTitles";
     private static final String deleteSelectedAccount = "deleteSelectedAccount";
     private static final String deleteSelectedSeances = "deleteSelectedSeances";
-    private static final String deleteSelectedSpectacle = "deleteSelectedSpectacle";
+    private static final String deleteSelectedFilm = "deleteSelectedFilm";
     private static final String deleteSelectedBooking = "deleteSelectedBooking";
     private static final String editPassword = "editPassword";
     private static final String editLogin = "editLogin";
@@ -51,16 +55,23 @@ public class ServerWorking extends Thread {
     private static final String editMail = "editMail";
     private static final String end = "end";
     private static final String getAllBookingsByLogin = "getAllBookingsByLogin";
-    private static final String addSpectacle = "addSpectacle";
+    private static final String getFreeTime = "getFreeTime";
+    private static final String editDuration = "editDuration";
+    private static final String editTitle = "editTitle";
+    private static final String editRentalCost = "editRentalCost";
+    private static final String editTime = "editTime";
+    private static final String getAllNotifications = "getAllNotifications";
+    private static final String deleteSelectedNotification = "deleteSelectedNotification";
+    private static final String addRating = "addRating";
+    private static final String getAllRatings = "getAllRatings";
+    private static final String deleteRating = "deleteRating";
+    private static final String getAvgRating = "getAvgRating";
 
     private static final String getSeancePlaces = "getSeancePlaces";
 
     private static final String addBooking = "addBooking";
-    private static final String showBoughtTickets = "showBoughtTickets";
-    private static final String showUsersBoughtTickets = "showUsersBoughtTickets";
     private static final String updateStatistics = "updateStatistics";
     private static final String getStatistics = "getStatistics";
-    private static final String getResult = "getResult";
     private static final String getReport = "getReport";
 
     static Logger logger = Logger.getLogger(ServerWorking.class);
@@ -68,7 +79,6 @@ public class ServerWorking extends Thread {
     public ServerWorking(Socket cl) {
         ServerWorking.cl = cl;
     }
-
 
     public ServerWorking() {
     }
@@ -106,90 +116,159 @@ public class ServerWorking extends Thread {
                     if (input.equals(end)) {
                         break;
                     } else {
-                        if (input.equals(checkAdmin)) {
-                            adminAutorization();
-                        }
-                        if (input.equals(checkSameUser)) {
-                            checkSameUser();
-                        }
-                        if (input.equals(checkUser)) {
-                            userAutorization();
-                        }
-                        if (input.equals(addNewAccountUser)) {
-                            addAccUser();
-                        }
-                        if (input.equals(getAllBookingsByLogin)) {
-                            getAllBookingsByLogin();
-                        }
-
-                        if (input.equals(getAllSeances)) {
-                            getAllSeances();
-                        }
-                        if (input.equals(addNewAccountAdmin)) {
-                            addAccAdmin();
-                        }
-                        if (input.equals(getStatistics)) {
-                            getStatistics();
-                        }
-                        if (input.equals(addNewSpectacle)) {
-                            addNewSpectacle();
-                        }
-                        if (input.equals(getSeancePlaces)) {
-                            getSeancePlaces();
-                        }
-                        if (input.equals(addNewSeances)) {
-                            addNewSeances();
-                        }
-                        if (input.equals(getReport)) {
-                            writeInFile();
-                        }
-                        if (input.equals(addBooking)) {
-                            addBooking();
-                        }
-                        if (input.equals(getAllBookings)) {
-                            getAllBookings();
-                        }
-                        if (input.equals(getAllAccountUser)) {
-                            getAccUser();
-                        }
-                        if (input.equals(getSpectacleTitles)) {
-                            getSpectacleTitles();
-                        }
-                        if (input.equals(deleteSelectedAccount)) {
-                            deleteAcc();
-                        }
-                        if (input.equals(deleteSelectedSeances)) {
-                            deleteSeance();
-                        }
-                        if (input.equals(deleteSelectedBooking)) {
-                            deleteSelectedBooking();
-                        }
-                        if (input.equals(editPassword)) {
-                            editPass();
-                        }
-                        if (input.equals(editLogin)) {
-                            editLog();
-                        }
-                        if (input.equals(deleteSelectedSpectacle)) {
-                            delSpect();
-                        }
-                        if (input.equals(editSurname)) {
-                            editSur();
-                        }
-                        if (input.equals(editName)) {
-                            editN();
-                        }
-                        if (input.equals(editMail)) {
-                            editMail();
-                        }
-                        if (input.equals(getAllSpectacles)) {
-                            getAllSpectacles();
-                        }
-                        if (input.equals(showBoughtTickets)) {
-                            //  showBoughtTickets();
-                        }
-                        if (input.equals(showUsersBoughtTickets)) {
-                            //   showUsersBoughtTickets();
+                        switch (input) {
+                            case checkAdmin: {
+                                adminAutorization();
+                                break;
+                            }
+                            case checkSameUser: {
+                                checkSameUser();
+                                break;
+                            }
+                            case checkUser: {
+                                userAutorization();
+                                break;
+                            }
+                            case addNewAccountUser: {
+                                addAccUser();
+                                break;
+                            }
+                            case getAllBookingsByLogin: {
+                                getAllBookingsByLogin();
+                                break;
+                            }
+                            case deleteRating: {
+                                deleteRating();
+                                break;
+                            }
+                            case getAllSeances: {
+                                getAllSeances();
+                                break;
+                            }
+                            case addNewAccountAdmin: {
+                                addAccAdmin();
+                                break;
+                            }
+                            case getStatistics: {
+                                getStatistics();
+                                break;
+                            }
+                            case addNewFilm: {
+                                addNewFilm();
+                                break;
+                            }
+                            case getSeancePlaces: {
+                                getSeancePlaces();
+                                break;
+                            }
+                            case addNewSeances: {
+                                addNewSeances();
+                                break;
+                            }
+                            case getReport: {
+                                writeInFile();
+                                break;
+                            }
+                            case addBooking: {
+                                addBooking();
+                                break;
+                            }
+                            case addRating: {
+                                addRating();
+                                break;
+                            }
+                            case getAllBookingsToDel: {
+                                getAllBookingsToDel();
+                                break;
+                            }
+                            case getAllRatings: {
+                                getAllRatings();
+                                break;
+                            }
+                            case getAvgRating:{
+                                getAvgRating();
+                                break;
+                            }
+                            case getAllAccountUser: {
+                                getAccUser();
+                                break;
+                            }
+                            case getFilmTitles: {
+                                getFilmTitles();
+                                break;
+                            }
+                            case deleteSelectedAccount: {
+                                deleteAcc();
+                                break;
+                            }
+                            case deleteSelectedNotification: {
+                                deleteSelectedNotification();
+                                break;
+                            }
+                            case deleteSelectedSeances: {
+                                deleteSeance();
+                                break;
+                            }
+                            case deleteSelectedBooking: {
+                                deleteSelectedBooking();
+                                break;
+                            }
+                            case getAllNotifications: {
+                                getAllNotifications();
+                                break;
+                            }
+                            case getAllBookings: {
+                                getAllBookings();
+                                break;
+                            }
+                            case editPassword: {
+                                editPass();
+                                break;
+                            }
+                            case editLogin: {
+                                editLog();
+                                break;
+                            }
+                            case editDuration: {
+                                editDuration();
+                                break;
+                            }
+                            case editRentalCost: {
+                                editRentalCost();
+                                break;
+                            }
+                            case editTitle: {
+                                editTitle();
+                                break;
+                            }
+                            case deleteSelectedFilm: {
+                                delSpect();
+                                break;
+                            }
+                            case editSurname: {
+                                editSur();
+                                break;
+                            }
+                            case editName: {
+                                editN();
+                                break;
+                            }
+                            case editMail: {
+                                editMail();
+                                break;
+                            }
+                            case getAllFilms: {
+                                getAllFilms();
+                                break;
+                            }
+                            case getFreeTime: {
+                                getFreeTime();
+                                break;
+                            }
+                            case editTime: {
+                                editTime();
+                                break;
+                            }
                         }
                     }
                 } catch (SQLException | IOException e) {
@@ -207,16 +286,17 @@ public class ServerWorking extends Thread {
         }
     }
 
-    private void getAllSpectacles() throws SQLException {
-        String sqlst = "SELECT * FROM mytheatre.spectacle";
+    private void getAllFilms() throws SQLException {
+        String sqlst = "SELECT * FROM mytheatre.film";
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
-        ArrayList<Spectacle> arrayList = new ArrayList<>();
+        ArrayList<Film> arrayList = new ArrayList<>();
         while (resultSet.next()) {
-            Spectacle spectacle = new Spectacle();
-            spectacle.setTitle(resultSet.getString("title"));
-            spectacle.setDuration(resultSet.getInt("duration"));
-            arrayList.add(spectacle);
+            Film film = new Film();
+            film.setTitle(resultSet.getString("title"));
+            film.setDuration(resultSet.getInt("duration"));
+            film.setRent(resultSet.getInt("rental_price_per_month"));
+            arrayList.add(film);
         }
         String sent = new Gson().toJson(arrayList);
         printStream.println(sent);
@@ -224,13 +304,13 @@ public class ServerWorking extends Thread {
 
     private void getAllSeances() throws SQLException {
         String sqlst = String.format("SELECT s.title, se.date, se.time, se.price " +
-                "FROM seance se INNER JOIN spectacle s on se.spectacle_id = s.id");
+                "FROM seance se INNER JOIN film s on se.film_id = s.id");
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
         ArrayList<Seance> arrayList = new ArrayList<>();
         while (resultSet.next()) {
             Seance seance = new Seance();
-            seance.setSpectacle(resultSet.getString("title"));
+            seance.setFilm(resultSet.getString("title"));
             seance.setDate(resultSet.getDate("date").toLocalDate());
             seance.setTime(resultSet.getTime("time").toLocalTime());
             seance.setPrice(resultSet.getInt("price"));
@@ -243,8 +323,8 @@ public class ServerWorking extends Thread {
         printStream.println(sent);
     }
 
-    private void getSpectacleTitles() throws SQLException {
-        String sqlst = String.format("SELECT title FROM spectacle ORDER BY title");
+    private void getFilmTitles() throws SQLException {
+        String sqlst = String.format("SELECT title FROM film ORDER BY title");
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
         ArrayList<String> arrayList = new ArrayList<>();
@@ -256,15 +336,14 @@ public class ServerWorking extends Thread {
         printStream.println(sent);
     }
 
-    private void getAllBookings() throws SQLException {
-        String sqlst = String.format("SELECT u.login AS `log`, sp.title, se.time, se.date, p.place, p.row\n" +
+    private void getAllBookingsToDel() throws SQLException {
+        openDatabase();
+        ResultSet resultSet = getDatabase(String.format("SELECT u.login AS `log`, sp.title, se.time, se.date, p.place, p.row\n" +
                 "FROM booking b\n" +
                 "         INNER JOIN place p on b.place_id = p.id\n" +
                 "         INNER JOIN user u on b.user_id = u.id\n" +
                 "         INNER JOIN seance se on b.seance_id = se.id\n" +
-                "         INNER JOIN spectacle sp on se.spectacle_id = sp.id");
-        openDatabase();
-        ResultSet resultSet = getDatabase(sqlst);
+                "         INNER JOIN film sp on se.film_id = sp.id WHERE `return`=1"));
         ArrayList<Booking> arrayList = new ArrayList<>();
         while (resultSet.next()) {
             Booking seance = new Booking();
@@ -283,6 +362,50 @@ public class ServerWorking extends Thread {
         printStream.println(sent);
     }
 
+    private void getAllBookings() throws SQLException {
+        openDatabase();
+        ResultSet resultSet = getDatabase(String.format("SELECT u.login AS `log`, sp.title, se.time, se.date, p.place, p.row\n" +
+                "FROM booking b\n" +
+                "         INNER JOIN place p on b.place_id = p.id\n" +
+                "         INNER JOIN user u on b.user_id = u.id\n" +
+                "         INNER JOIN seance se on b.seance_id = se.id\n" +
+                "         INNER JOIN film sp on se.film_id = sp.id"));
+        ArrayList<Booking> arrayList = new ArrayList<>();
+        while (resultSet.next()) {
+            Booking seance = new Booking();
+            seance.setTitle(resultSet.getString("title"));
+            seance.setLogin(resultSet.getString("log"));
+            seance.setDate(resultSet.getDate("date").toLocalDate());
+            seance.setTime(resultSet.getTime("time").toLocalTime());
+            seance.setRow(resultSet.getInt("row"));
+            seance.setPlace(resultSet.getInt("place"));
+            arrayList.add(seance);
+        }
+        GsonBuilder gb = new GsonBuilder();
+        gb.setDateFormat("yyyy-MM-dd");
+        Gson gson = gb.create();
+        String sent = gson.toJson(arrayList);
+        printStream.println(sent);
+    }
+
+    private void getAllNotifications() throws SQLException {
+        openDatabase();
+        ResultSet res = getDatabase("select login, changed, date, time from notifications join user u on u.id = notifications.user_id");
+        ArrayList<Notification> arrayList = new ArrayList<>();
+        while (res.next()) {
+            Notification notification = new Notification();
+            notification.setLogin(res.getString("login"));
+            notification.setChanged(res.getString("changed"));
+            notification.setDate(res.getDate("date").toLocalDate());
+            notification.setTime(res.getTime("time").toLocalTime());
+            arrayList.add(notification);
+        }
+        GsonBuilder gb = new GsonBuilder();
+        gb.setDateFormat("yyyy-MM-dd");
+        Gson gson = gb.create();
+        printStream.println(gson.toJson(arrayList));
+    }
+
     private void getAllBookingsByLogin() throws SQLException {
         String get = "";
         try {
@@ -295,7 +418,7 @@ public class ServerWorking extends Thread {
                 "INNER JOIN place p on b.place_id = p.id " +
                 "INNER JOIN user u on b.user_id = u.id " +
                 "INNER JOIN seance se on b.seance_id = se.id " +
-                "INNER JOIN spectacle sp on se.spectacle_id = sp.id " +
+                "INNER JOIN film sp on se.film_id = sp.id " +
                 "WHERE u.login='" + get + "'");
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
@@ -321,7 +444,7 @@ public class ServerWorking extends Thread {
         updateStatistics();
         String sqlst = String.format("select * " +
                 "from statistics " +
-                "         inner join spectacle s on statistics.spectacle_id = s.id");
+                "         inner join film s on statistics.film_id = s.id");
         openDatabase();
         ResultSet resultSet = getDatabase(sqlst);
         ArrayList<Statistics> arrayList = new ArrayList<>();
@@ -378,8 +501,7 @@ public class ServerWorking extends Thread {
             } else {
                 while (admins.next()) {
                     if (obj.getLogin().equals(admins.getString("login"))
-                            && obj.getPassword().equals(admins.getString("password"))
-                    ) {
+                            && obj.getPassword().equals(admins.getString("password"))) {
                         outline = "true";
                         break;
                     } else {
@@ -430,7 +552,7 @@ public class ServerWorking extends Thread {
         execute(query);
     }
 
-    void addNewSpectacle() {
+    void addNewFilm() {
         String get = "";
         try {
             get = bufferedReader.readLine();
@@ -438,11 +560,11 @@ public class ServerWorking extends Thread {
             e.printStackTrace();
         }
         Gson g = new Gson();
-        Type Tip = new TypeToken<Spectacle>() {
+        Type Tip = new TypeToken<Film>() {
         }.getType();
-        Spectacle acc = g.fromJson(get, Tip);
-        String query = String.format("INSERT INTO mytheatre.spectacle (title, duration) " +
-                "VALUES ('%s', '%d')", acc.getTitle(), acc.getDuration());
+        Film acc = g.fromJson(get, Tip);
+        String query = String.format("INSERT INTO mytheatre.film (title, duration,rental_price_per_month) " +
+                "VALUES ('%s',%d,%d)", acc.getTitle(), acc.getDuration(), acc.getRent());
         openDatabase();
         execute(query);
     }
@@ -459,10 +581,10 @@ public class ServerWorking extends Thread {
         }.getType();
         Seance seance = g.fromJson(get, Tip);
         openDatabase();
-        ResultSet resultSet = getDatabase(String.format("SELECT id FROM spectacle WHERE title='%s'", seance.getSpectacle()));
+        ResultSet resultSet = getDatabase(String.format("SELECT id FROM film WHERE title='%s'", seance.getFilm()));
         resultSet.next();
         int id = resultSet.getInt(1);
-        String sqlst = String.format("INSERT INTO seance (spectacle_id,date,time,price) VALUES ('%d','%s','%s:00','%d')",
+        String sqlst = String.format("INSERT INTO seance (film_id,date,time,price) VALUES ('%d','%s','%s:00','%d')",
                 id, seance.getDate().toString(), seance.getTime().toString(), seance.getPrice());
         execute(sqlst);
     }
@@ -483,7 +605,7 @@ public class ServerWorking extends Thread {
         resultSet.next();
         int id = resultSet.getInt(1);
 
-        String str = String.format("SELECT seance.id FROM seance inner join spectacle s on seance.spectacle_id = s.id" +
+        String str = String.format("SELECT seance.id FROM seance inner join film s on seance.film_id = s.id" +
                         " WHERE date='%s' AND time='%s:00' AND title='%s'",
                 booking.getDate().toString(), booking.getTime().toString(), booking.getTitle());
         ResultSet resultSeance = getDatabase(str);
@@ -569,16 +691,107 @@ public class ServerWorking extends Thread {
         execute(sqlst);
     }
 
-    void delSpect() {
+    void delSpect() throws SQLException {
         String get = "";
         try {
             get = bufferedReader.readLine();
         } catch (IOException e) {
             e.printStackTrace();
         }
-        String sqlst = String.format("DELETE FROM mytheatre.spectacle WHERE (title = '%s')", get);
+        ResultSet users = getDatabase(String.format("select distinct u.id from booking\n" +
+                "join user u on u.id = booking.user_id\n" +
+                "join seance s on s.id = booking.seance_id\n" +
+                "join film f on f.id = s.film_id\n" +
+                "where title = '" + get + "'"));
+        String message = "ОТМЕНА! К сожалению прокат фильма "
+                + get + " прекращён. Забронированные билеты возвращены. Приносим свои извинения!";
+        while (users.next()) {
+            execute(String.format("INSERT INTO notifications (user_id, changed, `date`, `time`) values (%d,'%s',CURRENT_DATE(),CURRENT_TIME())",
+                    users.getInt("u.id"), message));
+        }
+        String sqlst = String.format("DELETE FROM mytheatre.film WHERE (title = '%s')", get);
         openDatabase();
         execute(sqlst);
+    }
+
+    private void addRating() {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson g = new Gson();
+        Type Tip = new TypeToken<Rating>() {
+        }.getType();
+        Rating rating = g.fromJson(get, Tip);
+        execute(String.format("INSERT INTO rating (user_id,film_id,rating,comment) " +
+                        "VALUES ((SELECT id FROM user WHERE login='%s')," +
+                        " (SELECT id FROM film WHERE title='%s'), %d, '%s')",
+                rating.getLogin(), rating.getFilm(), rating.getRating(), rating.getComment()));
+    }
+
+    private void getAllRatings() throws SQLException {
+        openDatabase();
+        ResultSet res = getDatabase("select login, title, comment, rating\n" +
+                "from rating\n" +
+                "         inner join film f on rating.film_id = f.id\n" +
+                "         inner join user u on rating.user_id = u.id");
+        ArrayList<Rating> ratings = new ArrayList<>();
+        while (res.next()) {
+            ratings.add(new Rating(res.getString("login"), res.getString("title"),
+                    res.getFloat("rating"), res.getString("comment")));
+        }
+        printStream.println(new Gson().toJson(ratings));
+    }
+
+    private void deleteRating() {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson g = new Gson();
+        Type Tip = new TypeToken<Rating>() {
+        }.getType();
+        Rating rating = g.fromJson(get, Tip);
+        execute(String.format("DELETE FROM rating WHERE " +
+                        "user_id=(SELECT id FROM user WHERE login='%s') " +
+                        "AND film_id=(SELECT id FROM film WHERE title='%s')" +
+                        "AND rating=%d AND comment='%s'",
+                rating.getLogin(), rating.getFilm(), rating.getRating(), rating.getComment()));
+    }
+
+    private void deleteSelectedNotification() {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson g = new Gson();
+
+        Type Tip = new TypeToken<Notification>() {
+        }.getType();
+        Notification notif = g.fromJson(get, Tip);
+        openDatabase();
+        execute(String.format("delete from notifications where time='%s' and date='%s'",
+                notif.getTime().toString(), notif.getDate().toString()));
+    }
+
+    private void getAvgRating() throws SQLException {
+        openDatabase();
+        ResultSet res = getDatabase("SELECT title, AVG(rating) as rating\n" +
+                "FROM rating\n" +
+                "join film f on f.id = rating.film_id\n" +
+                "GROUP BY title;");
+        ArrayList<Rating> ratings = new ArrayList<>();
+        while (res.next()) {
+            ratings.add(new Rating("", res.getString("title"),
+                    res.getFloat("rating"), ""));
+        }
+        printStream.println(new Gson().toJson(ratings));
     }
 
     void deleteSeance() throws SQLException {
@@ -594,10 +807,25 @@ public class ServerWorking extends Thread {
         }.getType();
         Seance seance = g.fromJson(get, Tip);
         openDatabase();
-        ResultSet resultSet = getDatabase(String.format("SELECT id FROM spectacle WHERE title='%s'", seance.getSpectacle()));
+        String str = String.format("select distinct u.id from booking " +
+                        "join user u on u.id = booking.user_id " +
+                        "join seance s on s.id = booking.seance_id " +
+                        "join film f on f.id = s.film_id " +
+                        "where s.id = (select id FROM seance WHERE f.title = '%s' AND date = '%s' AND time = '%s:00')"
+                , seance.getFilm(), seance.getDate().toString(), seance.getTime().toString());
+        ResultSet users = getDatabase(str);
+        String message = "ОТМЕНА сеанса фильма " + seance.getFilm()
+                + ", который должен был пройти " + seance.getDate().toString()
+                + " в " + seance.getTime().toString()
+                + ". Приносим извинения за неудобства!";
+        while (users.next()) {
+            execute(String.format("insert into notifications (user_id, changed, date, time) values ('%d','%s',CURRENT_DATE(),CURRENT_TIME())",
+                    users.getInt("u.id"), message));
+        }
+        ResultSet resultSet = getDatabase(String.format("SELECT id FROM film WHERE title='%s'", seance.getFilm()));
         resultSet.next();
         int id = resultSet.getInt(1);
-        String sqlst = String.format("DELETE FROM seance WHERE spectacle_id = %d AND date = '%s' AND time = '%s:00'",
+        String sqlst = String.format("DELETE FROM seance WHERE film_id = %d AND date = '%s' AND time = '%s:00'",
                 id, seance.getDate().toString(), seance.getTime().toString());
         execute(sqlst);
     }
@@ -616,7 +844,7 @@ public class ServerWorking extends Thread {
         Booking booking = g.fromJson(get, Tip);
         openDatabase();
 
-        ResultSet resultSet = getDatabase(String.format("SELECT id FROM spectacle WHERE title='%s'", booking.getTitle()));
+        ResultSet resultSet = getDatabase(String.format("SELECT id FROM film WHERE title='%s'", booking.getTitle()));
         resultSet.next();
         int id = resultSet.getInt(1);
 
@@ -625,7 +853,7 @@ public class ServerWorking extends Thread {
         resultSetPlace.next();
         int placeId = resultSetPlace.getInt(1);
 
-        ResultSet resultSetDate = getDatabase(String.format("SELECT id FROM `seance` WHERE `date`='%s:00' AND `time`='%s' AND `spectacle_id`=%d",
+        ResultSet resultSetDate = getDatabase(String.format("SELECT id FROM `seance` WHERE `date`='%s:00' AND `time`='%s' AND `film_id`=%d",
                 booking.getDate().toString(), booking.getTime().toString(), id));
         resultSetDate.next();
         int seanceId = resultSetDate.getInt(1);
@@ -660,6 +888,28 @@ public class ServerWorking extends Thread {
         printStream.println(sent);
     }
 
+    private void getFreeTime() throws SQLException {
+        String getDate = "";
+        try {
+            getDate = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        openDatabase();
+        ResultSet resultSet = getDatabase("SELECT time\n" +
+                "FROM seance_time\n" +
+                "WHERE time NOT IN (SELECT TIME\n" +
+                "               FROM seance\n" +
+                "                        JOIN film f ON f.id = seance.film_id\n" +
+                "               WHERE date = '" + getDate + "');");
+        ArrayList<LocalTime> arrayList = new ArrayList<>();
+        while (resultSet.next()) {
+            arrayList.add(resultSet.getTime("time").toLocalTime());
+        }
+        String sent = new Gson().toJson(arrayList);
+        printStream.println(sent);
+    }
+
     void getSeancePlaces() throws SQLException {
         String get = "";
         try {
@@ -674,8 +924,8 @@ public class ServerWorking extends Thread {
         Seance seance = g.fromJson(get, Tip);
         openDatabase();
 
-        String str = "SELECT seance.id FROM seance inner join spectacle s on seance.spectacle_id = s.id" +
-                " WHERE date='" + seance.getDate() + "' AND time='" + seance.getTime() + ":00' AND title='" + seance.getSpectacle() + "'";
+        String str = "SELECT seance.id FROM seance inner join film s on seance.film_id = s.id" +
+                " WHERE date='" + seance.getDate() + "' AND time='" + seance.getTime() + ":00' AND title='" + seance.getFilm() + "'";
         ResultSet resultSet = getDatabase(str);
         resultSet.next();
         int seanceID = resultSet.getInt(1);
@@ -736,6 +986,63 @@ public class ServerWorking extends Thread {
         execute(sqlst);
     }
 
+    void editDuration() {
+        String getl = "";
+        String gets = "";
+        try {
+            getl = bufferedReader.readLine();
+            gets = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = String.format("UPDATE mytheatre.film SET duration=%d WHERE ( title ='%s')", parseInt(gets), getl);
+        openDatabase();
+        execute(sqlst);
+    }
+
+    void editRentalCost() {
+        String getl = "";
+        String gets = "";
+        try {
+            getl = bufferedReader.readLine();
+            gets = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = String.format("UPDATE mytheatre.film SET rental_price_per_month=%d WHERE ( title ='%s')", parseInt(gets), getl);
+        openDatabase();
+        execute(sqlst);
+    }
+
+    void editTitle() {
+        String getl = "";
+        String gets = "";
+        try {
+            getl = bufferedReader.readLine();
+            gets = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = String.format("UPDATE mytheatre.film SET title='%s' WHERE ( title ='%s')", gets, getl);
+        openDatabase();
+        execute(sqlst);
+    }
+
+    void editTime() throws SQLException {
+        String getl = "";
+        String getn = "";
+        try {
+            getl = bufferedReader.readLine();
+            getn = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        String sqlst = String.format("UPDATE seance SET time='%s' WHERE ( time ='%s')",
+                getn, getl);
+        openDatabase();
+        execute(sqlst);
+    }
+
     void editN() {
         String getl = "";
         String getn = "";
@@ -775,7 +1082,7 @@ public class ServerWorking extends Thread {
         //получение списка id спектаклей
         String selectSQLOnTitle = "select distinct s.id, s.title " +
                 "from seance " +
-                "inner join spectacle s on seance.spectacle_id = s.id";
+                "inner join film s on seance.film_id = s.id";
         ResultSet result = getDatabase(selectSQLOnTitle);
 
         if (result == null)
@@ -789,7 +1096,7 @@ public class ServerWorking extends Thread {
                     // целевого и итогового значения купленных билетов
                     ResultSet resNumber = getDatabase(String.format("select COUNT((MONTH(date))) " +
                                     "from seance " +
-                                    "where month(date)=month('%s') and spectacle_id=%d",
+                                    "where month(date)=month('%s') and film_id=%d",
                             currentDate, result.getInt("id")));
                     resNumber.next();
 
@@ -797,13 +1104,13 @@ public class ServerWorking extends Thread {
                     ResultSet res = getDatabase(String.format("select count(booking.id) " +
                                     "from booking " +
                                     "inner join seance s on s.id = booking.seance_id " +
-                                    "inner join spectacle s2 on s.spectacle_id = s2.id " +
-                                    "where month(s.date)=month('%s') and s.id=booking.seance_id and s.spectacle_id=s2.id " +
+                                    "inner join film s2 on s.film_id = s2.id " +
+                                    "where month(s.date)=month('%s') and s.id=booking.seance_id and s.film_id=s2.id " +
                                     "AND title='%s'",
                             currentDate, result.getString("s.title")));
                     res.next();
 
-                    execute(String.format("insert into statistics (spectacle_id, date, number_of_shows, goal, result) " +
+                    execute(String.format("insert into statistics (film_id, date, number_of_shows, goal, result) " +
                                     "value (%d, '%s', %d, %d, %d) ",
                             result.getInt("id"), currentDate,
                             resNumber.getInt(1), resNumber.getInt(1) * 20,
@@ -811,7 +1118,7 @@ public class ServerWorking extends Thread {
 
                 }
             }
-            //обновление эффективности
+            //обновление эффективности ПРИБЫЛИ
             ResultSet resEf = getDatabase("select ifnull(result/goal, 0.0) as eff from statistics");
             int i = 1;
             while (resEf.next()) {
@@ -826,12 +1133,12 @@ public class ServerWorking extends Thread {
         ResultSet result2 = getDatabase(selectSQLOnTitle);
         ResultSet parametres = getDatabase("select efficiency from statistics");
         while (result2.next()) {
-            ResultSet sp = getDatabase(String.format("select sum(efficiency) from statistics where spectacle_id=%d",
+            ResultSet sp = getDatabase(String.format("select sum(efficiency) from statistics where film_id=%d",
                     result2.getInt(1)));
             sp.next();
 
             StringBuilder str = new StringBuilder();
-            str.append("insert into results (spectacle_id,first_param,second_param,third_param,specific_efficiency,risk) value (");
+            str.append("insert into results (film_id,first_param,second_param,third_param,specific_efficiency,risk, profit) value (");
             str.append(result2.getInt("id"));
             str.append(",");
             parametres.next();
@@ -866,7 +1173,7 @@ public class ServerWorking extends Thread {
         List<String> risks = new ArrayList<>();
         ResultSet res = getDatabase("select *, title " +
                 "from statistics " +
-                "inner join spectacle s on statistics.spectacle_id = s.id");
+                "inner join film s on statistics.film_id = s.id");
         while (res.next()) {
             String title = res.getString("title");
             String date = res.getDate("date").toLocalDate().toString();
@@ -874,16 +1181,17 @@ public class ServerWorking extends Thread {
             int goal = res.getInt("goal");
             int result = res.getInt("result");
             double efficiency = res.getDouble("efficiency");
-            data.add(String.format("|%25s|%15s|%15d|%10d|%10d|%16f|", title, date, number, goal, result, efficiency));
+            data.add(String.format("|%25s|%15s|%15d|%10d|%10d|%16f|%27s|",
+                    title, date, number, goal, result, efficiency, 1 - efficiency));
         }
         ResultSet report = getDatabase("select *, title " +
                 "from results " +
-                "inner join spectacle s on results.spectacle_id = s.id");
+                "inner join film s on results.film_id = s.id");
         while (report.next()) {
             String title = report.getString("title");
             double efficiency = report.getDouble("specific_efficiency");
             double risk = report.getDouble("risk");
-            risks.add(String.format("|%31s|%31f|%32f|", title, efficiency, risk));
+            risks.add(String.format("|%31s|%31f|%60f|", title, efficiency, risk));
         }
         File file = new File("D:/Report.txt");
         file.delete();
@@ -892,47 +1200,48 @@ public class ServerWorking extends Thread {
         }
         BufferedWriter out = new BufferedWriter(new FileWriter(file, true));
         out.flush();
-        out.write(String.format("\n           ОТЧЕТ ПРЕДЫДУЩЕГО КВАРТАЛА ПО ПРОДАЖАМ БИЛЕТОВ НА СПЕКТАКЛИ ОТ %s\n\n",
+        out.write(String.format("\n           ОТЧЕТ ПРЕДЫДУЩЕГО КВАРТАЛА ПО ПРОДАЖАМ БИЛЕТОВ ОТ %s\n\n",
                 LocalDate.now().toString()));
-        out.write("+------------------------------------------------------------------------------------------------+\n");
-        out.write(String.format("|%25s|%15s|%15s|%10s|%10s|%15s|\n", "Название", "Месяц", "Число показов", "Цель", "Итог", "Уд.эффективность"));
-        out.write("+------------------------------------------------------------------------------------------------+\n");
+        String tableStr = "+----------------------------------------------------------------------------------------------------------------------------+\n";
+        out.write(tableStr);
+        out.write(String.format("|%25s|%15s|%15s|%10s|%10s|%16s|%27s|\n", "Название", "Месяц", "Число показов", "Цель", "Итог", "Уд.прибыль", "Уд.убытки правообладателя"));
+        out.write(tableStr);
         for (Object o : data) {
             out.write(o.toString());
             out.newLine();
         }
-        out.write("+------------------------------------------------------------------------------------------------+\n");
+        out.write(tableStr);
 
-        out.write("  По результатам анализа сведений об эффективности каждого спектакля в прошлом была\nоценена удельная эффективность каждой единицы.\n");
-        out.write("  В качестве оценки эффективности решений (спектаклей для показа) была использована\n" +
+        out.write("  По результатам анализа сведений об эффективности каждого фильма в прошлом была\nоценена удельная прибыль каждой единицы.\n");
+        out.write("  В качестве оценки эффективности решений (фильмов для показа) была использована\n" +
                 "средняя удельная эффективность. Найдена оценка эффективности показов:");
         out.newLine();
 
-        out.write(String.format("\n           ОЦЕНКА РИСКА ПО ПРОДАЖАМ БИЛЕТОВ НА СПЕКТАКЛИ ОТ %s",
+        out.write(String.format("\n           ОЦЕНКА РИСКА ПО ПРОДАЖАМ БИЛЕТОВ НА ФИЛЬМЫ ОТ %s",
                 LocalDate.now().toString()));
         out.newLine();
-        out.write("+------------------------------------------------------------------------------------------------+\n");
-        out.write(String.format("|%31s|%31s|%32s|\n", "Название", "Удельная эффективность", "Оценка риска"));
-        out.write("+------------------------------------------------------------------------------------------------+\n");
+        out.write(tableStr);
+        out.write(String.format("|%31s|%31s|%60s|\n", "Название", "Удельная эффективность", "Оценка риска"));
+        out.write(tableStr);
         for (Object o : risks) {
             out.write(o.toString());
             out.newLine();
         }
-        out.write("+------------------------------------------------------------------------------------------------+\n");
+        out.write(tableStr);
 
         out.write("По данным отчёта можно оценить эффективность проведения заданного количества\n " +
                 "показов ранеее для дальнейшего принятия решений об увеличении, уменьшении либо сохранении \n" +
                 "количества показов представленных спектаклей.");
         ResultSet max = getDatabase("select title\n" +
                 "from results\n" +
-                "inner join spectacle s on results.spectacle_id = s.id\n" +
+                "inner join film s on results.film_id = s.id\n" +
                 "where risk=(select max(risk)from results)");
         max.next();
         String maxTitle = max.getString(1);
 
         ResultSet min = getDatabase("select title\n" +
                 "from results\n" +
-                "inner join spectacle s on results.spectacle_id = s.id\n" +
+                "inner join film s on results.film_id = s.id\n" +
                 "where risk=(select min(risk)from results)");
         min.next();
         String minTitle = min.getString(1);

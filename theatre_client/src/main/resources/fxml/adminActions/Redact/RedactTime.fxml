@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="209.0"
+            prefWidth="454.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.admin.seances.EditSeance">
+    <children>
+        <AnchorPane layoutX="161.0" layoutY="149.0" prefHeight="34.0" prefWidth="131.0"
+                    style="-fx-background-color: #1D2026;">
+            <children>
+                <JFXButton onAction="#createNewTime" prefHeight="34.0" prefWidth="131.0" text="Редактировать"
+                           textFill="#ccc5c5">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="14.0"/>
+                    </font>
+                </JFXButton>
+            </children>
+        </AnchorPane>
+        <ComboBox fx:id="newTime" layoutX="124.0" layoutY="67.0" onMouseClicked="#updateTime" prefHeight="28.0" prefWidth="206.0"/>
+    </children>
+</AnchorPane>

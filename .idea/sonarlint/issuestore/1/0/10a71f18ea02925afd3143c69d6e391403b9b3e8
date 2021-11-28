@@ -1,0 +1,8 @@
+
+b
+java:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(Ë«Æşûÿÿÿÿ
+@
+java:S3457"%String contains no format specifiers.(™Ç™£ùÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(™Ç™£ùÿÿÿÿ
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Õ‘¯ÿÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(ö¬

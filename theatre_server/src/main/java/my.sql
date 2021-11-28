@@ -19,7 +19,7 @@ WHERE booking.`user_id` = 1;
 
 # >>> поиск сеансов по названию спектакля
 # сначала в таблице со спектаклями ищет его id,
-# затем в сеансах по spectacle_id ищет спектакли(дату и время выводим)
+# затем в сеансах по film_id ищет спектакли(дату и время выводим)
 
 # поиск занятых мест на конкретный сеанс (таблицы booking)
 
@@ -31,35 +31,35 @@ WHERE booking.`user_id` = 1;
 #СЛОЖНААААААААААААААА
 
 # поиск в сеансах по id спектакля
-SELECT seance.*, spectacle.`id` AS `spectacle_id`, spectacle.title AS `title`
+SELECT seance.*, film.`id` AS `film_id`, film.title AS `title`
 FROM seance
-         INNER JOIN spectacle ON (seance.`spectacle_id` = spectacle.`id`)
-WHERE seance.`spectacle_id` = 1;
+         INNER JOIN film ON (seance.`film_id` = film.`id`)
+WHERE seance.`film_id` = 1;
 
 SELECT u.login, sp.title, se.time, se.date, p.place, p.row
 FROM booking b
          INNER JOIN place p on b.place_id = p.id
          INNER JOIN user u on b.user_id = u.id
          INNER JOIN seance se on b.seance_id = se.id
-         INNER JOIN spectacle sp on se.spectacle_id = sp.id;
+         INNER JOIN film sp on se.film_id = sp.id;
 
 SELECT s.title, se.date, se.time
 FROM seance se
-         INNER JOIN spectacle s on se.spectacle_id = s.id;
+         INNER JOIN film s on se.film_id = s.id;
 
 SELECT id
-FROM spectacle
+FROM film
 WHERE title = 'Шрэк';
 
 SELECT id
-FROM spectacle
+FROM film
 WHERE title = 'Шрэк';
 
 SELECT id
 FROM `seance`
 WHERE `date` = '2021-05-22'
   AND `time` = '16:45:00'
-  AND `spectacle_id` = 2;
+  AND `film_id` = 2;
 #сеанс 15
 #спектакль 2
 #место 2
@@ -88,35 +88,35 @@ WHERE `row` = 1
 SELECT COUNT(place_id) AS count
 FROM booking
          INNER JOIN seance s on booking.seance_id = s.id
-         INNER JOIN spectacle s2 on s.spectacle_id = s2.id
+         INNER JOIN film s2 on s.film_id = s2.id
 WHERE title = 'Шрэк'
   AND date > '2021-04-01'
   AND date < '2021-05-01';
 
 select se.*, (count(distinct s.title) * 15)
 from seance se
-         inner join spectacle s on se.spectacle_id = s.id
+         inner join film s on se.film_id = s.id
 where title = 'Шрэк'
   and date between '2021-04-01' and '2021-05-01';
 
 select distinct s.id, s.title
 from seance
-         inner join spectacle s on seance.spectacle_id = s.id;
+         inner join film s on seance.film_id = s.id;
 
 #INSERT INTO statistics (goal)
-select (COUNT(MONTH(s2.date) * 15)), s.spectacle_id, title
-from spectacle
-         inner join seance s on spectacle.id = s.spectacle_id
-         inner join statistics s2 on spectacle.id = s2.spectacle_id
+select (COUNT(MONTH(s2.date) * 15)), s.film_id, title
+from film
+         inner join seance s on film.id = s.film_id
+         inner join statistics s2 on film.id = s2.film_id
 WHERE MONTH(s.date) = MONTH(s2.date);
 
 insert into statistics(goal)
 VALUES ('?');
 
-select (COUNT(MONTH(statistics.date) * 15)) as numbers, statistics.spectacle_id, title
+select (COUNT(MONTH(statistics.date) * 15)) as numbers, statistics.film_id, title
 from statistics
-         inner join spectacle s3 on statistics.spectacle_id = s3.id
-         inner join seance s4 on s3.id = s4.spectacle_id
+         inner join film s3 on statistics.film_id = s3.id
+         inner join seance s4 on s3.id = s4.film_id
 WHERE MONTH(statistics.date) = MONTH(s4.date);
 
 #по дате найти кол-во подходящих спектаклей
@@ -124,24 +124,24 @@ WHERE MONTH(statistics.date) = MONTH(s4.date);
 select COUNT((MONTH(date)))
 from seance
 where month(date) = month(?)
-  and spectacle_id = '?';
+  and film_id = '?';
 
 select count(booking.id)
 from booking
          inner join seance s on s.id = booking.seance_id
-         inner join spectacle s2 on s.spectacle_id = s2.id
+         inner join film s2 on s.film_id = s2.id
 where month(s.date) = 2
   and s.id = booking.seance_id
-  and s.spectacle_id = s2.id
+  and s.film_id = s2.id
   AND title = 'Шрэк';
 
 select count(booking.id)
 from booking
          inner join seance s on s.id = booking.seance_id
-         inner join spectacle s2 on s.spectacle_id = s2.id
+         inner join film s2 on s.film_id = s2.id
 where month(s.date) = 2
   and s.id = booking.seance_id
-  and s.spectacle_id = s2.id
+  and s.film_id = s2.id
   AND title = 'Шрэк';
 
 
@@ -158,38 +158,38 @@ where id = ?;
 
 select sum(efficiency)
 from statistics
-where spectacle_id = 1;
+where film_id = 1;
 
-insert into results (spectacle_id, specific_efficiency) value (?, ?);
+insert into results (film_id, specific_efficiency) value (?, ?);
 
 select max(risk), title
 from results
-         inner join spectacle s on s.id = results.spectacle_id;
+         inner join film s on s.id = results.film_id;
 
 
 select min(risk), s.title
 from results
-         inner join spectacle s on s.id = results.spectacle_id
-group by spectacle_id;
+         inner join film s on s.id = results.film_id
+group by film_id;
 
 select max(risk), s.title
 from results
-         inner join spectacle s on s.id = results.spectacle_id
-group by spectacle_id;
+         inner join film s on s.id = results.film_id
+group by film_id;
 
 select title
 from results
-         inner join spectacle s on results.spectacle_id = s.id
+         inner join film s on results.film_id = s.id
 where risk = (select max(risk) from results);
 
 select title
 from results
-         inner join spectacle s on results.spectacle_id = s.id
+         inner join film s on results.film_id = s.id
 where risk = (select min(risk) from results);
 
 select *
 from statistics
-         inner join spectacle s on statistics.spectacle_id = s.id;
+         inner join film s on statistics.film_id = s.id;
 
 select `row`, `place`, seance_id, place_id
 from booking
@@ -199,11 +199,11 @@ where seance_id = 10;
 
 select *, title
 from statistics
-         inner join spectacle s on statistics.spectacle_id = s.id;
+         inner join film s on statistics.film_id = s.id;
 
 select *, title
 from results
-         inner join spectacle s on results.spectacle_id = s.id;
+         inner join film s on results.film_id = s.id;
 
 select place_id
 from booking
@@ -212,7 +212,7 @@ where seance_id = 17;
 
 SELECT seance.id
 FROM seance
-         inner join spectacle s on seance.spectacle_id = s.id
+         inner join film s on seance.film_id = s.id
 WHERE date = '2021-03-05'
   AND time = '14:00:00'
   AND title = 'Шрэк';
@@ -228,7 +228,7 @@ WHERE login = '1';
 
 SELECT seance.id
 FROM seance
-         inner join spectacle s on seance.spectacle_id = s.id
+         inner join film s on seance.film_id = s.id
 WHERE date = '2021-04-22'
   AND time = '16:45:00'
   AND title = 'Шрэк';
@@ -238,5 +238,88 @@ FROM booking b
          INNER JOIN place p on b.place_id = p.id
          INNER JOIN user u on b.user_id = u.id
          INNER JOIN seance se on b.seance_id = se.id
-         INNER JOIN spectacle sp on se.spectacle_id = sp.id
+         INNER JOIN film sp on se.film_id = sp.id
 WHERE u.login = '1';
+
+
+SELECT time
+FROM seance_time
+WHERE time NOT IN (SELECT TIME
+                   FROM seance
+                            JOIN film f ON f.id = seance.film_id
+                   WHERE date = '2021-12-05');
+
+SELECT TIME
+FROM seance
+         JOIN film f ON f.id = seance.film_id
+WHERE date = '2022-12-05';
+
+/*доход*/
+select sum(price) as sold, title, sum(price) - rental_price_per_month as income
+from booking
+         inner join seance s on booking.seance_id = s.id
+         inner join film f on s.film_id = f.id
+where date >= current_date - interval 1 month
+group by title;
+
+select distinct u.id
+from booking
+         join user u on u.id = booking.user_id
+         join seance s on s.id = booking.seance_id
+         join film f on f.id = s.film_id
+where title = 'Король Лев';
+
+/*
+insert into notifications (user_id, changed)
+select distinct u.id from booking
+                              join user u on u.id = booking.user_id
+                              join seance s on s.id = booking.seance_id
+where s.id = (select id FROM seance WHERE film_id = %d AND date = '%s' AND time = '%s:00')*/
+
+INSERT INTO notifications (user_id, changed, date, time)
+values (1, 'no', CURRENT_DATE(), CURRENT_TIME());
+
+select login, changed, date, time
+from notifications
+         join user u on u.id = notifications.user_id;
+
+select distinct u.id
+from booking
+         join user u on u.id = booking.user_id
+         join seance s on s.id = booking.seance_id
+         join film f on f.id = s.film_id
+where s.id = (select id FROM seance WHERE f.title = 'Мастер и Маргарита' AND date = '2021-12-12' AND time = '20:00:00');
+
+SELECT u.login AS `log`, sp.title, se.time, se.date, p.place, p.row
+FROM booking b
+         INNER JOIN place p on b.place_id = p.id
+         INNER JOIN user u on b.user_id = u.id
+         INNER JOIN seance se on b.seance_id = se.id
+         INNER JOIN film sp on se.film_id = sp.id
+WHERE `return` = 1;
+
+delete
+from notifications
+where time = ?
+  and date = ?;
+
+INSERT INTO rating (user_id, film_id, rating, comment)
+VALUES ((SELECT id FROM user WHERE login = 'katerin'),
+        (SELECT id FROM film WHERE title = 'АВАТАР'), 5, 'супер!');
+
+select login, title, comment, rating
+from rating
+         inner join film f on rating.film_id = f.id
+         inner join user u on rating.user_id = u.id;
+
+DELETE
+FROM rating
+WHERE user_id = (SELECT id FROM user WHERE login = 'katerin')
+  AND film_id = (SELECT id FROM film WHERE title = 'АВАТАР')
+  AND rating = 5
+  AND comment = 'супер!';
+
+SELECT title, AVG(rating) as rating
+FROM rating
+join film f on f.id = rating.film_id
+GROUP BY title;

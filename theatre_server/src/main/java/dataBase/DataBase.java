@@ -12,8 +12,6 @@ public class DataBase {
     private static String USER;
     private static String PASSWORD;
 
-
-
     public DataBase() throws IOException {
         Properties property = new Properties();
         property.load(DataBase.class.getClassLoader().getResourceAsStream("config.properties"));
@@ -29,11 +27,9 @@ public class DataBase {
                 new DataBase();
                 Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
                 connection = DriverManager.getConnection(URL, USER, PASSWORD);
-                if (!connection.isClosed()) ;
-            } catch (SQLException ex) {
+                connection.isClosed();
+            } catch (SQLException | IOException ex) {
                 ex.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
             } catch (Exception ex){
                 System.out.println(ex);
             }

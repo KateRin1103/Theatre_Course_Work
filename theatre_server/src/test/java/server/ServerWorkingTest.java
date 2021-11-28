@@ -12,7 +12,7 @@ public class ServerWorkingTest extends TestCase {
         serverWorking.updateStatistics();
     }
 
-    public void testWriteInFile() throws IOException, SQLException {
+    public void testWriteInFile() throws SQLException, IOException {
         ServerWorking serverWorking = new ServerWorking();
         serverWorking.writeInFile();
     }

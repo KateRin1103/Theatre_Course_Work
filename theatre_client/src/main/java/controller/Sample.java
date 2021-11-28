@@ -26,6 +26,7 @@ public class Sample extends InteractionWithProgInterface {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminLogin.fxml"));
         Scene scene = new Scene(root);
         windowLogin.setScene(scene);
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("/fxml/application.css")));
         windowLogin.show();
     }
 
@@ -35,6 +36,7 @@ public class Sample extends InteractionWithProgInterface {
         windowLogin.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserLogin.fxml"));
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("/fxml/application.css")));
         windowLogin.setScene(scene);
         windowLogin.showAndWait();
     }
@@ -46,6 +48,7 @@ public class Sample extends InteractionWithProgInterface {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/start/Start.fxml"));
         Scene scene = new Scene(root);
         windowStart.setScene(scene);
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("/fxml/application.css")));
         windowStart.show();
     }
 
@@ -67,6 +70,7 @@ public class Sample extends InteractionWithProgInterface {
         windowRegistration.setResizable(false);
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/registration/Registration.fxml"));
         Scene scene = new Scene(root);
+        scene.getStylesheets().add(String.valueOf(getClass().getResource("/fxml/application.css")));
         windowRegistration.setScene(scene);
         windowRegistration.showAndWait();
     }

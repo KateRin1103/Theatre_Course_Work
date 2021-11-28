@@ -4,10 +4,12 @@ import account.Account;
 import account.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import statistics.Notification;
+import statistics.Rating;
 import statistics.Statistics;
 import theatre.Booking;
+import theatre.Film;
 import theatre.Seance;
-import theatre.Spectacle;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,6 +17,8 @@ import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 
 public class Client {
@@ -24,7 +28,7 @@ public class Client {
     private static BufferedReader clin;
 
     public static String toString(String s1, String s2) { //перегрузка метода toString()
-        String s = null;
+        String s;
         s = s1 + "&&" + s2 + "&&";
         return s;
     }
@@ -45,42 +49,38 @@ public class Client {
     }
 
     public static void addNewAccountUser(User acc) {
-        String userStatement = "addNewAccountUser";
-        clout.println(userStatement);
+        clout.println("addNewAccountUser");
         String str = new Gson().toJson(acc);
         clout.println(str);
     }
 
-    public static void addNewSpectacle(Spectacle acc) {
-        String userStatement = "addNewSpectacle";
-        clout.println(userStatement);
+    public static void addNewFilm(Film acc) {
+        clout.println("addNewFilm");
         String str = new Gson().toJson(acc);
         clout.println(str);
     }
 
     public static void addNewSeances(Seance acc) {
-        String userStatement = "addNewSeances";
-        clout.println(userStatement);
+        clout.println("addNewSeances");
         String str = new Gson().toJson(acc);
         clout.println(str);
     }
 
-    public static void addBooking(Booking booking){
+    public static void addBooking(Booking booking) {
         clout.println("addBooking");
         String str = new Gson().toJson(booking);
         clout.println(str);
     }
 
     public static void addNewAccountAdmin(Account acc) {
-        String userStatement = "addNewAccountAdminUser";
-        clout.println(userStatement);
+        clout.println("addNewAccountAdminUser");
         String str = new Gson().toJson(acc);
         clout.println(str);
     }
 
     public static boolean adminCheck(String login, String password) {
-        String checkAdmin = new String("checkAdmin");
-        String str = new String(toString(login, password));
+        String checkAdmin = "checkAdmin";
+        String str = toString(login, password);
         String check = new String();
         try {
             clout.println(checkAdmin);
@@ -96,8 +96,8 @@ public class Client {
     }
 
     public static boolean userCheck(String login, String password) {
-        String checkUser = new String("checkUser");
-        String str = new String(toString(login, password));
+        String checkUser = "checkUser";
+        String str = toString(login, password);
         String check = new String();
         try {
             clout.println(checkUser);
@@ -113,8 +113,8 @@ public class Client {
     }
 
     public static boolean checkSameUser(String login) {
-        String adst = new String("checkSameUser");
-        String str = new String(login);
+        String adst = "checkSameUser";
+        String str = login;
         String check = new String();
         try {
             clout.println(adst);
@@ -130,8 +130,7 @@ public class Client {
     }
 
     public static void addNewAccount(Account acc) {
-        String userStatement = new String("addNewAccount");
-        clout.println(userStatement);
+        clout.println("addNewAccount");
         String str = new Gson().toJson(acc);
         clout.println(str);
     }
@@ -148,163 +147,188 @@ public class Client {
     }
 
     public static boolean checkCorrectAccount(String name, String surname) {
-        if (checkCorrect(name) && checkCorrect(surname))
-            return true;
-        else
-            return false;
-    }
-
-    public static ArrayList<Account> getAllAccount() throws IOException { //
-        String GetNuserStatement = new String("getAllAccount");
-        clout.println(GetNuserStatement);
-        String receive = clin.readLine();
-        ArrayList<Account> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<Account>>() {
-                }.getType());
-        return arrayList;
+        return checkCorrect(name) && checkCorrect(surname);
     }
 
     public static ArrayList<User> getAllAccountUser() throws IOException { //
-        String GetNuserStatement = new String("getAllAccountUser");
-        clout.println(GetNuserStatement);
+        clout.println("getAllAccountUser");
         String receive = clin.readLine();
-        ArrayList<User> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<User>>() {
-                }.getType());
-        return arrayList;
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<User>>() {
+        }.getType());
     }
 
     public static ArrayList<Seance> getAllSeances() throws IOException { //
-        String GetNuserStatement = new String("getAllSeances");
-        clout.println(GetNuserStatement);
+        clout.println("getAllSeances");
         String receive = clin.readLine();
-        ArrayList<Seance> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<Seance>>() {
-                }.getType());
-        return arrayList;
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Seance>>() {
+        }.getType());
     }
 
     public static ArrayList<Booking> getAllBookings() throws IOException { //
-        String GetNuserStatement = new String("getAllBookings");
-        clout.println(GetNuserStatement);
+        clout.println("getAllBookings");
         String receive = clin.readLine();
-        ArrayList<Booking> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<Booking>>() {
-                }.getType());
-        return arrayList;
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Booking>>() {
+        }.getType());
+    }
+
+    public static ArrayList<Notification> getAllNotifications() throws IOException {
+        clout.println("getAllNotifications");
+        String receive = clin.readLine();
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Notification>>() {
+        }.getType());
+    }
+
+    public static void deleteSelectedNotification(Notification not) {
+        clout.println("deleteSelectedNotification");
+        clout.println(new Gson().toJson(not));
+    }
+
+    public static void deleteSelectedRating(Rating rating){
+        clout.println("deleteRating");
+        clout.println(new Gson().toJson(rating));
+    }
+
+    public static ArrayList<Rating> getAllRatings() throws IOException {
+        clout.println("getAllRatings");
+        String receive = clin.readLine();
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Rating>>() {
+        }.getType());
+    }
+
+    public static ArrayList<Rating> getAvgRatings() throws IOException {
+        clout.println("getAvgRating");
+        String receive = clin.readLine();
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Rating>>() {
+        }.getType());
+    }
+
+
+    public static ArrayList<Booking> getAllBookingsToDel() throws IOException { //
+        clout.println("getAllBookingsToDel");
+        String receive = clin.readLine();
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Booking>>() {
+        }.getType());
     }
 
     public static ArrayList<Booking> getAllBookingsByLogin(String str) throws IOException { //
-        String GetNuserStatement = new String("getAllBookingsByLogin");
-        clout.println(GetNuserStatement);
+        clout.println("getAllBookingsByLogin");
         clout.println(str);
         String receive = clin.readLine();
-        ArrayList<Booking> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<Booking>>() {
-                }.getType());
-        return arrayList;
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Booking>>() {
+        }.getType());
     }
 
-    public static ArrayList<Spectacle> getAllSpectacles() throws IOException { //
-        String GetNuserStatement = new String("getAllSpectacles");
-        clout.println(GetNuserStatement);
+    public static ArrayList<Film> getAllFilms() throws IOException { //
+        clout.println("getAllFilms");
         String receive = clin.readLine();
-        ArrayList<Spectacle> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<Spectacle>>() {
-                }.getType());
-        return arrayList;
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Film>>() {
+        }.getType());
     }
 
     public static ArrayList<Statistics> getStatistics() throws IOException { //
-        String GetNuserStatement = new String("getStatistics");
-        clout.println(GetNuserStatement);
+        clout.println("getStatistics");
         String receive = clin.readLine();
-        ArrayList<Statistics> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<Statistics>>() {
-                }.getType());
-        return arrayList;
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Statistics>>() {
+        }.getType());
     }
 
-    public static ArrayList<String> getSpectacleTitles() throws IOException { //
-        String GetNuserStatement = new String("getSpectacleTitles");
-        clout.println(GetNuserStatement);
+    public static ArrayList<String> getFilmTitles() throws IOException { //
+        clout.println("getFilmTitles");
         String receive = clin.readLine();
-        ArrayList<String> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<String>>() {
-                }.getType());
-        return arrayList;
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<String>>() {
+        }.getType());
     }
 
 
     public static void deleteSelectedAccount(String str) { //
-        String delSelectedAcc = new String("deleteSelectedAccount");
-        clout.println(delSelectedAcc);
+        clout.println("deleteSelectedAccount");
         clout.println(str);
     }
 
-    public static void deleteSelectedBooking(Booking booking) { //
-        String delSelectedAcc = new String("deleteSelectedBooking");
-        clout.println(delSelectedAcc);
+    public static void deleteSelectedBooking(Booking booking) {
+        clout.println("deleteSelectedBooking");
         String str = new Gson().toJson(booking);
         clout.println(str);
     }
 
-    public static void deleteSelectedSpectacle(String str) { //
-        String delSelectedSp = new String("deleteSelectedSpectacle");
-        clout.println(delSelectedSp);
+    public static void deleteSelectedFilm(String str) { //
+        clout.println("deleteSelectedFilm");
         clout.println(str);
     }
 
     public static void deleteSelectedSeance(Seance seance) { //
-        String delSelectedSeance = new String("deleteSelectedSeances");
-        clout.println(delSelectedSeance);
+        clout.println("deleteSelectedSeances");
         String str = new Gson().toJson(seance);
         clout.println(str);
     }
 
-    public static ArrayList<Integer> getSeancePlaces(Seance seance) throws IOException{
-        String GetNuserStatement = new String("getSeancePlaces");
-        clout.println(GetNuserStatement);
+    public static ArrayList<Integer> getSeancePlaces(Seance seance) throws IOException {
+        clout.println("getSeancePlaces");
         String gson = new Gson().toJson(seance);
         clout.println(gson);
         String receive = clin.readLine();
-        ArrayList<Integer> arrayList = new Gson()
-                .fromJson(receive, new TypeToken<ArrayList<Integer>>() {
-                }.getType());
-        return arrayList;
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Integer>>() {
+        }.getType());
     }
 
-    public static void editPassword(String str, String log) { //
-        String editPassword = new String("editPassword");
-        clout.println(editPassword);
+    public static ArrayList<LocalTime> getFreeTime(LocalDate date) throws IOException {
+        clout.println("getFreeTime");
+        clout.println(date);
+        String receive = clin.readLine();
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<LocalTime>>() {
+        }.getType());
+    }
+
+    public static void editDuration(int str, String log) {
+        clout.println("editDuration");
         clout.println(log);
         clout.println(str);
     }
 
-    public static void editLogin(String str, String log) { //
-        String editLogin = new String("editLogin");
-        clout.println(editLogin);
+    public static void editTitle(String str, String log) {
+        clout.println("editTitle");
         clout.println(log);
         clout.println(str);
     }
 
-    public static void editSurname(String str, String log) { //
-        String editSurname = new String("editSurname");
-        clout.println(editSurname);
+    public static void editRentalCost(int str, String log) {
+        clout.println("editRentalCost");
         clout.println(log);
         clout.println(str);
     }
 
-    public static void editName(String str, String log) { //
-        String editName = new String("editName");
-        clout.println(editName);
+    public static void editPassword(String str, String log) {
+        clout.println("editPassword");
         clout.println(log);
         clout.println(str);
     }
 
-    public static void editMail(String str, String log) { //
-        String editMail = new String("editMail");
-        clout.println(editMail);
+    public static void editTime(LocalTime str, LocalTime log){
+        clout.println("editTime");
+        clout.println(log.toString());
+        clout.println(str.toString());
+    }
+
+    public static void editLogin(String str, String log) {
+        clout.println("editLogin");
+        clout.println(log);
+        clout.println(str);
+    }
+
+    public static void editSurname(String str, String log) {
+        clout.println("editSurname");
+        clout.println(log);
+        clout.println(str);
+    }
+
+    public static void editName(String str, String log) {
+        clout.println("editName");
+        clout.println(log);
+        clout.println(str);
+    }
+
+    public static void editMail(String str, String log) {
+        clout.println("editMail");
         clout.println(log);
         clout.println(str);
     }
