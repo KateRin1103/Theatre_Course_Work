@@ -333,3 +333,11 @@ SET `return`=1
 WHERE user_id=(SELECT id FROM user WHERE login='ramina')
   AND place_id=(SELECT id FROM place WHERE `row`=1 AND `place`=1)
   AND seance_id=(SELECT id FROM seance WHERE date='2021-12-18' AND time='14:00:00');
+
+SELECT u.login AS `log`, sp.title, se.time, se.date, p.place, p.row
+                FROM booking b
+                INNER JOIN place p on b.place_id = p.id
+                INNER JOIN user u on b.user_id = u.id
+                INNER JOIN seance se on b.seance_id = se.id
+                INNER JOIN film sp on se.film_id = sp.id
+                WHERE u.login='katerin';

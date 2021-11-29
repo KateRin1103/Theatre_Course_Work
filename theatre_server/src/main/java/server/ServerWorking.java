@@ -951,6 +951,11 @@ public class ServerWorking extends Thread {
         Booking booking = g.fromJson(get, Tip);
         openDatabase();
 
+        String message = "ВОЗВРАТ билета на сеанс " + booking.getTitle()
+                + " , который должен был пройти " + booking.getDate().toString()
+                + " в " + booking.getTime().toString()
+                + " оформлен. Ждём вас снова!";
+
         ResultSet resultSet = getDatabase(String.format("SELECT id FROM film WHERE title='%s'", booking.getTitle()));
         resultSet.next();
         int id = resultSet.getInt(1);
@@ -971,6 +976,9 @@ public class ServerWorking extends Thread {
 
         String sqlst = String.format("DELETE FROM booking WHERE seance_id = %d AND user_id = %d AND place_id = %d",
                 seanceId, userId, placeId);
+
+        execute(String.format("insert into notifications (user_id, changed, date, time) values ('%d','%s',CURRENT_DATE(),CURRENT_TIME())",
+                userId, message));
 
         execute(sqlst);
     }

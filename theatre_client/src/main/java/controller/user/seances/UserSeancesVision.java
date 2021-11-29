@@ -66,7 +66,7 @@ public class UserSeancesVision extends UserInteractionWithProgInterface implemen
 
         Seance.setItems(nSeances);
 
-        Seance.setEditable(true);
+        Seance.setEditable(false);
     }
 
     synchronized public void getSeat() {

@@ -38,12 +38,6 @@
                 <Font size="20.0"/>
             </font>
         </TextField>
-        <JFXButton buttonType="RAISED" layoutX="85.0" layoutY="543.0" onAction="#delBooking" prefHeight="27.0"
-                   prefWidth="200.0" style="-fx-background-color: #f3a3ff;" text="Удалить" textFill="#151240">
-            <font>
-                <Font name="Microsoft JhengHei Light" size="21.0"/>
-            </font>
-        </JFXButton>
         <ImageView fitHeight="264.0" fitWidth="179.0" layoutX="185.0" layoutY="239.0">
             <image>
                 <Image url="@../../pictures/bonbon-flower.png"/>

@@ -203,12 +203,6 @@ public class Client {
         }.getType());
     }
 
-    public static ArrayList<Rating> getAllRatingsByLogin(String login) throws IOException {
-        clout.println("getAllRatingsByLogin");
-        clout.println(login);
-        return new Gson().fromJson(clin.readLine(), new TypeToken<ArrayList<Rating>>() {
-        }.getType());
-    }
 
     public static ArrayList<Notification> getAllNotificationsByLogin(String login) throws IOException{
         clout.println("getAllNotificationsByLogin");
