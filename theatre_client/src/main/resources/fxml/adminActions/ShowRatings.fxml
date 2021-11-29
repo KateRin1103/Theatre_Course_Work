@@ -6,72 +6,58 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
-            prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.statistics.EditRatings">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" style="-fx-background-color: #cce0ff;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.statistics.EditRatings">
     <children>
-        <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
-            <children>
-                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #990066;">
-                    <children>
-                        <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
-                            </font>
-                        </Label>
-
-                    </children>
-                </Pane>
-            </children>
-        </AnchorPane>
         <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
             <children>
-                <Pane layoutX="6.0" prefHeight="50.0" prefWidth="888.0" style="-fx-background-color: #ff99ff;">
-                    <children>
-                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true"
-                                   preserveRatio="true">
-                            <image>
-                                <Image url="@/pictures/enter.png"/>
-                            </image>
-                        </ImageView>
-                        <Button layoutX="849.0" layoutY="7.0" mnemonicParsing="false" onAction="#toMainAdmin"
-                                opacity="0.0" prefHeight="27.0" prefWidth="27.0"/>
-                        <TextField fx:id="filterField" layoutX="21.0" layoutY="13.0" prefHeight="25.0" prefWidth="313.0"
-                                   promptText="Поиск"/>
-                    </children>
-                </Pane>
-                <TableView fx:id="Rating" layoutX="6.0" layoutY="48.0" prefHeight="529.0" prefWidth="888.0">
+            <ImageView fitHeight="565.0" fitWidth="841.0" layoutX="40.0" layoutY="33.0">
+               <image>
+                  <Image url="@../../pictures/bonbon-drawing-tablet%20(1).png" />
+               </image>
+            </ImageView>
+                <TableView fx:id="Rating" layoutX="77.0" layoutY="74.0" prefHeight="482.0" prefWidth="696.0">
                     <columns>
-                        <TableColumn fx:id="login" prefWidth="222.66665649414062" text="Логин"/>
-                        <TableColumn fx:id="film" prefWidth="177.33331298828125" text="Фильм"/>
-                        <TableColumn fx:id="rating" prefWidth="105.3333740234375" text="Оценка"/>
-                        <TableColumn fx:id="comment" prefWidth="381.33331298828125" text="Отзыв"/>
+                        <TableColumn fx:id="login" prefWidth="123.66668701171875" text="Логин" />
+                        <TableColumn fx:id="film" prefWidth="142.99996948242188" text="Фильм" />
+                        <TableColumn fx:id="rating" prefWidth="115.66668701171875" text="Оценка" />
+                        <TableColumn fx:id="comment" prefWidth="310.66668701171875" text="Отзыв" />
                     </columns>
                 </TableView>
-                <AnchorPane layoutX="346.0" layoutY="589.0" prefHeight="40.0" prefWidth="200.0"
-                            style="-fx-background-color: #1D2026;">
-                    <children>
-                        <JFXButton layoutX="5.0" layoutY="-5.0" onAction="#delRating" prefHeight="27.0" prefWidth="200.0"
-                                   text="Удалить" textFill="#ccc5c5">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="21.0"/>
-                            </font>
-                        </JFXButton>
-                    </children>
-                </AnchorPane>
             </children>
         </AnchorPane>
-        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true"
-                   preserveRatio="true">
-            <image>
-                <Image url="@/pictures/enter.png"/>
-            </image>
+            <TextField fx:id="filterField" layoutX="21.0" layoutY="87.0" prefHeight="25.0" prefWidth="313.0" promptText="Поиск">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+        <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="21.0" layoutY="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <Image url="@/pictures/back.png" />
         </ImageView>
-        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="18.0" layoutY="132.0" pickOnBounds="true"
-                   preserveRatio="true">
-            <image>
-                <Image url="@/pictures/drama.png"/>
-            </image>
-        </ImageView>
+        <Button layoutX="17.0" layoutY="25.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="35.0" prefWidth="60.0" />
+            <JFXButton buttonType="RAISED" layoutX="95.0" layoutY="545.0" onAction="#delRating" prefHeight="27.0" prefWidth="200.0" style="-fx-background-color: #d7b0f5;" text="Удалить" textFill="#0e0e43">
+                <font>
+                    <Font name="Microsoft JhengHei Light" size="23.0" />
+                </font>
+            </JFXButton>
+      <ImageView fitHeight="273.0" fitWidth="287.0" layoutX="28.0" layoutY="286.0">
+         <image>
+            <Image url="@../../pictures/bonbon-bat.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="123.0" fitWidth="120.0" layoutX="12.0" layoutY="268.0">
+         <image>
+            <Image url="@../../pictures/bonbon-star-1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="149.0" fitWidth="146.0" layoutX="188.0" layoutY="153.0">
+         <image>
+            <Image url="@../../pictures/bonbon-star-2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="115.0" fitWidth="100.0" layoutX="72.0" layoutY="153.0" nodeOrientation="RIGHT_TO_LEFT">
+         <image>
+            <Image url="@../../pictures/bonbon-heart.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>

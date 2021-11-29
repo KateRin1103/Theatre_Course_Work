@@ -6,93 +6,60 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
-            prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Registration">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Registration">
     <children>
-        <AnchorPane opacity="0.87" prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #660099;">
+        <AnchorPane layoutX="1.0" prefHeight="640.0" prefWidth="1200.0" style="-fx-background-color: #ccffdb">
             <children>
-                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #990066;">
-                    <children>
-                        <Label layoutX="26.0" layoutY="34.0" text="Меню Администратора" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
-                            </font>
-                        </Label>
-                        <Label layoutX="10.0" layoutY="403.0" prefHeight="32.0" prefWidth="313.0"
-                               text="Добавление пользователя" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
+                <ImageView fitHeight="454.0" fitWidth="509.0" layoutX="172.0" layoutY="115.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-rectangle.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="225.0" layoutY="15.0" opacity="0.48" prefHeight="110.0" prefWidth="334.0" text="     Добавление пользователя" textAlignment="CENTER" textFill="#3cab96" wrapText="true">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="36.0" />
+                    </font>
+                </Label>
+                <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="28.0" layoutY="27.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@/pictures/back.png" />
+                </ImageView>
+                <PasswordField fx:id="userPassword" layoutX="242.0" layoutY="248.0" prefHeight="40.0" prefWidth="340.0" promptText="Пароль">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </PasswordField>
+                <TextField fx:id="userLogin" layoutX="242.0" layoutY="193.0" prefHeight="40.0" prefWidth="340.0" promptText="Логин">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </TextField>
+                <TextField fx:id="userSurname" layoutX="242.0" layoutY="303.0" prefHeight="40.0" prefWidth="340.0" promptText="Фамилия">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </TextField>
+                <TextField fx:id="userName" layoutX="242.0" layoutY="358.0" prefHeight="40.0" prefWidth="340.0" promptText="Имя">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </TextField>
+                <TextField fx:id="userPhone" layoutX="242.0" layoutY="408.0" prefHeight="40.0" prefWidth="340.0" promptText="Номер телефона">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </TextField>
+                <ImageView fitHeight="482.0" fitWidth="477.0" layoutX="701.0" layoutY="58.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-web-development-1.png" />
+                    </image>
+                </ImageView>
+                <JFXButton buttonType="RAISED" layoutX="327.0" layoutY="472.0" onAction="#addNewUser" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #8bd6a2;" text="Добавить" textFill="#130d3c">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="21.0" />
+                    </font>
+                </JFXButton>
+                <Button layoutX="14.0" layoutY="20.0" minWidth="27.0" mnemonicParsing="false" onAction="#toEditUser" opacity="0.0" prefHeight="50.0" prefWidth="82.0" />
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
-            <children>
-                <Pane layoutX="7.0" prefHeight="44.0" prefWidth="887.0" style="-fx-background-color: #ff99ff;">
-                    <children>
-                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true"
-                                   preserveRatio="true">
-                            <image>
-                                <Image url="@/pictures/enter.png"/>
-                            </image>
-                        </ImageView>
-                        <Button layoutX="849.0" layoutY="12.0" mnemonicParsing="false" onAction="#toMainAdmin"
-                                opacity="0.0" prefHeight="27.0" prefWidth="27.0"/>
-                    </children>
-                </Pane>
-                <PasswordField fx:id="userPassword" layoutX="280.0" layoutY="220.0" prefHeight="40.0"
-                               prefWidth="340.0"/>
-                <TextField fx:id="userLogin" layoutX="280.0" layoutY="165.0" prefHeight="40.0" prefWidth="340.0"/>
-                <TextField fx:id="userSurname" layoutX="280.0" layoutY="275.0" prefHeight="40.0" prefWidth="340.0"/>
-                <TextField fx:id="userName" layoutX="280.0" layoutY="330.0" prefHeight="40.0" prefWidth="340.0"/>
-                <TextField fx:id="userPhone" layoutX="280.0" layoutY="380.0" prefHeight="40.0" prefWidth="340.0"/>
-                <Text layoutX="195.0" layoutY="190.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин:">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="17.0"/>
-                    </font>
-                </Text>
-                <Text layoutX="195.0" layoutY="245.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль:">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="18.0"/>
-                    </font>
-                </Text>
-                <Text layoutX="195.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Фамилия:"
-                      wrappingWidth="78.13666036445466">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="17.0"/>
-                    </font>
-                </Text>
-                <Text layoutX="195.0" layoutY="355.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Имя:">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="18.0"/>
-                    </font>
-                </Text>
-                <Text layoutX="195.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Почта:">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="17.0"/>
-                    </font>
-                </Text>
-                <AnchorPane layoutX="345.0" layoutY="450.0" prefHeight="40.0" prefWidth="200.0"
-                            style="-fx-background-color: #1D2026;">
-                    <children>
-                        <JFXButton layoutX="5.0" onAction="#addNewUser" prefHeight="40.0" prefWidth="200.0"
-                                   text="Добавить" textFill="#ccc5c5">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="21.0"/>
-                            </font>
-                        </JFXButton>
-                    </children>
-                </AnchorPane>
-            </children>
-        </AnchorPane>
-        <ImageView fitHeight="257.0" fitWidth="266.0" layoutX="30.0" layoutY="132.0" pickOnBounds="true"
-                   preserveRatio="true">
-            <image>
-                <Image url="@/pictures/add-friend.png"/>
-            </image>
-        </ImageView>
     </children>
 </AnchorPane>

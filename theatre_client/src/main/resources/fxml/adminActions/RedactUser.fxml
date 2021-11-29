@@ -56,7 +56,6 @@
             <Image url="@../../pictures/bonbon-girl-4.png" />
         </image>
     </ImageView>
-        <Button layoutX="23.0" layoutY="19.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="35.0" prefWidth="60.0" />
         <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="23.0" layoutY="19.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
             <Image url="@/pictures/back.png" />
         </ImageView>
@@ -85,5 +84,6 @@
                 <Font name="Microsoft YaHei Light" size="20.0" />
             </font>
         </JFXButton>
+        <Button layoutX="23.0" layoutY="19.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="35.0" prefWidth="60.0" />
     </children>
 </AnchorPane>

@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
 import org.apache.log4j.Logger;
+import statistics.Damages;
 import statistics.Notification;
 import statistics.Rating;
 import statistics.Statistics;
@@ -66,6 +67,7 @@ public class ServerWorking extends Thread {
     private static final String getAllRatings = "getAllRatings";
     private static final String deleteRating = "deleteRating";
     private static final String getAvgRating = "getAvgRating";
+    private static final String getDamages = "getDamages";
 
     private static final String getSeancePlaces = "getSeancePlaces";
 
@@ -135,6 +137,10 @@ public class ServerWorking extends Thread {
                             }
                             case getAllBookingsByLogin: {
                                 getAllBookingsByLogin();
+                                break;
+                            }
+                            case getDamages:{
+                                getDamages();
                                 break;
                             }
                             case deleteRating: {
@@ -404,6 +410,27 @@ public class ServerWorking extends Thread {
         gb.setDateFormat("yyyy-MM-dd");
         Gson gson = gb.create();
         printStream.println(gson.toJson(arrayList));
+    }
+
+    private void getDamages() throws SQLException {
+        openDatabase();
+        ResultSet res = getDatabase("select title, sum(price) as sold, sum(price) - rental_price_per_month as income\n" +
+                "from booking\n" +
+                "         inner join seance s on booking.seance_id = s.id\n" +
+                "         inner join film f on s.film_id = f.id\n" +
+                "where date >= current_date - interval 1 month\n" +
+                "group by title");
+        ArrayList<Damages> arrayList = new ArrayList<>();
+        while (res.next()) {
+            Damages dam = new Damages();
+            dam.setTitle(res.getString("title"));
+            dam.setSold(res.getInt("sold"));
+            dam.setIncome(res.getInt("income"));
+            arrayList.add(dam);
+        }
+        Gson gson = new Gson();
+        String sent = gson.toJson(arrayList);
+        printStream.println(sent);
     }
 
     private void getAllBookingsByLogin() throws SQLException {

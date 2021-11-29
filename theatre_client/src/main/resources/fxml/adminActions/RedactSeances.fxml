@@ -30,7 +30,6 @@
                                 <Font size="18.0" />
                             </font>
                         </TextField>
-                        <Button layoutX="27.0" layoutY="27.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="35.0" prefWidth="60.0" />
                         <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="27.0" layoutY="27.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
                             <Image url="@/pictures/back.png" />
                         </ImageView>
@@ -69,6 +68,7 @@
                         <Image url="@../../pictures/bonbon-leaves.png" />
                     </image>
                 </ImageView>
+                        <Button layoutX="27.0" layoutY="27.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="35.0" prefWidth="60.0" />
                     </children>
                 </Pane>
             </children>

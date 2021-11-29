@@ -8,65 +8,55 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
-            prefHeight="640.0" prefWidth="1200.0" style="-fx-background-color: #ccffdb; -fx-font-size: 23"
-            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.admin.seances.AddNewSeance">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" style="-fx-background-color: #ccffdb; -fx-font-size: 23" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.seances.AddNewSeance">
     <children>
         <ImageView fitHeight="497.0" fitWidth="635.0" layoutX="299.0" layoutY="80.0">
             <image>
-                <Image url="@../../pictures/bonbon-rectangle.png"/>
+                <Image url="@../../pictures/bonbon-rectangle.png" />
             </image>
         </ImageView>
-        <Label layoutX="351.0" opacity="0.48" prefHeight="110.0" prefWidth="473.0" text="     Добавление сеанса"
-               textAlignment="CENTER" textFill="#3cab96" wrapText="true">
+        <Label layoutX="351.0" opacity="0.48" prefHeight="110.0" prefWidth="473.0" text="     Добавление сеанса" textAlignment="CENTER" textFill="#3cab96" wrapText="true">
             <font>
-                <Font name="Microsoft JhengHei Light" size="36.0"/>
+                <Font name="Microsoft JhengHei Light" size="36.0" />
             </font>
         </Label>
-        <Button layoutX="23.0" layoutY="19.0" minWidth="27.0" mnemonicParsing="false"
-                onAction="#toMainAdmin" opacity="0.0" prefHeight="35.0" prefWidth="60.0"/>
-        <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="23.0" layoutY="19.0"
-                   nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-            <Image url="@/pictures/back.png"/>
+        <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="23.0" layoutY="19.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <Image url="@/pictures/back.png" />
         </ImageView>
-        <JFXButton buttonType="RAISED" layoutX="517.0" layoutY="477.0" onAction="#addNewSeance" prefHeight="40.0"
-                   prefWidth="200.0" style="-fx-background-color: #8bd6a2;" text="Добавить" textFill="#09102f">
+        <JFXButton buttonType="RAISED" layoutX="517.0" layoutY="477.0" onAction="#addNewSeance" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #8bd6a2;" text="Добавить" textFill="#09102f">
             <font>
-                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                <Font name="Microsoft JhengHei Light" size="23.0" />
             </font>
         </JFXButton>
 
-        <DatePicker fx:id="seanceDateChoose" layoutX="389.0" layoutY="259.0" prefHeight="40.0" prefWidth="455.0"
-                    promptText="Дата сеанса"/>
+        <DatePicker fx:id="seanceDateChoose" layoutX="389.0" layoutY="259.0" prefHeight="40.0" prefWidth="455.0" promptText="Дата сеанса" />
 
         <ComboBox fx:id="price" layoutX="389.0" layoutY="405.0" prefHeight="50.0" prefWidth="455.0" promptText="Цена">
             <items>
                 <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="6"/>
-                    <String fx:value="7"/>
-                    <String fx:value="8"/>
-                    <String fx:value="9"/>
-                    <String fx:value="10"/>
-                    <String fx:value="11"/>
-                    <String fx:value="12"/>
-                    <String fx:value="13"/>
-                    <String fx:value="14"/>
-                    <String fx:value="15"/>
+                    <String fx:value="6" />
+                    <String fx:value="7" />
+                    <String fx:value="8" />
+                    <String fx:value="9" />
+                    <String fx:value="10" />
+                    <String fx:value="11" />
+                    <String fx:value="12" />
+                    <String fx:value="13" />
+                    <String fx:value="14" />
+                    <String fx:value="15" />
                 </FXCollections>
             </items>
         </ComboBox>
-        <ComboBox fx:id="timeChoose" layoutX="389.0" layoutY="331.0" onMouseClicked="#updateTime" prefHeight="50.0"
-                  prefWidth="455.0" promptText="Время сеанса">
+        <ComboBox fx:id="timeChoose" layoutX="389.0" layoutY="331.0" onMouseClicked="#updateTime" prefHeight="50.0" prefWidth="455.0" promptText="Время сеанса">
         </ComboBox>
 
-        <ComboBox fx:id="titleChoose" layoutX="389.0" layoutY="186.0" onMouseClicked="#updateList" prefHeight="40.0"
-                  prefWidth="455.0" promptText="Название фильма" visibleRowCount="13"/>
+        <ComboBox fx:id="titleChoose" layoutX="389.0" layoutY="186.0" onMouseClicked="#updateList" prefHeight="40.0" prefWidth="455.0" promptText="Название фильма" visibleRowCount="13" />
         <ImageView fitHeight="258.0" fitWidth="264.0" layoutX="27.0" layoutY="348.0" nodeOrientation="RIGHT_TO_LEFT">
             <image>
-                <Image url="@../../pictures/bonbon-dog-1.png"/>
+                <Image url="@../../pictures/bonbon-dog-1.png" />
             </image>
         </ImageView>
+        <Button layoutX="10.0" layoutY="2.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="67.0" prefWidth="85.0" />
 
     </children>
 </AnchorPane>

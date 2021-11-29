@@ -4,6 +4,7 @@ import account.Account;
 import account.User;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import statistics.Damages;
 import statistics.Notification;
 import statistics.Rating;
 import statistics.Statistics;
@@ -199,6 +200,13 @@ public class Client {
         clout.println("getAvgRating");
         String receive = clin.readLine();
         return new Gson().fromJson(receive, new TypeToken<ArrayList<Rating>>() {
+        }.getType());
+    }
+
+    public static ArrayList<Damages> getDamages() throws IOException {
+        clout.println("getDamages");
+        String receive = clin.readLine();
+        return new Gson().fromJson(receive, new TypeToken<ArrayList<Damages>>() {
         }.getType());
     }
 

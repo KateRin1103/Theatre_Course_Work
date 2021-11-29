@@ -255,7 +255,7 @@ FROM seance
 WHERE date = '2022-12-05';
 
 /*доход*/
-select sum(price) as sold, title, sum(price) - rental_price_per_month as income
+select title, sum(price) as sold, sum(price) - rental_price_per_month as income
 from booking
          inner join seance s on booking.seance_id = s.id
          inner join film f on s.film_id = f.id

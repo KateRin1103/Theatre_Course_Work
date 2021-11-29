@@ -150,6 +150,12 @@ public class AccountLogin extends InteractionWithProgInterface {
         MainClient.primaryStage.show();
     }
 
+    public void toDamages(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowDamages.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
     public void toAvgRating(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/ShowAvgRatings.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));

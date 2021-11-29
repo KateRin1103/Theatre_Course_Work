@@ -6,9 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
-            prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountLogin">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountLogin">
     <children>
         <AnchorPane layoutX="308.0" prefHeight="688.0" prefWidth="899.0">
             <children>
@@ -16,112 +14,92 @@
                     <children>
                         <ImageView fitHeight="275.0" fitWidth="402.0" layoutX="754.0" layoutY="335.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-browser-window (1).png"/>
+                                <Image url="@../../pictures/bonbon-browser-window (1).png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="264.0" fitWidth="387.0" layoutX="345.0" layoutY="376.0">
+                        <ImageView fitHeight="275.0" fitWidth="387.0" layoutX="345.0" layoutY="376.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-rectangle.png"/>
+                                <Image url="@../../pictures/bonbon-rectangle.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="384.0" fitWidth="276.0" layoutX="354.0" layoutY="-4.0">
+                        <ImageView fitHeight="363.0" fitWidth="276.0" layoutX="354.0" layoutY="-4.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-chart.png"/>
+                                <Image url="@../../pictures/bonbon-chart.png" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="496.0" fitWidth="304.0" layoutX="29.0" layoutY="156.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-chart-1.png"/>
+                                <Image url="@../../pictures/bonbon-chart-1.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="21.0" layoutY="25.0"
-                                   nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@/pictures/back.png"/>
+                        <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="21.0" layoutY="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/pictures/back.png" />
                         </ImageView>
 
-                        <Button layoutX="16.0" layoutY="25.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMain"
-                                opacity="0.0" prefHeight="35.0" prefWidth="60.0"/>
-                        <Label layoutX="60.0" layoutY="27.0" prefHeight="110.0" prefWidth="251.0"
-                               text="Меню Администратора" textAlignment="CENTER" textFill="#3cab96" wrapText="true">
+                        <Button layoutX="16.0" layoutY="25.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="35.0" prefWidth="60.0" />
+                        <Label layoutX="60.0" layoutY="27.0" prefHeight="110.0" prefWidth="251.0" text="Меню Администратора" textAlignment="CENTER" textFill="#3cab96" wrapText="true">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="29.0"/>
+                                <Font name="Microsoft JhengHei Light" size="29.0" />
                             </font>
                         </Label>
-                        <JFXButton buttonType="RAISED" layoutX="388.0" layoutY="27.0" onAction="#toRedactUser"
-                                   prefHeight="93.0" prefWidth="201.0" style="-fx-background-color: #ffb0c6;"
-                                   text="Пользователи" textFill="#293a80">
+                        <JFXButton buttonType="RAISED" layoutX="388.0" layoutY="27.0" onAction="#toRedactUser" prefHeight="93.0" prefWidth="201.0" style="-fx-background-color: #ffb0c6;" text="Пользователи" textFill="#293a80">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="232.0" onAction="#toEditFilm"
-                                   prefHeight="101.0" prefWidth="235.0" style="-fx-background-color: #d5ace3;"
-                                   text="Фильмы" textFill="#141865">
+                        <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="232.0" onAction="#toEditFilm" prefHeight="101.0" prefWidth="235.0" style="-fx-background-color: #d5ace3;" text="Фильмы" textFill="#141865">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="472.0" onAction="#toDeleteSeance"
-                                   prefHeight="101.0" prefWidth="235.0" style="-fx-background-color: #bb64d9;"
-                                   text="Сеансы" textFill="#231f72">
+                        <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="472.0" onAction="#toDeleteSeance" prefHeight="101.0" prefWidth="235.0" style="-fx-background-color: #bb64d9;" text="Сеансы" textFill="#231f72">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" graphicTextGap="0.0" layoutX="790.0" layoutY="401.0"
-                                   onAction="#toShowBookings" prefHeight="70.0" prefWidth="333.0"
-                                   style="-fx-background-color: #8aedd7;" text="Забронированные билеты"
-                                   textAlignment="CENTER" textFill="#1a1279" textOverrun="CLIP" wrapText="true">
+                        <JFXButton buttonType="RAISED" graphicTextGap="0.0" layoutX="790.0" layoutY="401.0" onAction="#toShowBookings" prefHeight="70.0" prefWidth="333.0" style="-fx-background-color: #8aedd7;" text="Забронированные билеты" textAlignment="CENTER" textFill="#1a1279" textOverrun="CLIP" wrapText="true">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="790.0" layoutY="499.0" onAction="#toDelBookings"
-                                   prefHeight="70.0" prefWidth="333.0" style="-fx-background-color: #adeddf;"
-                                   text=" Подтверждение возврата" textAlignment="CENTER" textFill="#150e43"
-                                   textOverrun="CLIP" wrapText="true">
+                        <JFXButton buttonType="RAISED" layoutX="790.0" layoutY="499.0" onAction="#toDelBookings" prefHeight="70.0" prefWidth="333.0" style="-fx-background-color: #adeddf;" text=" Подтверждение возврата" textAlignment="CENTER" textFill="#150e43" textOverrun="CLIP" wrapText="true">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="351.0" onAction="#toAvgRating"
-                                   prefHeight="101.0" prefWidth="235.0" style="-fx-background-color: #c887de;"
-                                   text="Оценки фильмов" textFill="#19155b">
+                        <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="351.0" onAction="#toAvgRating" prefHeight="101.0" prefWidth="235.0" style="-fx-background-color: #c887de;" text="Оценки фильмов" textFill="#19155b">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="388.0" layoutY="136.0" onAction="#toRating"
-                                   prefHeight="93.0" prefWidth="201.0" ripplerFill="#e82f2f"
-                                   style="-fx-background-color: #ff96b4;" text="Отзывы" textFill="#0f253b">
+                        <JFXButton buttonType="RAISED" layoutX="388.0" layoutY="136.0" onAction="#toRating" prefHeight="93.0" prefWidth="201.0" ripplerFill="#e82f2f" style="-fx-background-color: #ff96b4;" text="Отзывы" textFill="#0f253b">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="489.0" layoutY="406.0" onAction="#toBarChart"
-                                   prefHeight="93.0" prefWidth="201.0" style="-fx-background-color: #edbf6f;"
-                                   text="Статистика" textFill="#151e57">
+                        <JFXButton buttonType="RAISED" layoutX="375.0" layoutY="547.0" onAction="#toBarChart" prefHeight="53.0" prefWidth="326.0" style="-fx-background-color: #edbf6f;" text="Статистика" textFill="#151e57">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="388.0" layoutY="242.0" onAction="#toNotification"
-                                   prefHeight="93.0" prefWidth="193.0" style="-fx-background-color: #ff7da2;"
-                                   text="Рассылка" textFill="#010103">
+                        <JFXButton buttonType="RAISED" layoutX="375.0" layoutY="426.0" onAction="#toDamages" prefHeight="53.0" prefWidth="326.0" style="-fx-background-color: #edbf6f;" text="Доходы с показов" textFill="#151e57">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="384.0" layoutY="517.0" onAction="#makeAccReport"
-                                   prefHeight="93.0" prefWidth="201.0" style="-fx-background-color: #f0b651;"
-                                   text="Сформировать отчёт" textAlignment="CENTER" textFill="#050936" wrapText="true">
+                        <JFXButton buttonType="RAISED" layoutX="388.0" layoutY="242.0" onAction="#toNotification" prefHeight="93.0" prefWidth="193.0" style="-fx-background-color: #ff7da2;" text="Рассылка" textFill="#010103">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0"/>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                            </font>
+                        </JFXButton>
+                        <JFXButton buttonType="RAISED" layoutX="376.0" layoutY="487.0" onAction="#makeAccReport" prefHeight="53.0" prefWidth="326.0" style="-fx-background-color: #f0b651;" text="Сформировать отчёт" textAlignment="CENTER" textFill="#050936" wrapText="true">
+                            <font>
+                                <Font name="Microsoft JhengHei Light" size="23.0" />
                             </font>
                         </JFXButton>
                         <ImageView fitHeight="350.0" fitWidth="505.0" layoutX="651.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-online-learning-1.png"/>
+                                <Image url="@../../pictures/bonbon-online-learning-1.png" />
                             </image>
                         </ImageView>
                     </children>

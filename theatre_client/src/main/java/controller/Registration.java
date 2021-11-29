@@ -97,4 +97,10 @@ public class Registration extends InteractionWithProgInterface {
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
+
+    public void toEditUser(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactUser.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
 }

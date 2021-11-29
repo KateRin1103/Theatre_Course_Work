@@ -7,52 +7,56 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Sample">
     <children>
-        <ImageView fitHeight="650.0" fitWidth="520.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/pictures/Театр2.jpg" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="680.0" fitWidth="520.0" layoutY="346.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/pictures/Театр3.jpg" />
-            </image>
-        </ImageView>
-        <ImageView fitHeight="520.0" fitWidth="333.0" layoutX="859.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@/pictures/Театр1.jpg" />
-            </image>
-        </ImageView>
-        <AnchorPane layoutX="513.0" layoutY="504.0" prefHeight="181.0" prefWidth="687.0" style="-fx-background-color: #7a787a;" />
-        <AnchorPane layoutX="513.0" prefHeight="504.0" prefWidth="345.0" style="-fx-background-color: #ffcc99;" />
-        <AnchorPane layoutX="513.0" layoutY="1.0" opacity="0.28" prefHeight="72.0" prefWidth="687.0" style="-fx-background-color: #d1d1d1;" />
-        <Text layoutX="549.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Τερψιχόρη">
+        <AnchorPane layoutX="513.0" opacity="0.0" prefHeight="504.0" prefWidth="345.0" style="-fx-background-color: #ffcc99;">
+         <children>
+            <ImageView fitHeight="200.0" fitWidth="157.0" layoutX="215.0" layoutY="118.0">
+               <image>
+                  <Image url="@../../pictures/bonbon-heart.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+      <ImageView fitHeight="742.0" fitWidth="1180.0" layoutY="-103.0">
+         <image>
+            <Image url="@../../pictures/urban-landscape-background.png" />
+         </image>
+      </ImageView>
+        <AnchorPane layoutY="1.0" opacity="0.89" prefHeight="87.0" prefWidth="1180.0" style="-fx-background-color: #fcdbff;">
+         <children>
+              <Text layoutX="35.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ВХОД">
+                  <font>
+                      <Font name="Century Gothic" size="20.0" />
+                  </font>
+              </Text>
+              <Text fill="#0e103c" layoutX="36.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="РЕГИСТРАЦИЯ">
+                  <font>
+                      <Font name="Century Gothic" size="21.0" />
+                  </font>
+              </Text>
+              <Button layoutX="34.0" layoutY="8.0" mnemonicParsing="false" onAction="#toRegistration" opacity="0.0" prefHeight="39.0" prefWidth="149.0" text="Регистрация">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Button>
+              <Button layoutX="19.0" layoutY="49.0" mnemonicParsing="false" onAction="#toStart" opacity="0.0" prefHeight="26.0" prefWidth="121.0" text="вход" textFill="#d1d1d1" wrapText="true" />
+            <ImageView fitHeight="78.0" fitWidth="84.0" layoutX="202.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.75">
+               <image>
+                  <Image url="@../../pictures/bonbon-bat.png" />
+               </image>
+            </ImageView>
+         </children></AnchorPane>
+        <Text fill="#151c65" layoutX="549.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Victory">
             <font>
-                <Font name="Century Gothic" size="48.0" />
+                <Font name="Century Gothic" size="58.0" />
             </font>
         </Text>
-        <Text fill="WHITE" layoutX="549.0" layoutY="570.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ART IN MOTION">
+        <Text fill="#0e1751" layoutX="554.0" layoutY="338.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Кинотеатр" wrappingWidth="230">
             <font>
-                <Font name="Century Gothic" size="30.0" />
+                <Font name="Century Gothic" size="25.0" />
             </font>
         </Text>
-        <Text layoutX="549.0" layoutY="340.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Театр экспериментального творчества ''Терпсихора'' " wrappingWidth="230">
+        <Text fill="#121640" layoutX="389.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzerzhinsk, st.Minskaya 16" wrappingWidth="248.0">
             <font>
-                <Font name="Century Gothic" size="21.0" />
-            </font>
-        </Text>
-        <Text fill="WHITE" layoutX="540.0" layoutY="600.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzerzhinsk, st.Minskaya 16" wrappingWidth="500">
-            <font>
-                <Font name="Century Gothic" size="16.0" />
-            </font>
-        </Text>
-        <Text layoutX="795.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ВХОД">
-            <font>
-                <Font name="Century Gothic" size="16.0" />
-            </font>
-        </Text>
-        <Text layoutX="738.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="РЕГИСТРАЦИЯ">
-            <font>
-                <Font name="Century Gothic" size="16.0" />
+                <Font name="Century Gothic" size="19.0" />
             </font>
         </Text>
         <Text layoutX="1073.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="О НАС ">
@@ -60,13 +64,41 @@
                 <Font name="Century Gothic" size="16.0" />
             </font>
         </Text>
-        <Button layoutX="794.0" layoutY="74.0" mnemonicParsing="false" onAction="#toStart" opacity="0.0" prefHeight="26.0" prefWidth="45.0" text="вход" textFill="#d1d1d1" wrapText="true" />
-        <Button layoutX="729.0" layoutY="29.0" mnemonicParsing="false" onAction="#toRegistration" opacity="0.0" prefHeight="26.0" prefWidth="123.0" text="Регистрация" />
         <Button layoutX="1062.0" layoutY="30.0" mnemonicParsing="false" onAction="#toInformation" opacity="0.02" prefHeight="26.0" prefWidth="104.0" text="О нас" />
         <ImageView fitHeight="20.0" fitWidth="40.0" layoutX="1135.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
             <image>
                 <Image url="@/pictures/info.png" />
             </image>
         </ImageView>
+      <ImageView fitHeight="368.0" fitWidth="473.0" layoutX="76.0" layoutY="135.0" opacity="0.82">
+         <image>
+            <Image url="@../../pictures/bonbon-everything-is-possible-2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="167.0" fitWidth="149.0" layoutX="802.0" layoutY="146.0" opacity="0.64">
+         <image>
+            <Image url="@../../pictures/bonbon-heart.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="130.0" fitWidth="146.0" layoutX="31.0" layoutY="112.0" opacity="0.65">
+         <image>
+            <Image url="@../../pictures/bonbon-star-1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="148.0" fitWidth="157.0" layoutX="12.0" layoutY="478.0" opacity="0.71">
+         <image>
+            <Image url="@../../pictures/bonbon-star-2.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="239.0" fitWidth="248.0" layoutX="866.0" layoutY="303.0" opacity="0.88">
+         <image>
+            <Image url="@../../pictures/bonbon-dog-1.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="208.0" fitWidth="209.0" layoutX="637.0" layoutY="361.0" opacity="0.56">
+         <image>
+            <Image url="@../../pictures/bonbon-circle.png" />
+         </image>
+      </ImageView>
     </children>
 </AnchorPane>
