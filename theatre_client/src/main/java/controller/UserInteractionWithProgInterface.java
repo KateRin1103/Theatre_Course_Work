@@ -16,11 +16,11 @@ public class UserInteractionWithProgInterface {
         MainClient.primaryStage.show();
     }
 
-    public void delSuccess() {
+    public void delSuccess(String str) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(null);
         alert.setHeaderText(null);
-        alert.setContentText("Сеанс удалён!");
+        alert.setContentText(str);
         alert.showAndWait();
     }
 

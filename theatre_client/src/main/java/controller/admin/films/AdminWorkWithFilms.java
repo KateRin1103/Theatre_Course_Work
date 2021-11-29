@@ -158,10 +158,4 @@ public class AdminWorkWithFilms extends InteractionWithProgInterface implements 
             windowRedact.show();
         }
     }
-
-    public void toAddNewFilm(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddNewFilm.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
 }

@@ -28,22 +28,6 @@ public class AdminAlerts {
         alert.showAndWait();
     }
 
-    public static void showAlertEmpty() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Справка");
-        alert.setContentText("Заполните все поля!");
-        alert.showAndWait();
-    }
-
-    public static void editSuccess() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(null);
-        alert.setHeaderText(null);
-        alert.setContentText("Редактирование произведено!");
-        alert.showAndWait();
-    }
-
     public static void showAlertSameLogin() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("ОШИБКА");
@@ -66,6 +50,30 @@ public class AdminAlerts {
         alert.setHeaderText(null);
         alert.setContentText(str);
         alert.showAndWait();
+    }
+
+    public static void showAlertEmpty() {
+        Alert alert = new Alert ( Alert.AlertType.WARNING );
+        alert.setTitle ( "Предупреждение" );
+        alert.setHeaderText ( null );
+        alert.setContentText ( "Вы не ввели новое значение!" );
+        alert.showAndWait ();
+    }
+
+    public static void editSuccess() {
+        Alert alert = new Alert ( Alert.AlertType.INFORMATION );
+        alert.setTitle ( null );
+        alert.setHeaderText ( null );
+        alert.setContentText ( "Редактирование произведено!" );
+        alert.showAndWait ();
+    }
+
+    public static void warning() {
+        Alert alert = new Alert ( Alert.AlertType.ERROR );
+        alert.setTitle ( "Ошибка" );
+        alert.setHeaderText ( null );
+        alert.setContentText ( "Некорректный ввод!" );
+        alert.showAndWait ();
     }
 
 }

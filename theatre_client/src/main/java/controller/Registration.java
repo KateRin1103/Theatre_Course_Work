@@ -6,13 +6,13 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 
 import static client.Client.*;
+import static controller.alerts.UserAlerst.*;
 
 public class Registration extends InteractionWithProgInterface {
 
@@ -44,39 +44,6 @@ public class Registration extends InteractionWithProgInterface {
         }
     }
 
-
-    public void showAlertEmpty() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Справка");
-        alert.setContentText("Заполните все поля!");
-        alert.showAndWait();
-    }
-
-    public void showAlertSameLogin() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Справка");
-        alert.setContentText("Учётная запись с таким логином уже существует!");
-        alert.showAndWait();
-    }
-
-    public void showAlertIncorrect() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Справка");
-        alert.setContentText("Введите корректно имя и фамилию!");
-        alert.showAndWait();
-    }
-
-    public void showAlertSuccess() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Поздравляем");
-        alert.setHeaderText(null);
-        alert.setContentText("Запись успешно добавлена!");
-        alert.showAndWait();
-    }
-
     public void clearAllFields() {
         userLogin.clear();
         userPassword.clear();
@@ -88,18 +55,6 @@ public class Registration extends InteractionWithProgInterface {
         addNewUser(new ActionEvent());
         Sample.windowRegistration.close();
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/accountLogin/UserLogin.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toMain(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/start/Main.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toEditUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactUser.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }

@@ -325,5 +325,11 @@ WHERE user_id = (SELECT id FROM user WHERE login = 'katerin')
 
 SELECT title, AVG(rating) as rating
 FROM rating
-join film f on f.id = rating.film_id
+         join film f on f.id = rating.film_id
 GROUP BY title;
+
+UPDATE booking
+SET `return`=1
+WHERE user_id=(SELECT id FROM user WHERE login='ramina')
+  AND place_id=(SELECT id FROM place WHERE `row`=1 AND `place`=1)
+  AND seance_id=(SELECT id FROM seance WHERE date='2021-12-18' AND time='14:00:00');

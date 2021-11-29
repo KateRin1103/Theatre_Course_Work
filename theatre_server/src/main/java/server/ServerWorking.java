@@ -70,7 +70,7 @@ public class ServerWorking extends Thread {
     private static final String getAvgRating = "getAvgRating";
     private static final String getDamages = "getDamages";
     private static final String getAllNotificationsByLogin = "getAllNotificationsByLogin";
-
+    private static final String setRequestedDelete = "setRequestedDelete";
 
     private static final String getSeancePlaces = "getSeancePlaces";
 
@@ -180,6 +180,10 @@ public class ServerWorking extends Thread {
                             }
                             case getReport: {
                                 writeInFile();
+                                break;
+                            }
+                            case setRequestedDelete:{
+                                setRequestedDelete();
                                 break;
                             }
                             case addBooking: {
@@ -913,6 +917,26 @@ public class ServerWorking extends Thread {
         execute(sqlst);
     }
 
+    void setRequestedDelete() {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Gson g = new Gson();
+
+        Type Tip = new TypeToken<Booking>() {
+        }.getType();
+        Booking booking = g.fromJson(get, Tip);
+        openDatabase();
+        String string = "UPDATE booking SET `return`=1 WHERE user_id=(SELECT id FROM user WHERE login = '" + booking.getLogin() + "')" +
+                " AND place_id=(SELECT id FROM place WHERE `row`="+booking.getRow()+" AND `place`="+booking.getPlace()+") " +
+                " AND seance_id=(SELECT id FROM seance WHERE date='"+booking.getDate()+"' " +
+                " AND time='"+booking.getTime()+":00')";
+        execute(string);
+    }
+
     void deleteSelectedBooking() throws SQLException {
         String get = "";
         try {
@@ -1221,7 +1245,7 @@ public class ServerWorking extends Thread {
             sp.next();
 
             StringBuilder str = new StringBuilder();
-            str.append("insert into results (film_id,first_param,second_param,third_param,specific_efficiency,risk, profit) value (");
+            str.append("insert into results (film_id,first_param,second_param,third_param,specific_efficiency,risk) value (");
             str.append(result2.getInt("id"));
             str.append(",");
             parametres.next();

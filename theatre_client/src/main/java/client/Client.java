@@ -280,6 +280,12 @@ public class Client {
         clout.println(str);
     }
 
+    public static void setRequestedDelete(Booking booking) {
+        clout.println("setRequestedDelete");
+        String str = new Gson().toJson(booking);
+        clout.println(str);
+    }
+
     public static void deleteSelectedFilm(String str) { //
         clout.println("deleteSelectedFilm");
         clout.println(str);

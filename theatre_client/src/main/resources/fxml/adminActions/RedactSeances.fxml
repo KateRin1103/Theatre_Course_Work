@@ -6,7 +6,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.seances.AdminWorkWithSeances">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
+            prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.admin.seances.AdminWorkWithSeances">
     <children>
         <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
             <children>
@@ -14,61 +16,71 @@
                     <children>
                         <ImageView fitHeight="477.0" fitWidth="695.0" layoutX="482.0" layoutY="63.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-drawing-tablet (1).png" />
+                                <Image url="@../../pictures/bonbon-drawing-tablet (1).png"/>
                             </image>
                         </ImageView>
                         <TableView fx:id="Seance" layoutX="517.0" layoutY="102.0" prefHeight="400.0" prefWidth="566.0">
                             <columns>
-                                <TableColumn fx:id="seanceTitle" prefWidth="172.00006103515625" text="Название" />
-                                <TableColumn fx:id="seanceDate" prefWidth="190.6666259765625" text="Дата проведения" />
-                                <TableColumn fx:id="seanceTime" prefWidth="119.0001220703125" text="Время проведения" />
-                                <TableColumn fx:id="seancePrice" prefWidth="79.666748046875" text="Цена" />
+                                <TableColumn fx:id="seanceTitle" prefWidth="172.00006103515625" text="Название"/>
+                                <TableColumn fx:id="seanceDate" prefWidth="190.6666259765625" text="Дата проведения"/>
+                                <TableColumn fx:id="seanceTime" prefWidth="119.0001220703125" text="Время проведения"/>
+                                <TableColumn fx:id="seancePrice" prefWidth="79.666748046875" text="Цена"/>
                             </columns>
                         </TableView>
-                        <TextField fx:id="filterField" layoutX="111.0" layoutY="43.0" prefHeight="32.0" prefWidth="280.0" promptText="Поиск">
+                        <TextField fx:id="filterField" layoutX="111.0" layoutY="43.0" prefHeight="32.0"
+                                   prefWidth="280.0" promptText="Поиск">
                             <font>
-                                <Font size="18.0" />
+                                <Font size="18.0"/>
                             </font>
                         </TextField>
-                        <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="27.0" layoutY="27.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
-                            <Image url="@/pictures/back.png" />
+                        <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="27.0" layoutY="27.0"
+                                   nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@/pictures/back.png"/>
                         </ImageView>
                         <ImageView fitHeight="467.0" fitWidth="296.0" layoutX="56.0" layoutY="176.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-chart-1.png" />
+                                <Image url="@../../pictures/bonbon-chart-1.png"/>
                             </image>
                         </ImageView>
-                        <JFXButton buttonType="RAISED" layoutX="76.0" layoutY="245.0" onAction="#toAddSeance" prefHeight="74.0" prefWidth="259.0" style="-fx-background-color: #d9a4f5;" text="Добавление сеансов" textFill="#080928" wrapText="true">
+                        <JFXButton buttonType="RAISED" layoutX="76.0" layoutY="245.0" onAction="#toAddSeance"
+                                   prefHeight="74.0" prefWidth="259.0" style="-fx-background-color: #d9a4f5;"
+                                   text="Добавление сеансов" textFill="#080928" wrapText="true">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                                <Font name="Microsoft JhengHei Light" size="23.0"/>
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="83.0" layoutY="347.0" onAction="#editTime" prefHeight="68.0" prefWidth="253.0" style="-fx-background-color: #f59fe7;" text="Поменять время" textFill="#060622">
+                        <JFXButton buttonType="RAISED" layoutX="83.0" layoutY="347.0" onAction="#editTime"
+                                   prefHeight="68.0" prefWidth="253.0" style="-fx-background-color: #f59fe7;"
+                                   text="Поменять время" textFill="#060622">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                                <Font name="Microsoft JhengHei Light" size="23.0"/>
                             </font>
                         </JFXButton>
-                        <JFXButton buttonType="RAISED" layoutX="83.0" layoutY="454.0" onAction="#delSeance" prefHeight="62.0" prefWidth="253.0" style="-fx-background-color: #e3baff;" text="Удалить" textFill="#0a0622">
+                        <JFXButton buttonType="RAISED" layoutX="83.0" layoutY="454.0" onAction="#delSeance"
+                                   prefHeight="62.0" prefWidth="253.0" style="-fx-background-color: #e3baff;"
+                                   text="Удалить" textFill="#0a0622">
                             <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
+                                <Font name="Microsoft JhengHei Light" size="23.0"/>
                             </font>
                         </JFXButton>
                         <ImageView fitHeight="185.0" fitWidth="124.0" layoutX="357.0" layoutY="381.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-flower.png" />
+                                <Image url="@../../pictures/bonbon-flower.png"/>
                             </image>
                         </ImageView>
                         <ImageView fitHeight="92.0" fitWidth="74.0" layoutX="387.0" layoutY="265.0">
                             <image>
-                                <Image url="@../../pictures/bonbon-leaves.png" />
+                                <Image url="@../../pictures/bonbon-leaves.png"/>
                             </image>
                         </ImageView>
-                <ImageView fitHeight="74.0" fitWidth="60.0" layoutX="374.0" layoutY="171.0" nodeOrientation="RIGHT_TO_LEFT">
-                    <image>
-                        <Image url="@../../pictures/bonbon-leaves.png" />
-                    </image>
-                </ImageView>
-                        <Button layoutX="27.0" layoutY="27.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainAdmin" opacity="0.0" prefHeight="35.0" prefWidth="60.0" />
+                        <ImageView fitHeight="74.0" fitWidth="60.0" layoutX="374.0" layoutY="171.0"
+                                   nodeOrientation="RIGHT_TO_LEFT">
+                            <image>
+                                <Image url="@../../pictures/bonbon-leaves.png"/>
+                            </image>
+                        </ImageView>
+                        <Button layoutX="27.0" layoutY="27.0" minWidth="27.0" mnemonicParsing="false"
+                                onAction="#toMainAdmin" opacity="0.0" prefHeight="35.0" prefWidth="60.0"/>
                     </children>
                 </Pane>
             </children>

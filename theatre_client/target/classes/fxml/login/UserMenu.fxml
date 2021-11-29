@@ -10,7 +10,7 @@
     <children>
         <AnchorPane layoutX="-3.0" prefHeight="677.0" prefWidth="1206.0" style="-fx-background-color: #fff3de;">
             <children>
-                <ImageView fitHeight="321.0" fitWidth="326.0" layoutX="833.0" layoutY="386.0">
+                <ImageView fitHeight="323.0" fitWidth="326.0" layoutX="833.0" layoutY="384.0">
                     <image>
                         <Image url="@../../pictures/bonbon-chart-2.png" />
                     </image>
@@ -55,17 +55,17 @@
                         <Font name="Microsoft JhengHei Light" size="23.0" />
                     </font>
                 </JFXButton>
-                <JFXButton buttonType="RAISED" layoutX="884.0" layoutY="549.0" onAction="#toShowSeancesForUser" prefHeight="80.0" prefWidth="223.0" style="-fx-background-color: #90f089;" text="Афиша" textAlignment="CENTER" textFill="#060414">
-                    <font>
-                        <Font name="Microsoft JhengHei Light" size="23.0" />
-                    </font>
-                </JFXButton>
                 <JFXButton buttonType="RAISED" layoutX="879.0" layoutY="34.0" onAction="#toShowNotificationsForUser" prefHeight="80.0" prefWidth="247.0" style="-fx-background-color: #dd8fff;" text="Уведомления" textAlignment="CENTER" textFill="#060414">
                     <font>
                         <Font name="Microsoft JhengHei Light" size="23.0" />
                     </font>
                 </JFXButton>
-                <JFXButton buttonType="RAISED" layoutX="884.0" layoutY="437.0" onAction="#toAddRating" prefHeight="80.0" prefWidth="223.0" style="-fx-background-color: #bfffba;" text="Оставить отзыв" textAlignment="CENTER" textFill="#060414">
+                <JFXButton buttonType="RAISED" layoutX="879.0" layoutY="449.0" onAction="#toAddRating" prefHeight="80.0" prefWidth="223.0" style="-fx-background-color: #bfffba;" text="Оставить отзыв" textAlignment="CENTER" textFill="#060414">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="23.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton buttonType="RAISED" layoutX="879.0" layoutY="570.0" onAction="#toShowRatings" prefHeight="80.0" prefWidth="223.0" style="-fx-background-color: #90f089;" text="Рейтинги фильмов" textAlignment="CENTER" textFill="#060414" wrapText="true">
                     <font>
                         <Font name="Microsoft JhengHei Light" size="23.0" />
                     </font>
@@ -75,41 +75,41 @@
                         <Font name="Microsoft JhengHei Light" size="37.0" />
                     </font>
                 </Label>
-            <ImageView fitHeight="200.0" fitWidth="194.0" layoutX="31.0" layoutY="134.0">
-               <image>
-                  <Image url="@../../pictures/bonbon-girl.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="159.0" fitWidth="125.0" layoutX="680.0" layoutY="470.0">
-               <image>
-                  <Image url="@../../pictures/bonbon-heart.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="159.0" fitWidth="172.0" layoutX="977.0" layoutY="195.0">
-               <image>
-                  <Image url="@../../pictures/bonbon-star.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="200.0" fitWidth="131.0" layoutX="218.0" layoutY="162.0">
-               <image>
-                  <Image url="@../../pictures/bonbon-flower.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="119.0" fitWidth="140.0" layoutX="366.0" layoutY="529.0">
-               <image>
-                  <Image url="@../../pictures/bonbon-star-1.png" />
-               </image>
-            </ImageView>
+                <ImageView fitHeight="200.0" fitWidth="194.0" layoutX="31.0" layoutY="134.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-girl.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="159.0" fitWidth="125.0" layoutX="680.0" layoutY="470.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-heart.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="159.0" fitWidth="172.0" layoutX="976.0" layoutY="183.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-star.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="200.0" fitWidth="131.0" layoutX="218.0" layoutY="162.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-flower.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="119.0" fitWidth="140.0" layoutX="366.0" layoutY="529.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-star-1.png" />
+                    </image>
+                </ImageView>
                 <ImageView fitHeight="469.0" fitWidth="488.0" layoutX="376.0">
                     <image>
                         <Image url="@../../pictures/bonbon-halloween-2.png" />
                     </image>
                 </ImageView>
-            <ImageView fitHeight="200.0" fitWidth="184.0" layoutX="488.0" layoutY="409.0">
-               <image>
-                  <Image url="@../../pictures/bonbon-star-2.png" />
-               </image>
-            </ImageView>
+                <ImageView fitHeight="200.0" fitWidth="184.0" layoutX="488.0" layoutY="409.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-star-2.png" />
+                    </image>
+                </ImageView>
             </children>
         </AnchorPane>
         <ImageView fitHeight="39.0" fitWidth="54.0" layoutX="29.0" layoutY="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">

@@ -22,23 +22,23 @@
       </ImageView>
         <AnchorPane layoutY="1.0" opacity="0.89" prefHeight="87.0" prefWidth="1180.0" style="-fx-background-color: #fcdbff;">
          <children>
-              <Text layoutX="35.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ВХОД">
+              <Text layoutX="69.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ВХОД">
                   <font>
                       <Font name="Century Gothic" size="20.0" />
                   </font>
               </Text>
-              <Text fill="#0e103c" layoutX="36.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="РЕГИСТРАЦИЯ">
+              <Text fill="#0e103c" layoutX="302.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="РЕГИСТРАЦИЯ">
                   <font>
                       <Font name="Century Gothic" size="21.0" />
                   </font>
               </Text>
-              <Button layoutX="34.0" layoutY="8.0" mnemonicParsing="false" onAction="#toRegistration" opacity="0.0" prefHeight="39.0" prefWidth="149.0" text="Регистрация">
+              <Button layoutX="302.0" layoutY="24.0" mnemonicParsing="false" onAction="#toRegistration" opacity="0.0" prefHeight="39.0" prefWidth="149.0" text="Регистрация">
                <font>
                   <Font size="9.0" />
                </font>
             </Button>
-              <Button layoutX="19.0" layoutY="49.0" mnemonicParsing="false" onAction="#toStart" opacity="0.0" prefHeight="26.0" prefWidth="121.0" text="вход" textFill="#d1d1d1" wrapText="true" />
-            <ImageView fitHeight="78.0" fitWidth="84.0" layoutX="202.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.75">
+              <Button layoutX="43.0" layoutY="31.0" mnemonicParsing="false" onAction="#toStart" opacity="0.0" prefHeight="26.0" prefWidth="121.0" text="вход" textFill="#d1d1d1" wrapText="true" />
+            <ImageView fitHeight="78.0" fitWidth="84.0" layoutX="171.0" layoutY="5.0" nodeOrientation="RIGHT_TO_LEFT" opacity="0.75">
                <image>
                   <Image url="@../../pictures/bonbon-bat.png" />
                </image>
@@ -54,7 +54,7 @@
                 <Font name="Century Gothic" size="25.0" />
             </font>
         </Text>
-        <Text fill="#121640" layoutX="389.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzerzhinsk, st.Minskaya 16" wrappingWidth="248.0">
+        <Text fill="#121640" layoutX="466.0" layoutY="620.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dzerzhinsk, st.Minskaya 16" wrappingWidth="248.0">
             <font>
                 <Font name="Century Gothic" size="19.0" />
             </font>

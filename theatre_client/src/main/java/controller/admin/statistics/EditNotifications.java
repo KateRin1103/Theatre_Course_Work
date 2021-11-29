@@ -71,12 +71,6 @@ public class EditNotifications extends InteractionWithProgInterface implements I
         }
     }
 
-    public void toMainAdmin(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
     @FXML
     public void searchSeances() {
 

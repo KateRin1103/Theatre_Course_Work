@@ -24,8 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ResourceBundle;
 
-import static client.Client.deleteSelectedBooking;
-import static client.Client.getAllBookingsByLogin;
+import static client.Client.*;
 import static controller.AccountLogin.enteredUserLogin;
 
 public class UserDeleteBookings extends UserInteractionWithProgInterface implements Initializable {
@@ -37,6 +36,7 @@ public class UserDeleteBookings extends UserInteractionWithProgInterface impleme
     public TableColumn<Booking, LocalTime> seanceTime;
     public TableColumn<Booking, Integer> row;
     public TableColumn<Booking, Integer> place;
+    public TableColumn<Booking, Integer> returning;
 
     @FXML
     private TextField filterField = new TextField();
@@ -57,6 +57,7 @@ public class UserDeleteBookings extends UserInteractionWithProgInterface impleme
         seanceTime.setCellValueFactory(new PropertyValueFactory<Booking, LocalTime>("time"));
         row.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("row"));
         place.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("place"));
+        returning.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("returning"));
         Booking.setItems(nSeances);
 
         searchBookings();
@@ -69,9 +70,9 @@ public class UserDeleteBookings extends UserInteractionWithProgInterface impleme
         if (selectedBooking == null) {
             showAlertNoSelected();
         } else {
-            deleteSelectedBooking(selectedBooking);
-            delSuccess();
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/UserMenu.fxml"));
+            setRequestedDelete(selectedBooking);
+            delSuccess("Запрос на возврат отправлен!");
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/DeleteBooking.fxml"));
             MainClient.primaryStage.setScene(new Scene(root));
             MainClient.primaryStage.show();
         }
@@ -92,6 +93,7 @@ public class UserDeleteBookings extends UserInteractionWithProgInterface impleme
         seanceTime.setCellValueFactory(new PropertyValueFactory<Booking, LocalTime>("time"));
         row.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("row"));
         place.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("place"));
+        returning.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("returning"));
 
         FilteredList<Booking> filteredData = new FilteredList<>(nSeances, b -> true);
         filterField.textProperty().addListener((observable, oldValue, newValue) -> {

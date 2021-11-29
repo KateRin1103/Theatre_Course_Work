@@ -1,14 +1,10 @@
 package controller.admin.seances;
 
 import controller.InteractionWithProgInterface;
-import controller.MainClient;
 import controller.Sample;
 import controller.alerts.AdminAlerts;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
 import theatre.Seance;
@@ -29,7 +25,7 @@ public class EditSeance extends InteractionWithProgInterface {
         } else {
             editTime(newTime.getValue(), seance.getTime());
             AdminAlerts.editSuccess();
-            toRedactFilm(new ActionEvent());
+            toRedactSeance(new ActionEvent());
             Sample.windowRedact.close();
         }
     }
@@ -38,9 +34,4 @@ public class EditSeance extends InteractionWithProgInterface {
         newTime.setItems(FXCollections.observableArrayList(getFreeTime(seance.getDate())));
     }
 
-    public void toRedactFilm(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactSeances.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
 }

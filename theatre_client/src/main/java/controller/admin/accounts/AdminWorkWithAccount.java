@@ -160,12 +160,6 @@ public class AdminWorkWithAccount extends InteractionWithProgInterface implement
         }
     }
 
-    public void toMainAdmin (ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
     public void delAccount(ActionEvent actionEvent) throws IOException {
         User selectedAcc = User.getSelectionModel().getSelectedItem();
         if (selectedAcc == null) {
@@ -185,74 +179,6 @@ public class AdminWorkWithAccount extends InteractionWithProgInterface implement
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
-
-    /*public void addNewUser(ActionEvent actionEvent) {
-        if (userLoginField.getText().isEmpty() || userPasswordField.getText().isEmpty()
-                || userNameField.getText().isEmpty() || userSurnameField.getText().isEmpty() || userPhone.getText().isEmpty())
-            AdminAlerts.showAlertEmpty();
-        else if (checkSameUser(getLogin())) {
-            userLoginField.clear();
-            AdminAlerts.showAlertSameLogin();
-        } else if (!checkCorrectAccount(userNameField.getText(), userSurnameField.getText())) {
-            userNameField.clear();
-            userSurnameField.clear();
-            AdminAlerts.showAlertIncorrect("Данные пользователя введены невено!");
-        } else {
-            addNewAccountUser(new User(userNameField.getText(), userSurnameField.getText(),
-                    userPhoneField.getText(), new Account(userLoginField.getText(), userPasswordField.getText())));
-            clearAllFields();
-            AdminAlerts.showAlertSuccess("Пользователь успешно добален!");
-        }
-    }*/
-
-    /*public void showAlertEmpty() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Справка");
-        alert.setContentText("Заполните все поля!");
-        alert.showAndWait();
-    }
-
-
-    public void showAlertNoSelected() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Предупреждение");
-        alert.setHeaderText(null);
-        alert.setContentText("Выберите пользователя!");
-        alert.showAndWait();
-    }
-
-    public void delSuccess(){
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(null);
-        alert.setHeaderText(null);
-        alert.setContentText("Пользователь удалён!");
-        alert.showAndWait();
-    }
-
-    public void showAlertSameLogin() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Справка");
-        alert.setContentText("Учётная запись с таким логином уже существует!");
-        alert.showAndWait();
-    }
-
-    public void showAlertIncorrect() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("ОШИБКА");
-        alert.setHeaderText("Справка");
-        alert.setContentText("Введите корректно имя и фамилию!");
-        alert.showAndWait();
-    }
-
-    public void showAlertSuccess() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Поздравляем");
-        alert.setHeaderText(null);
-        alert.setContentText("Запись успешно добавлена!");
-        alert.showAndWait();
-    }*/
 
     public void clearAllFields() {
         userLoginField.clear();

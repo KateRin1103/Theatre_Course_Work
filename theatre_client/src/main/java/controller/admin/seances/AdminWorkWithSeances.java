@@ -98,12 +98,6 @@ public class AdminWorkWithSeances extends InteractionWithProgInterface implement
         Seance.setItems(sortedData);
     }
 
-    public void toAddSeance(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/AddSeance.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
     public void delSeance(ActionEvent actionEvent) throws IOException {
         Seance selectedSeance = Seance.getSelectionModel().getSelectedItem();
         if (selectedSeance == null) {
@@ -133,11 +127,5 @@ public class AdminWorkWithSeances extends InteractionWithProgInterface implement
             windowRedact.setScene(scene);
             windowRedact.show();
         }
-    }
-
-    public void toMainAdmin(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/login/AdminMenu.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
     }
 }

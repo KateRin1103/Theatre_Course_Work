@@ -132,6 +132,12 @@ public class AccountLogin extends InteractionWithProgInterface {
         MainClient.primaryStage.show();
     }
 
+    public void toShowRatings(ActionEvent actionEvent) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/ShowRatings.fxml"));
+        MainClient.primaryStage.setScene(new Scene(root));
+        MainClient.primaryStage.show();
+    }
+
     public void toDeleteSeance(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactSeances.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));

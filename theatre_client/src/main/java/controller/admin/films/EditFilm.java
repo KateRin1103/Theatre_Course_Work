@@ -1,13 +1,9 @@
 package controller.admin.films;
 
 import controller.InteractionWithProgInterface;
-import controller.MainClient;
 import controller.Sample;
 import controller.alerts.AdminAlerts;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import theatre.Film;
 
@@ -56,11 +52,5 @@ public class EditFilm extends InteractionWithProgInterface {
             toRedactFilm(new ActionEvent());
             Sample.windowRedact.close();
         }
-    }
-
-    public void toRedactFilm(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/RedactFilm.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
     }
 }
