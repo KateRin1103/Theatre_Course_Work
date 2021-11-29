@@ -102,11 +102,6 @@
                                 <Image url="@../../pictures/bonbon-online-learning-1.png" />
                             </image>
                         </ImageView>
-                        <ImageView fitHeight="162.0" fitWidth="200.0" layoutX="10.0" layoutY="10.0">
-                            <image>
-                                <Image url="@../../pictures/bonbon-rectangle.png" />
-                            </image>
-                        </ImageView>
                     </children>
                 </Pane>
             </children>

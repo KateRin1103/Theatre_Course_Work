@@ -8,62 +8,45 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="640.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.user.booking.UserDeleteBookings">
     <children>
-        <AnchorPane prefHeight="688.0" prefWidth="293.0" style="-fx-background-color: #ff8e32;">
+        <AnchorPane layoutX="1.0" prefHeight="640.0" prefWidth="1200.0" style="-fx-background-color: #fad9ee;">
             <children>
-                <Pane opacity="0.71" prefHeight="100.0" prefWidth="313.0" style="-fx-background-color: #ff8e32;">
-                    <children>
-                        <Label layoutX="36.0" layoutY="34.0" prefHeight="32.0" prefWidth="229.0" text="Меню Пользователя" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="28.0" layoutY="394.0" prefHeight="32.0" prefWidth="282.0" text="Управление бронями" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
-            <ImageView fitHeight="572.0" fitWidth="313.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="511.0" fitWidth="752.0" layoutX="428.0" layoutY="71.0">
                <image>
-                  <Image url="@../../pictures/Театр1.jpg" />
+                  <Image url="@../../pictures/bonbon-drawing-tablet%20(1).png" />
+               </image>
+            </ImageView>
+                <TableView fx:id="Booking" layoutX="460.0" layoutY="95.0" prefHeight="462.0" prefWidth="623.0">
+                    <columns>
+                        <TableColumn fx:id="seanceTitle" prefWidth="161.3333282470703" text="Название" />
+                        <TableColumn fx:id="login" minWidth="0.0" prefWidth="0.0" text="Логин" />
+                        <TableColumn fx:id="seanceDate" prefWidth="157.99998474121094" text="Дата" />
+                        <TableColumn fx:id="seanceTime" prefWidth="185.33334350585938" text="Время" />
+                        <TableColumn fx:id="row" prefWidth="55.99993896484375" text="Ряд" />
+                        <TableColumn fx:id="place" prefWidth="56.66668701171875" text="Место" />
+                    </columns>
+                </TableView>
+                  <JFXButton buttonType="RAISED" layoutX="90.0" layoutY="452.0" onAction="#delBooking" prefHeight="27.0" prefWidth="200.0" style="-fx-background-color: #ff9cdb;" text="Удалить" textFill="#1c0b3e">
+                      <font>
+                          <Font name="Microsoft JhengHei Light" size="21.0" />
+                      </font>
+                  </JFXButton>
+            <TextField fx:id="filterField" layoutX="460.0" layoutY="16.0" prefHeight="20.0" prefWidth="385.0" promptText="Поиск">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </TextField>
+            <ImageView fitHeight="321.0" fitWidth="439.0" layoutX="-2.0" layoutY="103.0">
+               <image>
+                  <Image url="@../../pictures/bonbon-online-learning-1.png" />
                </image>
             </ImageView>
             </children>
         </AnchorPane>
-        <AnchorPane layoutX="306.0" prefHeight="688.0" prefWidth="895.0">
-            <children>
-                <Pane layoutX="6.0" prefHeight="50.0" prefWidth="888.0" style="-fx-background-color: #ffeca1;">
-                    <children>
-                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="12.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@/pictures/enter.png" />
-                            </image>
-                        </ImageView>
-                        <Button layoutX="849.0" layoutY="7.0" mnemonicParsing="false" onAction="#toMainUser" opacity="0.0" prefHeight="27.0" prefWidth="27.0" />
-                  <TextField fx:id="filterField" layoutX="14.0" layoutY="13.0" prefHeight="25.0" prefWidth="294.0" promptText="Поиск" />
-                    </children>
-                </Pane>
-                <TableView fx:id="Booking" layoutX="6.0" layoutY="48.0" prefHeight="517.0" prefWidth="888.0">
-                    <columns>
-                        <TableColumn fx:id="seanceTitle" prefWidth="184.99993896484375" text="Название" />
-                        <TableColumn fx:id="login" prefWidth="141.33334350585938" text="Логин" />
-                        <TableColumn fx:id="seanceDate" prefWidth="125.33331298828125" text="Дата" />
-                        <TableColumn fx:id="seanceTime" prefWidth="162.33331298828125" text="Время" />
-                        <TableColumn fx:id="place" prefWidth="169.66668701171875" text="Место" />
-                        <TableColumn fx:id="row" prefWidth="104.0" text="Ряд" />
-                    </columns>
-                </TableView>
-                <AnchorPane layoutX="346.0" layoutY="578.0" prefHeight="40.0" prefWidth="200.0" style="-fx-background-color: #1D2026;">
-                    <children>
-                        <JFXButton layoutX="2.0" layoutY="-6.0" onAction="#delBooking" prefHeight="27.0" prefWidth="200.0" text="Удалить" textFill="#ccc5c5">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="21.0" />
-                            </font>
-                        </JFXButton>
-                    </children>
-                </AnchorPane>
-            </children>
-        </AnchorPane>
+        <ImageView fitHeight="39.0" fitWidth="54.0" layoutX="29.0" layoutY="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/pictures/back.png" />
+            </image>
+        </ImageView>
+        <Button layoutX="14.0" layoutY="19.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainUser" opacity="0.0" prefHeight="50.0" prefWidth="90.0" />
     </children>
 </AnchorPane>

@@ -73,6 +73,13 @@ public class Client {
         clout.println(str);
     }
 
+    public static void userAddNewRating(Rating rating) {
+        clout.println("userAddNewRating");
+        String str = new Gson().toJson(rating);
+        clout.println(str);
+    }
+
+
     public static void addNewAccountAdmin(Account acc) {
         clout.println("addNewAccountAdminUser");
         String str = new Gson().toJson(acc);
@@ -184,7 +191,7 @@ public class Client {
         clout.println(new Gson().toJson(not));
     }
 
-    public static void deleteSelectedRating(Rating rating){
+    public static void deleteSelectedRating(Rating rating) {
         clout.println("deleteRating");
         clout.println(new Gson().toJson(rating));
     }
@@ -193,6 +200,20 @@ public class Client {
         clout.println("getAllRatings");
         String receive = clin.readLine();
         return new Gson().fromJson(receive, new TypeToken<ArrayList<Rating>>() {
+        }.getType());
+    }
+
+    public static ArrayList<Rating> getAllRatingsByLogin(String login) throws IOException {
+        clout.println("getAllRatingsByLogin");
+        clout.println(login);
+        return new Gson().fromJson(clin.readLine(), new TypeToken<ArrayList<Rating>>() {
+        }.getType());
+    }
+
+    public static ArrayList<Notification> getAllNotificationsByLogin(String login) throws IOException{
+        clout.println("getAllNotificationsByLogin");
+        clout.println(login);
+        return new Gson().fromJson(clin.readLine(), new TypeToken<ArrayList<Notification>>() {
         }.getType());
     }
 
@@ -311,7 +332,7 @@ public class Client {
         clout.println(str);
     }
 
-    public static void editTime(LocalTime str, LocalTime log){
+    public static void editTime(LocalTime str, LocalTime log) {
         clout.println("editTime");
         clout.println(log.toString());
         clout.println(str.toString());

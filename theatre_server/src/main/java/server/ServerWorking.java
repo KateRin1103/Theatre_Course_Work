@@ -63,11 +63,14 @@ public class ServerWorking extends Thread {
     private static final String editTime = "editTime";
     private static final String getAllNotifications = "getAllNotifications";
     private static final String deleteSelectedNotification = "deleteSelectedNotification";
-    private static final String addRating = "addRating";
+    private static final String addRating = "userAddNewRating";
     private static final String getAllRatings = "getAllRatings";
+    private static final String getAllRatingsByLogin = "getAllRatingsByLogin";
     private static final String deleteRating = "deleteRating";
     private static final String getAvgRating = "getAvgRating";
     private static final String getDamages = "getDamages";
+    private static final String getAllNotificationsByLogin = "getAllNotificationsByLogin";
+
 
     private static final String getSeancePlaces = "getSeancePlaces";
 
@@ -139,7 +142,11 @@ public class ServerWorking extends Thread {
                                 getAllBookingsByLogin();
                                 break;
                             }
-                            case getDamages:{
+                            case getAllRatingsByLogin: {
+                                getAllRatingsByLogin();
+                                break;
+                            }
+                            case getDamages: {
                                 getDamages();
                                 break;
                             }
@@ -183,6 +190,10 @@ public class ServerWorking extends Thread {
                                 addRating();
                                 break;
                             }
+                            case getAllNotificationsByLogin: {
+                                getAllNotificationsByLogin();
+                                break;
+                            }
                             case getAllBookingsToDel: {
                                 getAllBookingsToDel();
                                 break;
@@ -191,7 +202,7 @@ public class ServerWorking extends Thread {
                                 getAllRatings();
                                 break;
                             }
-                            case getAvgRating:{
+                            case getAvgRating: {
                                 getAvgRating();
                                 break;
                             }
@@ -397,6 +408,30 @@ public class ServerWorking extends Thread {
     private void getAllNotifications() throws SQLException {
         openDatabase();
         ResultSet res = getDatabase("select login, changed, date, time from notifications join user u on u.id = notifications.user_id");
+        ArrayList<Notification> arrayList = new ArrayList<>();
+        while (res.next()) {
+            Notification notification = new Notification();
+            notification.setLogin(res.getString("login"));
+            notification.setChanged(res.getString("changed"));
+            notification.setDate(res.getDate("date").toLocalDate());
+            notification.setTime(res.getTime("time").toLocalTime());
+            arrayList.add(notification);
+        }
+        GsonBuilder gb = new GsonBuilder();
+        gb.setDateFormat("yyyy-MM-dd");
+        Gson gson = gb.create();
+        printStream.println(gson.toJson(arrayList));
+    }
+
+    private void getAllNotificationsByLogin() throws SQLException {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        openDatabase();
+        ResultSet res = getDatabase("select login, changed, date, time from notifications join user u on u.id = notifications.user_id where login = '" + get + "'");
         ArrayList<Notification> arrayList = new ArrayList<>();
         while (res.next()) {
             Notification notification = new Notification();
@@ -752,10 +787,11 @@ public class ServerWorking extends Thread {
         Type Tip = new TypeToken<Rating>() {
         }.getType();
         Rating rating = g.fromJson(get, Tip);
-        execute(String.format("INSERT INTO rating (user_id,film_id,rating,comment) " +
+        String str = String.format("INSERT INTO rating (user_id,film_id,rating,comment) " +
                         "VALUES ((SELECT id FROM user WHERE login='%s')," +
                         " (SELECT id FROM film WHERE title='%s'), %d, '%s')",
-                rating.getLogin(), rating.getFilm(), rating.getRating(), rating.getComment()));
+                rating.getLogin(), rating.getFilm(), (int) rating.getRating(), rating.getComment());
+        execute(str);
     }
 
     private void getAllRatings() throws SQLException {
@@ -764,6 +800,26 @@ public class ServerWorking extends Thread {
                 "from rating\n" +
                 "         inner join film f on rating.film_id = f.id\n" +
                 "         inner join user u on rating.user_id = u.id");
+        ArrayList<Rating> ratings = new ArrayList<>();
+        while (res.next()) {
+            ratings.add(new Rating(res.getString("login"), res.getString("title"),
+                    res.getFloat("rating"), res.getString("comment")));
+        }
+        printStream.println(new Gson().toJson(ratings));
+    }
+
+    private void getAllRatingsByLogin() throws SQLException {
+        String get = "";
+        try {
+            get = bufferedReader.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        openDatabase();
+        ResultSet res = getDatabase("select login, title, comment, rating\n" +
+                "from rating\n" +
+                "         inner join film f on rating.film_id = f.id\n" +
+                "         inner join user u on rating.user_id = u.id where login='" + get + "'");
         ArrayList<Rating> ratings = new ArrayList<>();
         while (res.next()) {
             ratings.add(new Rating(res.getString("login"), res.getString("title"),

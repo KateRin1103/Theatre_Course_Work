@@ -7,28 +7,31 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="364.0" prefWidth="559.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountLogin">
    <children>
-      <ImageView fitHeight="429.0" fitWidth="698.0" layoutX="-3.0" layoutY="-2.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="364.0" fitWidth="559.0">
          <image>
-            <Image url="@/pictures/Балерина1.jpg" />
+            <Image url="@../../pictures/marginalia-background-2.png" />
          </image>
       </ImageView>
-      <TextField fx:id="adminLogin" layoutX="192.0" layoutY="208.0" prefHeight="30.0" prefWidth="175.0" />
-      <PasswordField fx:id="adminPassword" layoutX="193.0" layoutY="265.0" prefHeight="30.0" prefWidth="175.0" />
-      <Text layoutX="192.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ВХОД ПОЛЬЗОВАТЕЛЯ" textAlignment="CENTER" wrappingWidth="175.20000243883624">
+      <TextField fx:id="adminLogin" layoutX="191.0" layoutY="142.0" prefHeight="30.0" prefWidth="175.0" />
+      <PasswordField fx:id="adminPassword" layoutX="192.0" layoutY="199.0" prefHeight="30.0" prefWidth="175.0" />
+      <Text layoutX="191.0" layoutY="86.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ВХОД ПОЛЬЗОВАТЕЛЯ" textAlignment="CENTER" wrappingWidth="175.20000243883624">
          <font>
             <Font name="Century Gothic" size="20.0" />
          </font>
       </Text>
-      <Text layoutX="252.0" layoutY="200.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин:">
+      <Text layoutX="251.0" layoutY="134.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Логин:">
          <font>
             <Font name="Century Gothic" size="14.0" />
          </font>
       </Text>
-      <Text layoutX="250.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль:" textAlignment="CENTER">
+      <Text layoutX="249.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Пароль:" textAlignment="CENTER">
          <font>
             <Font name="Century Gothic" size="14.0" />
          </font>
       </Text>
-      <Button fx:id="enterUser" layoutX="228.0" layoutY="312.0" mnemonicParsing="false" onAction="#enterUser" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #cab198;" text="Вход" textAlignment="CENTER" />
+      <Button fx:id="enterUser" layoutX="221.0" layoutY="245.0" mnemonicParsing="false" onAction="#enterUser" prefHeight="38.0" prefWidth="118.0" style="-fx-background-color: #cfe5ff;" text="Вход" textAlignment="CENTER">
+         <font>
+            <Font size="17.0" />
+         </font></Button>
    </children>
 </AnchorPane>

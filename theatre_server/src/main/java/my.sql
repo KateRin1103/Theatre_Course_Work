@@ -312,6 +312,10 @@ from rating
          inner join film f on rating.film_id = f.id
          inner join user u on rating.user_id = u.id;
 
+select date, time, changed
+from notifications
+where user_id = (select id from user where login = ?);
+
 DELETE
 FROM rating
 WHERE user_id = (SELECT id FROM user WHERE login = 'katerin')

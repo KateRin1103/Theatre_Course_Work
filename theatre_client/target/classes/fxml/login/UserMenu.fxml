@@ -8,91 +8,115 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="688.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountLogin">
     <children>
-        <AnchorPane prefHeight="688.0" prefWidth="290.0" style="-fx-background-color: #1D2026;">
+        <AnchorPane layoutX="-3.0" prefHeight="677.0" prefWidth="1206.0" style="-fx-background-color: #fff3de;">
             <children>
-                <Pane prefHeight="100.0" prefWidth="306.0" style="-fx-background-color: #1D2026;">
-                    <children>
-                        <Label layoutX="41.0" layoutY="34.0" text="Меню Пользователя" textFill="WHITE">
-                            <font>
-                                <Font name="Microsoft JhengHei Light" size="23.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
-                <JFXButton layoutY="184.0" onAction="#toBuyProduct" prefHeight="50.0" prefWidth="306.0" text="Покупка билетов" textAlignment="CENTER" textFill="#ccc5c5">
+                <ImageView fitHeight="321.0" fitWidth="326.0" layoutX="833.0" layoutY="386.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-chart-2.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="344.0" fitWidth="326.0" layoutX="40.0" layoutY="357.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-chart.png" />
+                    </image>
+                </ImageView>
+                <ImageView fitHeight="294.0" fitWidth="317.0" layoutX="844.0" layoutY="-123.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-chart-1.png" />
+                    </image>
+                </ImageView>
+                <Text fill="#ffaa96" layoutX="506.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="53.8125">
                     <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                        <Font name="System Bold" size="70.0" />
+                    </font>
+                </Text>
+                <Text fill="#1d2026" layoutX="508.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.375">
+                    <font>
+                        <Font name="System Bold" size="70.0" />
+                    </font>
+                </Text>
+                <Text fill="#1d2026" layoutX="500.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font name="System Bold" size="96.0" />
+                    </font>
+                </Text>
+                <Text fill="#1d2026" layoutX="491.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0">
+                    <font>
+                        <Font name="System Bold" size="96.0" />
+                    </font>
+                </Text>
+                <JFXButton buttonType="RAISED" layoutX="79.0" layoutY="397.0" onAction="#toBuyProduct" prefHeight="80.0" prefWidth="247.0" style="-fx-background-color: #ffdefa;" text="Покупка билетов" textAlignment="CENTER" textFill="#060414">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="23.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutY="234.0" onAction="#toDelBookingsUser" prefHeight="50.0" prefWidth="306.0" text="Управление корзиной" textAlignment="CENTER" textFill="#ccc5c5">
+                <JFXButton buttonType="RAISED" layoutX="72.0" layoutY="509.0" onAction="#toDelBookingsUser" prefHeight="80.0" prefWidth="247.0" style="-fx-background-color: #ffbdf5;" text="Управление корзиной" textAlignment="CENTER" textFill="#060414" wrapText="true">
                     <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                        <Font name="Microsoft JhengHei Light" size="23.0" />
                     </font>
                 </JFXButton>
-                <JFXButton layoutY="284.0" onAction="#toShowSeancesForUser" prefHeight="50.0" prefWidth="306.0" text="Афиша" textAlignment="CENTER" textFill="#ccc5c5">
+                <JFXButton buttonType="RAISED" layoutX="884.0" layoutY="549.0" onAction="#toShowSeancesForUser" prefHeight="80.0" prefWidth="223.0" style="-fx-background-color: #90f089;" text="Афиша" textAlignment="CENTER" textFill="#060414">
                     <font>
-                        <Font name="Microsoft JhengHei Light" size="16.0" />
+                        <Font name="Microsoft JhengHei Light" size="23.0" />
                     </font>
                 </JFXButton>
-
-            </children>
-        </AnchorPane>
-        <AnchorPane layoutX="308.0" prefHeight="688.0" prefWidth="895.0">
-            <children>
-                <Pane prefHeight="100.0" prefWidth="902.0" style="-fx-background-color: #7a787a;">
-                    <children>
-                        <ImageView fitHeight="27.0" fitWidth="36.0" layoutX="849.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@/pictures/back.png" />
-                            </image>
-                        </ImageView>
-                        <Button layoutX="849.0" layoutY="14.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="27.0" prefWidth="27.0" textFill="#950808" />
-                    </children></Pane>
-            <ImageView fitHeight="457.0" fitWidth="807.0" layoutX="37.0" layoutY="135.0" pickOnBounds="true" preserveRatio="true">
+                <JFXButton buttonType="RAISED" layoutX="879.0" layoutY="34.0" onAction="#toShowNotificationsForUser" prefHeight="80.0" prefWidth="247.0" style="-fx-background-color: #dd8fff;" text="Уведомления" textAlignment="CENTER" textFill="#060414">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="23.0" />
+                    </font>
+                </JFXButton>
+                <JFXButton buttonType="RAISED" layoutX="884.0" layoutY="437.0" onAction="#toAddRating" prefHeight="80.0" prefWidth="223.0" style="-fx-background-color: #bfffba;" text="Оставить отзыв" textAlignment="CENTER" textFill="#060414">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="23.0" />
+                    </font>
+                </JFXButton>
+                <Label layoutX="136.0" layoutY="24.0" prefHeight="119.0" prefWidth="266.0" text="Меню Пользователя" textAlignment="CENTER" textFill="#3cab96" wrapText="true">
+                    <font>
+                        <Font name="Microsoft JhengHei Light" size="37.0" />
+                    </font>
+                </Label>
+            <ImageView fitHeight="200.0" fitWidth="194.0" layoutX="31.0" layoutY="134.0">
                <image>
-                  <Image url="@/pictures/Балерина2.jpg" />
+                  <Image url="@../../pictures/bonbon-girl.png" />
                </image>
             </ImageView>
-            <Text fill="#ffaa96" layoutX="506.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="53.8125">
-               <font>
-                  <Font name="System Bold" size="70.0" />
-               </font>
-            </Text>
-            <Text fill="#1d2026" layoutX="508.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="72.375">
-               <font>
-                  <Font name="System Bold" size="70.0" />
-               </font>
-            </Text>
-            <Text fill="#1d2026" layoutX="500.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0">
-               <font>
-                  <Font name="System Bold" size="96.0" />
-               </font>
-            </Text>
-            <Text fill="#1d2026" layoutX="491.0" layoutY="500.0" strokeType="OUTSIDE" strokeWidth="0.0">
-               <font>
-                  <Font name="System Bold" size="96.0" />
-               </font>
-            </Text>
-            <AnchorPane layoutX="275.0" layoutY="494.0" opacity="0.43" prefHeight="92.0" prefWidth="498.0" style="-fx-background-color: #000000;">
-               <children>
-                  <Text fill="#fff9f9" layoutX="332.0" layoutY="28.0" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <font>
-                        <Font name="System Bold" size="75.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#fff9f9" layoutX="377.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0">
-                     <font>
-                        <Font name="System Bold" size="76.0" />
-                     </font>
-                  </Text>
-                  <Text fill="#c8c1c1" layoutX="24.0" layoutY="39.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Τερψιχόρη" wrappingWidth="518.115234375">
-                     <font>
-                        <Font name="System Bold" size="100.0" />
-                     </font>
-                  </Text>
-               </children>
-            </AnchorPane>
+            <ImageView fitHeight="159.0" fitWidth="125.0" layoutX="680.0" layoutY="470.0">
+               <image>
+                  <Image url="@../../pictures/bonbon-heart.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="159.0" fitWidth="172.0" layoutX="977.0" layoutY="195.0">
+               <image>
+                  <Image url="@../../pictures/bonbon-star.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="131.0" layoutX="218.0" layoutY="162.0">
+               <image>
+                  <Image url="@../../pictures/bonbon-flower.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="119.0" fitWidth="140.0" layoutX="366.0" layoutY="529.0">
+               <image>
+                  <Image url="@../../pictures/bonbon-star-1.png" />
+               </image>
+            </ImageView>
+                <ImageView fitHeight="469.0" fitWidth="488.0" layoutX="376.0">
+                    <image>
+                        <Image url="@../../pictures/bonbon-halloween-2.png" />
+                    </image>
+                </ImageView>
+            <ImageView fitHeight="200.0" fitWidth="184.0" layoutX="488.0" layoutY="409.0">
+               <image>
+                  <Image url="@../../pictures/bonbon-star-2.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
+        <ImageView fitHeight="39.0" fitWidth="54.0" layoutX="29.0" layoutY="25.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@/pictures/back.png" />
+            </image>
+        </ImageView>
+        <Button layoutX="14.0" layoutY="19.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMain" opacity="0.0" prefHeight="50.0" prefWidth="90.0" textFill="#950808" />
     </children>
 </AnchorPane>

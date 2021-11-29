@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false"
+            prefHeight="640.0" prefWidth="1200.0" style="-fx-background-color: #ffd4e8;"
+            xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="controller.user.UserEditNotifications">
+    <children>
+        <ImageView fitHeight="56.0" fitWidth="51.0" layoutX="21.0" layoutY="25.0" nodeOrientation="RIGHT_TO_LEFT"
+                   pickOnBounds="true" preserveRatio="true">
+            <Image url="@/pictures/back.png"/>
+        </ImageView>
+        <ImageView fitHeight="584.0" fitWidth="821.0" layoutX="366.0" layoutY="45.0">
+            <image>
+                <Image url="@../../pictures/bonbon-drawing-tablet%20(1).png"/>
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="345.0" layoutY="-2.0" prefHeight="690.0" prefWidth="875.0">
+            <children>
+                <TableView fx:id="Notification" layoutX="49.0" layoutY="74.0" prefHeight="527.0" prefWidth="693.0">
+                    <columns>
+                        <TableColumn fx:id="login" minWidth="0.0" prefWidth="0.0" text="Логин"/>
+                        <TableColumn fx:id="date" prefWidth="104.0" text="Дата"/>
+                        <TableColumn fx:id="time" prefWidth="89.99996948242188" text="Время"/>
+                        <TableColumn fx:id="notification" prefWidth="699.0000610351562" text="Уведомление"/>
+                    </columns>
+                </TableView>
+            </children>
+        </AnchorPane>
+        <TextField fx:id="filterField" layoutX="37.0" layoutY="125.0" prefHeight="25.0" prefWidth="313.0"
+                   promptText="Поиск">
+            <font>
+                <Font size="20.0"/>
+            </font>
+        </TextField>
+        <JFXButton buttonType="RAISED" layoutX="85.0" layoutY="543.0" onAction="#delBooking" prefHeight="27.0"
+                   prefWidth="200.0" style="-fx-background-color: #f3a3ff;" text="Удалить" textFill="#151240">
+            <font>
+                <Font name="Microsoft JhengHei Light" size="21.0"/>
+            </font>
+        </JFXButton>
+        <ImageView fitHeight="264.0" fitWidth="179.0" layoutX="185.0" layoutY="239.0">
+            <image>
+                <Image url="@../../pictures/bonbon-flower.png"/>
+            </image>
+        </ImageView>
+        <ImageView fitHeight="137.0" fitWidth="119.0" layoutX="53.0" layoutY="239.0" nodeOrientation="RIGHT_TO_LEFT">
+            <image>
+                <Image url="@../../pictures/bonbon-leaves.png"/>
+            </image>
+        </ImageView>
+        <Button layoutX="17.0" layoutY="14.0" minWidth="27.0" mnemonicParsing="false" onAction="#toMainUser"
+                opacity="0.0" prefHeight="54.0" prefWidth="67.0"/>
+    </children>
+</AnchorPane>

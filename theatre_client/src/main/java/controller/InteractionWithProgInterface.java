@@ -19,4 +19,6 @@ public class InteractionWithProgInterface {
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }
+
+
 }
