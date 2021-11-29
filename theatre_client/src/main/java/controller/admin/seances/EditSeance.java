@@ -1,6 +1,6 @@
 package controller.admin.seances;
 
-import controller.InteractionWithProgInterface;
+import controller.admin.InteractionWithProgInterface;
 import controller.Sample;
 import controller.alerts.AdminAlerts;
 import javafx.collections.FXCollections;

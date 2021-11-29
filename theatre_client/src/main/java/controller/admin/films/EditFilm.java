@@ -1,6 +1,6 @@
 package controller.admin.films;
 
-import controller.InteractionWithProgInterface;
+import controller.admin.InteractionWithProgInterface;
 import controller.Sample;
 import controller.alerts.AdminAlerts;
 import javafx.event.ActionEvent;

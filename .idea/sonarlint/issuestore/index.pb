@@ -29,8 +29,6 @@ _
 /theatre_client/src/main/java/theatre/Place.java,2\a\2a37b5f038c2dbc54c0927f533dc70d8e6162e9e
 a
 1theatre_client/src/main/java/account/Account.java,c\0\c017e35654033766710f2517004eccc5208ba1ac
-d
-4theatre_server/src/main/java/theatre/BookedSeat.java,5\9\59e3c178214efa4663ae1f8bb814fa64d13934dd
 ^
 .theatre_client/src/main/java/theatre/Film.java,e\0\e0959fb8a7616cd987d60ec1261822ba69d976e0
 ^
@@ -49,10 +47,6 @@ j
 :theatre_server/src/test/java/server/ServerWorkingTest.java,9\b\9bfc572c8e6ef3de8544d7430b5bf66d5c90256e
 Q
 !theatre_client/theatre_client.iml,7\7\776afd1d719a80fe3803b96c94ce5b065dd00ac1
-{
-Ktheatre_client/src/main/java/controller/user/seances/UserSeancesVision.java,4\7\47037749b9865f9911657484cb17096263a13a2a
-z
-Jtheatre_client/src/main/java/controller/user/seances/UserSearchAfisha.java,b\2\b27c632a7a69a5d9c0677c15914303c08f7d1d1c
 d
 4theatre_client/src/main/java/statistics/Damages.java,1\4\148367efca1d55006a3e8b422de3d21ab2ee533c
 d

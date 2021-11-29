@@ -1,7 +1,7 @@
 package controller.user.booking;
 
 import controller.MainClient;
-import controller.UserInteractionWithProgInterface;
+import controller.user.UserInteractionWithProgInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

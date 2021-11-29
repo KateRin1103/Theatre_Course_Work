@@ -1,7 +1,6 @@
 package controller.user;
 
 import controller.AutoCompleteComboBoxListener;
-import controller.UserInteractionWithProgInterface;
 import controller.alerts.AdminAlerts;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;

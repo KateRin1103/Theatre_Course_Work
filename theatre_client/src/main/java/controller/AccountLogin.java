@@ -1,6 +1,7 @@
 package controller;
 
 import client.Client;
+import controller.admin.InteractionWithProgInterface;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -104,12 +105,6 @@ public class AccountLogin extends InteractionWithProgInterface {
 
     public void toDelBookings(ActionEvent actionEvent) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/adminActions/DeleteBooking.fxml"));
-        MainClient.primaryStage.setScene(new Scene(root));
-        MainClient.primaryStage.show();
-    }
-
-    public void toShowSeancesForUser(ActionEvent actionEvent) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/userActions/ShowSeances.fxml"));
         MainClient.primaryStage.setScene(new Scene(root));
         MainClient.primaryStage.show();
     }

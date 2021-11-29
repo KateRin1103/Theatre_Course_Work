@@ -1,6 +1,6 @@
 package controller.admin.statistics;
 
-import controller.InteractionWithProgInterface;
+import controller.admin.InteractionWithProgInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.Initializable;

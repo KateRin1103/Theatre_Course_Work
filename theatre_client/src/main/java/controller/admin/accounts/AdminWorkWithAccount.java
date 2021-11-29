@@ -1,7 +1,7 @@
 package controller.admin.accounts;
 
 import account.User;
-import controller.InteractionWithProgInterface;
+import controller.admin.InteractionWithProgInterface;
 import controller.MainClient;
 import controller.alerts.AdminAlerts;
 import javafx.collections.FXCollections;

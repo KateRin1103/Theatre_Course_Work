@@ -1,7 +1,6 @@
 package controller.user;
 
 import controller.MainClient;
-import controller.UserInteractionWithProgInterface;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;

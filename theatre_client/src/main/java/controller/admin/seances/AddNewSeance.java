@@ -1,7 +1,7 @@
 package controller.admin.seances;
 
 import controller.AutoCompleteComboBoxListener;
-import controller.InteractionWithProgInterface;
+import controller.admin.InteractionWithProgInterface;
 import controller.alerts.AdminAlerts;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;

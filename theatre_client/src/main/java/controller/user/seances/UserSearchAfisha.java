@@ -1,6 +1,6 @@
 package controller.user.seances;
 
-import controller.UserInteractionWithProgInterface;
+import controller.user.UserInteractionWithProgInterface;
 import javafx.beans.binding.Bindings;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

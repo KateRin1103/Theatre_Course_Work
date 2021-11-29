@@ -1,5 +1,6 @@
-package controller;
+package controller.admin;
 
+import controller.MainClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
